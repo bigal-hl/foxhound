@@ -506,6 +506,8 @@ var FoxHoundDialectMSSQL = function(pFable)
 					{
 						var tmpColumnParameter = 'MANUAL_UpdateDate'
 						tmpUpdate += ' ['+tmpColumn+'] = @MANUAL_UpdateDate';
+						pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+						generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpSchemaEntry);
 					}
 					else
 					{
