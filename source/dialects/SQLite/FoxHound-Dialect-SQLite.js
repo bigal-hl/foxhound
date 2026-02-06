@@ -291,7 +291,7 @@ var FoxHoundDialectSQLite = function(pFable)
 		// If there is a begin record, we'll pass that in as well.
 		if (pParameters.begin !== false)
 		{
-			tmpLimit += ' FETCH ' + pParameters.begin;
+			tmpLimit += ' OFFSET ' + pParameters.begin;
 		}
 
 		return tmpLimit;
