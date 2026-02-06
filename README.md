@@ -1,65 +1,143 @@
 # FoxHound
 
-The FoxHound javascript query generator, for node.js and the browser.
+> A fluent query generation DSL for Node.js and the browser
 
+FoxHound is a database query builder that generates dialect-specific SQL from a single chainable API.  It keeps your application code database-agnostic while producing safe, parameterized queries for MySQL, Microsoft SQL Server, SQLite, and ALASQL.
 
-### Getting Started
+## Features
 
-    $ npm install foxhound --save
+- **Chainable API** — every configuration method returns the query object for fluent composition
+- **Multiple Dialects** — generate SQL for MySQL, MSSQL, SQLite, ALASQL, or plain English from the same code
+- **Parameterized Queries** — user-supplied values are always bound as named parameters, preventing SQL injection
+- **Schema-Aware** — automatic management of identity columns, timestamps, user stamps, and soft-delete tracking
+- **Full CRUD + Count** — build CREATE, READ, UPDATE, DELETE, UNDELETE, and COUNT queries
+- **Query Overrides** — underscore-style templates for custom SQL while retaining automatic parameter binding
+- **Filtering & Sorting** — rich filter expressions with multiple operators, logical grouping, and multi-column sorting
+- **Joins & Pagination** — INNER, LEFT, and custom joins plus dialect-aware LIMIT/OFFSET pagination
+- **Fable Integration** — operates as a Fable service, inheriting configuration, logging, and UUID generation
 
-Then...
+## Quick Start
 
-    var foxhound = require('foxhound');
-    var my_awesome_query = foxhound.scope('Users').cap(20).generate().query.body;
-    console.log(my_awesome_query);
+```javascript
+const libFable = require('fable');
+const libFoxHound = require('foxhound');
 
-The default query dialect is english, so, node should output:
+const _Fable = new libFable({});
+const tmpQuery = libFoxHound.new(_Fable);
 
-    Please give me 20 of your Users.  Thank you!
+tmpQuery
+    .setScope('Books')
+    .setDataElements(['Title', 'Author', 'PublishedYear'])
+    .addFilter('Genre', 'Science Fiction')
+    .addSort({Column: 'PublishedYear', Direction: 'Descending'})
+    .setCap(25)
+    .setDialect('MySQL')
+    .buildReadQuery();
 
-This is not very useful for anything other than testing, so, we might want to change the dialect and try again:
+console.log(tmpQuery.query.body);
+// => SELECT `Title`, `Author`, `PublishedYear` FROM `Books`
+//    WHERE `Books`.`Genre` = :Genre_w0 ORDER BY PublishedYear DESC LIMIT 25;
 
-    var foxhound = require('foxhound');
-    var my_awesome_query = foxhound.scope('Users').cap(20).setDialect('MySQL').generate().query.body;
-    console.log(my_awesome_query);
-
-Which now will output:
-
-    SELECT * FROM Users LIMIT 20;
-
-### Testing
-
-    $ npm test
-    $ npm run coverage
-
-### Docker Development Environment
-
-
-1. Run this command to build this image:
-```
-docker build ./ -t retold/foxhound:local
-```
-
-alternatively you can use npm to run this
-
-
-```
-npm run docker-dev-build-image
+console.log(tmpQuery.query.parameters);
+// => { Genre_w0: 'Science Fiction' }
 ```
 
-2. Run this command to build the local container:
-```
-docker run -it --name foxhound-dev -p 127.0.0.1:12346:8080 -v "$PWD/.config:/home/coder/.config"  -v "$PWD:/home/coder/foxhound" -u "$(id -u):$(id -g)" -e "DOCKER_USER=$USER" retold/foxhound:local
+## Installation
+
+```bash
+npm install foxhound
 ```
 
-alternatively you can use npm to run this
+## How It Works
+
+FoxHound follows a configure-then-build pattern.  You create a query instance, chain configuration methods to set the table, columns, filters, sorts, and dialect, then call a build method to generate the SQL.
 
 ```
+Application Code
+  └── FoxHound Query
+        ├── setScope('Books')         → target table
+        ├── addFilter('Genre', '...')  → WHERE clause
+        ├── addSort('Title')          → ORDER BY clause
+        ├── setCap(25)                → LIMIT clause
+        ├── setDialect('MySQL')       → output format
+        └── buildReadQuery()          → SQL generation
+              ├── query.body          → SQL string
+              └── query.parameters    → bound values
+```
+
+## Dialects
+
+| Dialect | Target | Identifier Quoting | Parameter Prefix | Pagination |
+|---------|--------|-------------------|-----------------|------------|
+| `MySQL` | MySQL / MariaDB | `` `backticks` `` | `:name` | `LIMIT offset, count` |
+| `MSSQL` | Microsoft SQL Server | `[brackets]` | `@name` | `OFFSET/FETCH` |
+| `SQLite` | SQLite 3 | `` `backticks` `` | `:name` | `LIMIT count OFFSET offset` |
+| `ALASQL` | ALASQL (in-memory) | `` `backticks` `` | `:name` | `LIMIT count FETCH offset` |
+| `English` | Human-readable | none | none | prose |
+| `MeadowEndpoints` | REST URLs | none | none | query string |
+
+## Schema Types
+
+When a schema is attached, FoxHound automatically manages special columns:
+
+| Type | Description |
+|------|-------------|
+| `AutoIdentity` | Auto-increment primary key — `NULL` on insert, skipped on update |
+| `AutoGUID` | Automatically generated UUID on insert |
+| `CreateDate` / `CreateIDUser` | Auto-populated on insert only |
+| `UpdateDate` / `UpdateIDUser` | Auto-populated on insert and update |
+| `DeleteDate` / `DeleteIDUser` | Auto-populated on soft delete |
+| `Deleted` | Soft-delete flag — auto-filtered in reads |
+
+## Filter Operators
+
+| Operator | SQL | Description |
+|----------|-----|-------------|
+| `=` | `=` | Equals (default) |
+| `!=` | `!=` | Not equals |
+| `>`, `>=`, `<`, `<=` | `>`, `>=`, `<`, `<=` | Comparison |
+| `LIKE` | `LIKE` | Pattern match |
+| `IN`, `NOT IN` | `IN (...)`, `NOT IN (...)` | Set membership |
+| `IS NULL`, `IS NOT NULL` | `IS NULL`, `IS NOT NULL` | Null checks |
+| `(`, `)` | `(`, `)` | Logical grouping |
+
+## Testing
+
+```bash
+npm test
+npm run coverage
+```
+
+## Docker Development Environment
+
+1. Build the image:
+
+```bash
+npm run docker-dev-build
+```
+
+2. Run the container:
+
+```bash
 npm run docker-dev-run
 ```
 
-3. Go to http://localhost:12346/ in a web browser
+3. Open http://localhost:24238/ — the password is "retold"
 
-4. The password is "retold"
+## Documentation
 
-5. Right now you (may) need to delete the `node_modules` folders and regenerate it for Linux.
+Detailed documentation is available in the `docs/` folder and can be served locally:
+
+```bash
+npx docsify-cli serve docs
+```
+
+## Related Packages
+
+- [fable](https://github.com/stevenvelozo/fable) — Core service framework (required dependency)
+- [meadow](https://github.com/stevenvelozo/meadow) — Data access layer that uses FoxHound for query generation
+- [stricture](https://github.com/stevenvelozo/stricture) — Schema definition tool that produces FoxHound-compatible schema arrays
+- [meadow-endpoints](https://github.com/stevenvelozo/meadow-endpoints) — REST endpoint generator built on Meadow + FoxHound
+- [meadow-connection-mysql](https://github.com/stevenvelozo/meadow-connection-mysql) — MySQL connection provider
+- [meadow-connection-mssql](https://github.com/stevenvelozo/meadow-connection-mssql) — MSSQL connection provider
+- [meadow-connection-sqlite](https://github.com/stevenvelozo/meadow-connection-sqlite) — SQLite connection provider
