@@ -47,7 +47,7 @@
     },
     "homepage": "https://github.com/stevenvelozo/foxhound",
     "devDependencies": {
-        "quackage": "^1.0.48"
+        "quackage": "^1.0.50"
     },
     "dependencies": {
         "fable": "^3.1.53"
