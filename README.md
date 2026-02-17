@@ -134,10 +134,14 @@ npx docsify-cli serve docs
 
 ## Related Packages
 
-- [fable](https://github.com/stevenvelozo/fable) — Core service framework (required dependency)
-- [meadow](https://github.com/stevenvelozo/meadow) — Data access layer that uses FoxHound for query generation
-- [stricture](https://github.com/stevenvelozo/stricture) — Schema definition tool that produces FoxHound-compatible schema arrays
-- [meadow-endpoints](https://github.com/stevenvelozo/meadow-endpoints) — REST endpoint generator built on Meadow + FoxHound
-- [meadow-connection-mysql](https://github.com/stevenvelozo/meadow-connection-mysql) — MySQL connection provider
-- [meadow-connection-mssql](https://github.com/stevenvelozo/meadow-connection-mssql) — MSSQL connection provider
-- [meadow-connection-sqlite](https://github.com/stevenvelozo/meadow-connection-sqlite) — SQLite connection provider
+- [meadow](https://github.com/stevenvelozo/meadow) - Data access and ORM
+- [stricture](https://github.com/stevenvelozo/stricture) - Schema definition language
+- [fable](https://github.com/stevenvelozo/fable) - Application services framework
+
+## License
+
+MIT
+
+## Contributing
+
+Pull requests are welcome. For details on our code of conduct, contribution process, and testing requirements, see the [Retold Contributing Guide](https://github.com/stevenvelozo/retold/blob/main/docs/contributing.md).
