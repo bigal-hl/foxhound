@@ -1,0 +1,6358 @@
+{
+	"Generated": "2026-02-18T01:02:40.804Z",
+	"DocumentCount": 11,
+	"LunrIndex": {
+		"version": "2.3.9",
+		"fields": [
+			"title",
+			"module",
+			"group",
+			"body"
+		],
+		"fieldVectors": [
+			[
+				"title/docs/dialects/dialects/README.md",
+				[
+					0,
+					3.726,
+					1,
+					7.943
+				]
+			],
+			[
+				"module/docs/dialects/dialects/README.md",
+				[
+					0,
+					1.83
+				]
+			],
+			[
+				"group/docs/dialects/dialects/README.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/dialects/dialects/README.md",
+				[
+					0,
+					0.713,
+					1,
+					0.643,
+					3,
+					0.487,
+					4,
+					0.28,
+					5,
+					1.713,
+					6,
+					1.015,
+					7,
+					0.07,
+					8,
+					1.477,
+					9,
+					1.015,
+					10,
+					0.835,
+					11,
+					0.284,
+					12,
+					0.725,
+					13,
+					0.808,
+					14,
+					1.477,
+					15,
+					1.713,
+					16,
+					1.292,
+					17,
+					1.713,
+					18,
+					1.713,
+					19,
+					1.713,
+					20,
+					1.713,
+					21,
+					0.363,
+					22,
+					1.881,
+					23,
+					0.505,
+					24,
+					0.643,
+					25,
+					0.288,
+					26,
+					0.387,
+					27,
+					0.387,
+					28,
+					1.713,
+					29,
+					0.387,
+					30,
+					0.28,
+					31,
+					1.292,
+					32,
+					0.192,
+					33,
+					1.292,
+					34,
+					1.176,
+					35,
+					0.413,
+					36,
+					1.292,
+					37,
+					0.563,
+					38,
+					1.881,
+					39,
+					1.713,
+					40,
+					1.713,
+					41,
+					1.713,
+					42,
+					3.227,
+					43,
+					1.713,
+					44,
+					1.713,
+					45,
+					2.493,
+					46,
+					2.493,
+					47,
+					1.176,
+					48,
+					0.16,
+					49,
+					1.015,
+					50,
+					1.015,
+					51,
+					0.643,
+					52,
+					1.713,
+					53,
+					0.935,
+					54,
+					1.292,
+					55,
+					1.713,
+					56,
+					1.292,
+					57,
+					1.292,
+					58,
+					1.292,
+					59,
+					1.713,
+					60,
+					1.713,
+					61,
+					1.713,
+					62,
+					0.505,
+					63,
+					1.292,
+					64,
+					1.292,
+					65,
+					1.292,
+					66,
+					1.176,
+					67,
+					0.563,
+					68,
+					1.713,
+					69,
+					1.881,
+					70,
+					1.713,
+					71,
+					0.192,
+					72,
+					1.713,
+					73,
+					0.735,
+					74,
+					1.292,
+					75,
+					1.713,
+					76,
+					0.387,
+					77,
+					1.881,
+					78,
+					1.292,
+					79,
+					1.015,
+					80,
+					1.015,
+					81,
+					1.292,
+					82,
+					1.713,
+					83,
+					0.189,
+					84,
+					0.505,
+					85,
+					0.189,
+					86,
+					0.808,
+					87,
+					1.015,
+					88,
+					0.284,
+					89,
+					1.292,
+					90,
+					0.413,
+					91,
+					0.051,
+					92,
+					0.643,
+					93,
+					0.413,
+					94,
+					1.881,
+					95,
+					0.505,
+					96,
+					1.713,
+					97,
+					0.505,
+					98,
+					0.563,
+					99,
+					0.563,
+					100,
+					1.015,
+					101,
+					0.808,
+					102,
+					0.505,
+					103,
+					0.387,
+					104,
+					0.284,
+					105,
+					1.015,
+					106,
+					0.387,
+					107,
+					1.015,
+					108,
+					1.713,
+					109,
+					1.292,
+					110,
+					1.713,
+					111,
+					2.493,
+					112,
+					1.713,
+					113,
+					1.292,
+					114,
+					1.292,
+					115,
+					1.292,
+					116,
+					1.713,
+					117,
+					1.713
+				]
+			],
+			[
+				"title/docs/dialects/dialects/alasql.md",
+				[
+					0,
+					3.726,
+					37,
+					4.785
+				]
+			],
+			[
+				"module/docs/dialects/dialects/alasql.md",
+				[
+					0,
+					1.83
+				]
+			],
+			[
+				"group/docs/dialects/dialects/alasql.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/dialects/dialects/alasql.md",
+				[
+					0,
+					0.679,
+					1,
+					0.69,
+					4,
+					0.424,
+					7,
+					0.068,
+					8,
+					1.812,
+					9,
+					1.09,
+					10,
+					0.691,
+					11,
+					0.626,
+					12,
+					0.639,
+					13,
+					0.868,
+					21,
+					0.375,
+					23,
+					0.902,
+					25,
+					0.285,
+					26,
+					0.754,
+					27,
+					0.754,
+					29,
+					0.593,
+					32,
+					0.207,
+					34,
+					0.868,
+					35,
+					0.608,
+					37,
+					0.935,
+					38,
+					1.979,
+					48,
+					0.118,
+					53,
+					1.251,
+					62,
+					0.774,
+					67,
+					0.416,
+					71,
+					0.207,
+					73,
+					0.542,
+					74,
+					1.388,
+					78,
+					1.979,
+					83,
+					0.118,
+					84,
+					0.542,
+					85,
+					0.214,
+					88,
+					0.435,
+					90,
+					0.305,
+					91,
+					0.038,
+					92,
+					0.69,
+					97,
+					0.542,
+					103,
+					0.593,
+					104,
+					0.305,
+					106,
+					0.416,
+					107,
+					1.09,
+					109,
+					1.388,
+					113,
+					1.388,
+					114,
+					1.979,
+					115,
+					1.979,
+					118,
+					0.868,
+					119,
+					2.624,
+					120,
+					1.839,
+					121,
+					1.09,
+					122,
+					1.839,
+					123,
+					1.839,
+					124,
+					1.839,
+					125,
+					1.839,
+					126,
+					1.839,
+					127,
+					1.555,
+					128,
+					0.984,
+					129,
+					0.774,
+					130,
+					1.09,
+					131,
+					1.839,
+					132,
+					1.388,
+					133,
+					1.839,
+					134,
+					1.388,
+					135,
+					0.984,
+					136,
+					1.839,
+					137,
+					1.839,
+					138,
+					1.839,
+					139,
+					1.839,
+					140,
+					0.984,
+					141,
+					1.09,
+					142,
+					1.251,
+					143,
+					0.691,
+					144,
+					0.69,
+					145,
+					1.388,
+					146,
+					1.09,
+					147,
+					1.839,
+					148,
+					1.839,
+					149,
+					1.839,
+					150,
+					1.839,
+					151,
+					1.09,
+					152,
+					1.839,
+					153,
+					1.839,
+					154,
+					1.388,
+					155,
+					1.839,
+					156,
+					1.839,
+					157,
+					1.388,
+					158,
+					1.839,
+					159,
+					1.839,
+					160,
+					1.839,
+					161,
+					1.839,
+					162,
+					0.774,
+					163,
+					0.868,
+					164,
+					0.868,
+					165,
+					0.868,
+					166,
+					1.839,
+					167,
+					0.542
+				]
+			],
+			[
+				"title/docs/dialects/dialects/mssql.md",
+				[
+					0,
+					3.726,
+					32,
+					2.378
+				]
+			],
+			[
+				"module/docs/dialects/dialects/mssql.md",
+				[
+					0,
+					1.83
+				]
+			],
+			[
+				"group/docs/dialects/dialects/mssql.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/dialects/dialects/mssql.md",
+				[
+					0,
+					0.671,
+					3,
+					0.316,
+					4,
+					0.417,
+					7,
+					0.069,
+					10,
+					0.765,
+					11,
+					0.316,
+					12,
+					0.365,
+					21,
+					0.417,
+					23,
+					0.793,
+					25,
+					0.287,
+					26,
+					0.608,
+					27,
+					0.704,
+					29,
+					0.608,
+					30,
+					0.302,
+					32,
+					0.464,
+					33,
+					1.436,
+					34,
+					1.268,
+					48,
+					0.122,
+					53,
+					1.169,
+					56,
+					1.436,
+					62,
+					0.561,
+					67,
+					0.43,
+					71,
+					0.214,
+					73,
+					0.561,
+					83,
+					0.173,
+					85,
+					0.217,
+					87,
+					1.128,
+					88,
+					0.517,
+					93,
+					0.316,
+					94,
+					1.436,
+					95,
+					1.053,
+					99,
+					0.608,
+					103,
+					0.43,
+					104,
+					0.446,
+					106,
+					0.43,
+					118,
+					0.898,
+					129,
+					0.561,
+					135,
+					1.009,
+					142,
+					1.43,
+					143,
+					0.608,
+					144,
+					0.714,
+					146,
+					1.847,
+					162,
+					0.793,
+					163,
+					0.898,
+					164,
+					0.898,
+					165,
+					0.898,
+					167,
+					0.561,
+					168,
+					1.903,
+					169,
+					1.593,
+					170,
+					1.903,
+					171,
+					0.793,
+					172,
+					1.903,
+					173,
+					0.898,
+					174,
+					1.903,
+					175,
+					1.903,
+					176,
+					1.436,
+					177,
+					1.903,
+					178,
+					1.436,
+					179,
+					1.436,
+					180,
+					1.128,
+					181,
+					1.128,
+					182,
+					1.593,
+					183,
+					1.47,
+					184,
+					1.903,
+					185,
+					1.903,
+					186,
+					1.436,
+					187,
+					1.128,
+					188,
+					1.128,
+					189,
+					1.903,
+					190,
+					1.903,
+					191,
+					2.028,
+					192,
+					1.903,
+					193,
+					1.436,
+					194,
+					1.128,
+					195,
+					1.903,
+					196,
+					1.903
+				]
+			],
+			[
+				"title/docs/dialects/dialects/mysql.md",
+				[
+					0,
+					3.726,
+					30,
+					2.378
+				]
+			],
+			[
+				"module/docs/dialects/dialects/mysql.md",
+				[
+					0,
+					1.83
+				]
+			],
+			[
+				"group/docs/dialects/dialects/mysql.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/dialects/dialects/mysql.md",
+				[
+					0,
+					0.661,
+					3,
+					0.363,
+					4,
+					0.435,
+					7,
+					0.069,
+					10,
+					0.495,
+					12,
+					0.567,
+					14,
+					1.297,
+					21,
+					0.377,
+					23,
+					0.873,
+					24,
+					0.821,
+					25,
+					0.285,
+					26,
+					0.669,
+					27,
+					0.813,
+					29,
+					0.495,
+					30,
+					0.458,
+					31,
+					1.651,
+					48,
+					0.141,
+					53,
+					1.349,
+					62,
+					0.645,
+					67,
+					0.669,
+					71,
+					0.246,
+					76,
+					0.495,
+					80,
+					1.297,
+					83,
+					0.19,
+					85,
+					0.19,
+					88,
+					0.491,
+					90,
+					0.363,
+					91,
+					0.061,
+					92,
+					0.821,
+					95,
+					0.873,
+					98,
+					0.495,
+					99,
+					0.495,
+					103,
+					0.495,
+					104,
+					0.491,
+					105,
+					1.297,
+					106,
+					0.669,
+					118,
+					1.033,
+					128,
+					1.111,
+					129,
+					0.873,
+					130,
+					1.297,
+					135,
+					1.111,
+					142,
+					1.409,
+					143,
+					0.669,
+					144,
+					0.821,
+					162,
+					0.873,
+					163,
+					1.033,
+					164,
+					1.033,
+					165,
+					1.033,
+					167,
+					0.873,
+					181,
+					1.755,
+					182,
+					1.755,
+					197,
+					2.189,
+					198,
+					2.189,
+					199,
+					1.033,
+					200,
+					2.189,
+					201,
+					2.189,
+					202,
+					2.189,
+					203,
+					2.189,
+					204,
+					1.033,
+					205,
+					2.189,
+					206,
+					2.189,
+					207,
+					1.651,
+					208,
+					0.495,
+					209,
+					0.821,
+					210,
+					1.651,
+					211,
+					2.189
+				]
+			],
+			[
+				"title/docs/dialects/dialects/sqlite.md",
+				[
+					0,
+					3.726,
+					35,
+					3.511
+				]
+			],
+			[
+				"module/docs/dialects/dialects/sqlite.md",
+				[
+					0,
+					1.83
+				]
+			],
+			[
+				"group/docs/dialects/dialects/sqlite.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/dialects/dialects/sqlite.md",
+				[
+					0,
+					0.686,
+					4,
+					0.438,
+					6,
+					1.135,
+					7,
+					0.073,
+					10,
+					0.61,
+					11,
+					0.318,
+					12,
+					0.686,
+					21,
+					0.351,
+					23,
+					0.796,
+					25,
+					0.284,
+					26,
+					0.707,
+					27,
+					0.707,
+					29,
+					0.433,
+					35,
+					0.694,
+					36,
+					1.445,
+					47,
+					0.904,
+					48,
+					0.123,
+					49,
+					1.135,
+					53,
+					1.274,
+					62,
+					0.796,
+					63,
+					1.445,
+					67,
+					0.433,
+					71,
+					0.215,
+					76,
+					0.61,
+					83,
+					0.123,
+					85,
+					0.173,
+					88,
+					0.318,
+					90,
+					0.318,
+					91,
+					0.055,
+					93,
+					0.318,
+					98,
+					0.61,
+					99,
+					0.433,
+					102,
+					0.565,
+					103,
+					0.61,
+					104,
+					0.519,
+					105,
+					1.135,
+					106,
+					0.433,
+					118,
+					1.274,
+					121,
+					1.135,
+					127,
+					1.135,
+					128,
+					0.719,
+					129,
+					0.796,
+					130,
+					1.135,
+					135,
+					1.013,
+					141,
+					1.135,
+					142,
+					1.173,
+					143,
+					0.707,
+					146,
+					1.135,
+					154,
+					1.445,
+					162,
+					0.565,
+					163,
+					0.904,
+					164,
+					0.904,
+					165,
+					0.904,
+					167,
+					0.796,
+					173,
+					1.801,
+					176,
+					1.445,
+					187,
+					1.135,
+					188,
+					1.135,
+					193,
+					1.445,
+					194,
+					1.135,
+					209,
+					0.719,
+					210,
+					1.445,
+					212,
+					1.916,
+					213,
+					2.701,
+					214,
+					1.916,
+					215,
+					1.916,
+					216,
+					1.916,
+					217,
+					1.445,
+					218,
+					2.037,
+					219,
+					3.128,
+					220,
+					1.916,
+					221,
+					1.916,
+					222,
+					2.037,
+					223,
+					1.916,
+					224,
+					2.701,
+					225,
+					2.701,
+					226,
+					1.916,
+					227,
+					1.916,
+					228,
+					1.916,
+					229,
+					2.701,
+					230,
+					1.916,
+					231,
+					2.701,
+					232,
+					2.701,
+					233,
+					1.916,
+					234,
+					1.916,
+					235,
+					1.916,
+					236,
+					1.916
+				]
+			],
+			[
+				"title/docs/query/query/README.md",
+				[
+					1,
+					6.623,
+					12,
+					3.382,
+					50,
+					10.461
+				]
+			],
+			[
+				"module/docs/query/query/README.md",
+				[
+					12,
+					1.992
+				]
+			],
+			[
+				"group/docs/query/query/README.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/query/query/README.md",
+				[
+					0,
+					0.634,
+					1,
+					0.825,
+					3,
+					0.493,
+					6,
+					1.304,
+					7,
+					0.061,
+					10,
+					0.814,
+					12,
+					0.783,
+					13,
+					1.587,
+					21,
+					0.247,
+					22,
+					1.66,
+					24,
+					0.825,
+					25,
+					0.285,
+					29,
+					0.497,
+					47,
+					1.038,
+					48,
+					0.231,
+					49,
+					1.304,
+					50,
+					2.388,
+					51,
+					0.825,
+					65,
+					1.66,
+					66,
+					1.038,
+					69,
+					2.718,
+					71,
+					0.247,
+					76,
+					0.497,
+					80,
+					1.304,
+					90,
+					0.493,
+					91,
+					0.061,
+					97,
+					0.649,
+					98,
+					0.672,
+					99,
+					0.497,
+					101,
+					1.038,
+					121,
+					1.304,
+					129,
+					0.649,
+					143,
+					0.497,
+					145,
+					1.66,
+					151,
+					1.304,
+					173,
+					1.038,
+					179,
+					1.66,
+					180,
+					1.304,
+					183,
+					1.038,
+					199,
+					1.038,
+					208,
+					0.497,
+					213,
+					1.66,
+					217,
+					1.66,
+					222,
+					1.66,
+					237,
+					2.971,
+					238,
+					1.66,
+					239,
+					2.2,
+					240,
+					2.2,
+					241,
+					2.2,
+					242,
+					3.364,
+					243,
+					1.062,
+					244,
+					2.2,
+					245,
+					1.761,
+					246,
+					2.2,
+					247,
+					2.2,
+					248,
+					2.2,
+					249,
+					1.761,
+					250,
+					1.66,
+					251,
+					2.2,
+					252,
+					1.66,
+					253,
+					1.66,
+					254,
+					1.66,
+					255,
+					2.2,
+					256,
+					2.2,
+					257,
+					2.971,
+					258,
+					2.971,
+					259,
+					2.2,
+					260,
+					2.2,
+					261,
+					2.2
+				]
+			],
+			[
+				"title/docs/query/query/count.md",
+				[
+					12,
+					4.056,
+					99,
+					4.785
+				]
+			],
+			[
+				"module/docs/query/query/count.md",
+				[
+					12,
+					1.992
+				]
+			],
+			[
+				"group/docs/query/query/count.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/query/query/count.md",
+				[
+					0,
+					0.555,
+					3,
+					0.399,
+					4,
+					0.27,
+					7,
+					0.049,
+					10,
+					0.544,
+					11,
+					0.399,
+					12,
+					0.797,
+					13,
+					1.135,
+					24,
+					0.903,
+					25,
+					0.28,
+					30,
+					0.27,
+					32,
+					0.354,
+					34,
+					1.135,
+					35,
+					0.399,
+					37,
+					0.544,
+					47,
+					1.135,
+					48,
+					0.154,
+					57,
+					1.815,
+					58,
+					1.815,
+					66,
+					1.135,
+					71,
+					0.27,
+					79,
+					1.426,
+					83,
+					0.202,
+					84,
+					0.709,
+					85,
+					0.154,
+					90,
+					0.523,
+					91,
+					0.065,
+					93,
+					0.399,
+					97,
+					0.709,
+					98,
+					0.713,
+					99,
+					0.962,
+					100,
+					1.426,
+					101,
+					1.135,
+					102,
+					0.709,
+					103,
+					0.713,
+					104,
+					0.523,
+					106,
+					0.544,
+					127,
+					1.426,
+					129,
+					0.709,
+					135,
+					0.903,
+					140,
+					1.183,
+					141,
+					1.426,
+					143,
+					0.713,
+					162,
+					0.93,
+					167,
+					0.93,
+					171,
+					0.709,
+					191,
+					2.379,
+					194,
+					1.426,
+					199,
+					1.487,
+					207,
+					1.815,
+					208,
+					0.713,
+					243,
+					0.93,
+					249,
+					1.426,
+					254,
+					1.815,
+					262,
+					2.406,
+					263,
+					1.815,
+					264,
+					1.135,
+					265,
+					1.135,
+					266,
+					2.406,
+					267,
+					2.406,
+					268,
+					2.406,
+					269,
+					1.815
+				]
+			],
+			[
+				"title/docs/query/query/create.md",
+				[
+					12,
+					4.056,
+					245,
+					12.545
+				]
+			],
+			[
+				"module/docs/query/query/create.md",
+				[
+					12,
+					1.992
+				]
+			],
+			[
+				"group/docs/query/query/create.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/query/query/create.md",
+				[
+					0,
+					0.508,
+					3,
+					0.35,
+					4,
+					0.398,
+					7,
+					0.059,
+					8,
+					1.25,
+					11,
+					0.479,
+					12,
+					0.553,
+					21,
+					0.37,
+					23,
+					0.622,
+					25,
+					0.286,
+					26,
+					0.744,
+					27,
+					0.744,
+					30,
+					0.324,
+					32,
+					0.324,
+					35,
+					0.479,
+					37,
+					0.477,
+					48,
+					0.135,
+					51,
+					0.792,
+					64,
+					1.592,
+					67,
+					0.477,
+					71,
+					0.237,
+					73,
+					0.851,
+					76,
+					0.477,
+					77,
+					2.671,
+					83,
+					0.227,
+					84,
+					0.622,
+					85,
+					0.227,
+					86,
+					1.362,
+					87,
+					1.25,
+					88,
+					0.479,
+					89,
+					1.592,
+					91,
+					0.059,
+					92,
+					0.792,
+					93,
+					0.479,
+					95,
+					0.851,
+					128,
+					1.084,
+					132,
+					1.592,
+					140,
+					1.084,
+					144,
+					0.792,
+					157,
+					1.592,
+					169,
+					1.25,
+					171,
+					0.622,
+					183,
+					1.932,
+					186,
+					1.592,
+					187,
+					1.25,
+					204,
+					1.362,
+					208,
+					0.477,
+					243,
+					0.971,
+					245,
+					1.951,
+					264,
+					0.995,
+					265,
+					0.995,
+					270,
+					2.11,
+					271,
+					1.592,
+					272,
+					2.11,
+					273,
+					2.11,
+					274,
+					2.11,
+					275,
+					3.293,
+					276,
+					2.11,
+					277,
+					2.11,
+					278,
+					2.11,
+					279,
+					2.11,
+					280,
+					2.11,
+					281,
+					2.484,
+					282,
+					1.711,
+					283,
+					2.179,
+					284,
+					2.11,
+					285,
+					2.11,
+					286,
+					1.711,
+					287,
+					1.592,
+					288,
+					2.11,
+					289,
+					2.11,
+					290,
+					2.11
+				]
+			],
+			[
+				"title/docs/query/query/delete.md",
+				[
+					12,
+					4.056,
+					91,
+					0.433
+				]
+			],
+			[
+				"module/docs/query/query/delete.md",
+				[
+					12,
+					1.992
+				]
+			],
+			[
+				"group/docs/query/query/delete.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/query/query/delete.md",
+				[
+					0,
+					0.513,
+					3,
+					0.55,
+					4,
+					0.241,
+					7,
+					0.06,
+					11,
+					0.355,
+					12,
+					0.41,
+					25,
+					0.288,
+					30,
+					0.241,
+					32,
+					0.241,
+					35,
+					0.355,
+					37,
+					0.484,
+					48,
+					0.261,
+					51,
+					1.094,
+					62,
+					0.86,
+					73,
+					0.86,
+					76,
+					0.659,
+					83,
+					0.253,
+					85,
+					0.239,
+					86,
+					1.01,
+					88,
+					0.618,
+					90,
+					0.618,
+					91,
+					0.087,
+					93,
+					0.355,
+					95,
+					0.978,
+					102,
+					0.631,
+					104,
+					0.484,
+					140,
+					0.803,
+					171,
+					0.631,
+					173,
+					1.01,
+					204,
+					1.565,
+					208,
+					0.805,
+					209,
+					1.094,
+					218,
+					1.615,
+					238,
+					1.615,
+					243,
+					0.631,
+					250,
+					1.615,
+					252,
+					2.2,
+					253,
+					1.615,
+					282,
+					1.269,
+					286,
+					1.269,
+					291,
+					2.141,
+					292,
+					2.917,
+					293,
+					2.141,
+					294,
+					3.562,
+					295,
+					2.141
+				]
+			],
+			[
+				"title/docs/query/query/read.md",
+				[
+					12,
+					4.056,
+					98,
+					4.785
+				]
+			],
+			[
+				"module/docs/query/query/read.md",
+				[
+					12,
+					1.992
+				]
+			],
+			[
+				"group/docs/query/query/read.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/query/query/read.md",
+				[
+					0,
+					0.442,
+					4,
+					0.282,
+					7,
+					0.051,
+					9,
+					1.92,
+					12,
+					0.771,
+					21,
+					0.282,
+					24,
+					0.942,
+					29,
+					0.858,
+					30,
+					0.282,
+					32,
+					0.282,
+					51,
+					0.942,
+					71,
+					0.403,
+					83,
+					0.161,
+					84,
+					0.74,
+					85,
+					0.231,
+					90,
+					0.537,
+					91,
+					0.073,
+					93,
+					0.537,
+					97,
+					1.158,
+					98,
+					0.811,
+					100,
+					1.487,
+					102,
+					0.74,
+					103,
+					0.811,
+					104,
+					0.537,
+					106,
+					0.733,
+					107,
+					1.487,
+					143,
+					0.858,
+					162,
+					0.74,
+					167,
+					0.74,
+					171,
+					0.74,
+					180,
+					2.248,
+					181,
+					1.92,
+					182,
+					1.92,
+					199,
+					1.184,
+					208,
+					0.567,
+					243,
+					0.74,
+					249,
+					1.92,
+					263,
+					1.893,
+					264,
+					1.184,
+					265,
+					1.184,
+					282,
+					1.487,
+					283,
+					1.893,
+					296,
+					2.51,
+					297,
+					2.51,
+					298,
+					2.51,
+					299,
+					3.928,
+					300,
+					3.794,
+					301,
+					3.59,
+					302,
+					3.241,
+					303,
+					2.51,
+					304,
+					2.51,
+					305,
+					2.51,
+					306,
+					2.51,
+					307,
+					2.51
+				]
+			],
+			[
+				"title/docs/query/query/update.md",
+				[
+					12,
+					4.056,
+					209,
+					7.943
+				]
+			],
+			[
+				"module/docs/query/query/update.md",
+				[
+					12,
+					1.992
+				]
+			],
+			[
+				"group/docs/query/query/update.md",
+				[
+					2,
+					0.128
+				]
+			],
+			[
+				"body/docs/query/query/update.md",
+				[
+					0,
+					0.392,
+					3,
+					0.497,
+					7,
+					0.061,
+					11,
+					0.37,
+					12,
+					0.574,
+					14,
+					1.32,
+					16,
+					1.681,
+					21,
+					0.38,
+					25,
+					0.286,
+					26,
+					0.765,
+					27,
+					0.765,
+					30,
+					0.25,
+					32,
+					0.25,
+					35,
+					0.497,
+					37,
+					0.504,
+					48,
+					0.243,
+					54,
+					1.681,
+					66,
+					1.051,
+					67,
+					0.765,
+					73,
+					0.884,
+					76,
+					0.504,
+					79,
+					1.32,
+					81,
+					1.681,
+					83,
+					0.217,
+					84,
+					0.657,
+					85,
+					0.192,
+					86,
+					1.708,
+					88,
+					0.37,
+					91,
+					0.061,
+					92,
+					0.836,
+					93,
+					0.497,
+					95,
+					0.657,
+					97,
+					0.884,
+					101,
+					1.051,
+					102,
+					0.657,
+					128,
+					1.124,
+					134,
+					1.681,
+					140,
+					0.836,
+					142,
+					0.836,
+					144,
+					0.836,
+					151,
+					1.32,
+					169,
+					1.32,
+					171,
+					0.657,
+					178,
+					1.681,
+					183,
+					1.414,
+					188,
+					1.32,
+					204,
+					1.051,
+					208,
+					0.765,
+					209,
+					1.418,
+					243,
+					1.114,
+					264,
+					1.051,
+					265,
+					1.051,
+					269,
+					1.681,
+					271,
+					1.681,
+					281,
+					2.851,
+					286,
+					1.32,
+					287,
+					1.681,
+					308,
+					2.228,
+					309,
+					2.228,
+					310,
+					2.228,
+					311,
+					2.228,
+					312,
+					2.997,
+					313,
+					2.228,
+					314,
+					2.228,
+					315,
+					2.228
+				]
+			]
+		],
+		"invertedIndex": [
+			[
+				"",
+				{
+					"_index": 25,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"3",
+				{
+					"_index": 36,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"accept",
+				{
+					"_index": 63,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"access",
+				{
+					"_index": 244,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"ad",
+				{
+					"_index": 314,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"add",
+				{
+					"_index": 307,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"aggreg",
+				{
+					"_index": 125,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"alasql",
+				{
+					"_index": 37,
+					"title": {
+						"docs/dialects/dialects/alasql.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"alia",
+				{
+					"_index": 191,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"alias",
+				{
+					"_index": 296,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"alreadi",
+				{
+					"_index": 278,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"alway",
+				{
+					"_index": 79,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"annot",
+				{
+					"_index": 96,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"api",
+				{
+					"_index": 117,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"array",
+				{
+					"_index": 297,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"assign",
+				{
+					"_index": 274,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"async",
+				{
+					"_index": 234,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"attach",
+				{
+					"_index": 270,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"auto",
+				{
+					"_index": 287,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"autoident",
+				{
+					"_index": 87,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"automat",
+				{
+					"_index": 93,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"avail",
+				{
+					"_index": 24,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"avoid",
+				{
+					"_index": 188,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"awar",
+				{
+					"_index": 84,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"back",
+				{
+					"_index": 58,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"backtick",
+				{
+					"_index": 128,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"base",
+				{
+					"_index": 94,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"basic",
+				{
+					"_index": 264,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"befor",
+				{
+					"_index": 49,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"behavior",
+				{
+					"_index": 73,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"benefit",
+				{
+					"_index": 305,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"better",
+				{
+					"_index": 158,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"bigint",
+				{
+					"_index": 227,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"bind",
+				{
+					"_index": 306,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"bodi",
+				{
+					"_index": 315,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"boolean",
+				{
+					"_index": 224,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"bound",
+				{
+					"_index": 80,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"bracket",
+				{
+					"_index": 169,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"browser",
+				{
+					"_index": 114,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"buffer",
+				{
+					"_index": 228,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"build",
+				{
+					"_index": 50,
+					"title": {
+						"docs/query/query/README.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"built",
+				{
+					"_index": 145,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"c",
+				{
+					"_index": 155,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"call",
+				{
+					"_index": 222,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"callback",
+				{
+					"_index": 235,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"captur",
+				{
+					"_index": 203,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"case",
+				{
+					"_index": 109,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"certain",
+				{
+					"_index": 309,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"chain",
+				{
+					"_index": 255,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"chang",
+				{
+					"_index": 311,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"choos",
+				{
+					"_index": 108,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"claus",
+				{
+					"_index": 142,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"client",
+				{
+					"_index": 124,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"clone",
+				{
+					"_index": 258,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"code",
+				{
+					"_index": 220,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"coercion",
+				{
+					"_index": 225,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"collect",
+				{
+					"_index": 248,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"column",
+				{
+					"_index": 85,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"combin",
+				{
+					"_index": 267,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"common",
+				{
+					"_index": 72,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"compat",
+				{
+					"_index": 118,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"configur",
+				{
+					"_index": 13,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"conflict",
+				{
+					"_index": 193,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"consider",
+				{
+					"_index": 223,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"consist",
+				{
+					"_index": 175,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"contain",
+				{
+					"_index": 16,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"control",
+				{
+					"_index": 288,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"convert",
+				{
+					"_index": 229,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"count",
+				{
+					"_index": 99,
+					"title": {
+						"docs/query/query/count.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"creat",
+				{
+					"_index": 245,
+					"title": {
+						"docs/query/query/create.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"criteria",
+				{
+					"_index": 308,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"current",
+				{
+					"_index": 204,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"custom",
+				{
+					"_index": 107,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"dal",
+				{
+					"_index": 246,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"data",
+				{
+					"_index": 78,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"databas",
+				{
+					"_index": 8,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"dataset",
+				{
+					"_index": 123,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"debugging/log",
+				{
+					"_index": 116,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"default",
+				{
+					"_index": 51,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"delet",
+				{
+					"_index": 91,
+					"title": {
+						"docs/query/query/delete.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"depend",
+				{
+					"_index": 131,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"descript",
+				{
+					"_index": 163,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"detail",
+				{
+					"_index": 302,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"dialect",
+				{
+					"_index": 0,
+					"title": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					},
+					"module": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"differ",
+				{
+					"_index": 140,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"disabl",
+				{
+					"_index": 286,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"distinct",
+				{
+					"_index": 167,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"doc",
+				{
+					"_index": 2,
+					"title": {},
+					"module": {},
+					"group": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					},
+					"body": {}
+				}
+			],
+			[
+				"document",
+				{
+					"_index": 301,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"driver",
+				{
+					"_index": 214,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"dure",
+				{
+					"_index": 272,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"each",
+				{
+					"_index": 14,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"effici",
+				{
+					"_index": 262,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"embedded/fil",
+				{
+					"_index": 113,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"empti",
+				{
+					"_index": 269,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"enabl",
+				{
+					"_index": 283,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"english",
+				{
+					"_index": 39,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"entir",
+				{
+					"_index": 186,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"error",
+				{
+					"_index": 56,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"escap",
+				{
+					"_index": 149,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"exampl",
+				{
+					"_index": 261,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"exclud",
+				{
+					"_index": 100,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"execut",
+				{
+					"_index": 219,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"export",
+				{
+					"_index": 60,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"fabl",
+				{
+					"_index": 64,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"factori",
+				{
+					"_index": 61,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"fall",
+				{
+					"_index": 57,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"featur",
+				{
+					"_index": 152,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"few",
+				{
+					"_index": 290,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"field",
+				{
+					"_index": 199,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"filter",
+				{
+					"_index": 97,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"flag",
+				{
+					"_index": 293,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"foxhound",
+				{
+					"_index": 3,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"foxhound'",
+				{
+					"_index": 19,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"full",
+				{
+					"_index": 71,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"function",
+				{
+					"_index": 62,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"gener",
+				{
+					"_index": 7,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"guid",
+				{
+					"_index": 280,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"handl",
+				{
+					"_index": 92,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"hard",
+				{
+					"_index": 252,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"here",
+				{
+					"_index": 136,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"hint",
+				{
+					"_index": 182,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"human",
+				{
+					"_index": 40,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"id",
+				{
+					"_index": 275,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"ideal",
+				{
+					"_index": 122,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"ident",
+				{
+					"_index": 190,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"identifi",
+				{
+					"_index": 26,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"implement",
+				{
+					"_index": 148,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"import",
+				{
+					"_index": 178,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"includ",
+				{
+					"_index": 144,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"index",
+				{
+					"_index": 181,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"inform",
+				{
+					"_index": 172,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"insert",
+				{
+					"_index": 183,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"instanc",
+				{
+					"_index": 65,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"instead",
+				{
+					"_index": 192,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"integ",
+				{
+					"_index": 230,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"interfac",
+				{
+					"_index": 59,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"intern",
+				{
+					"_index": 20,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"interpol",
+				{
+					"_index": 82,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"invalid",
+				{
+					"_index": 52,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"javascript",
+				{
+					"_index": 119,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"join",
+				{
+					"_index": 143,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"key",
+				{
+					"_index": 312,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"keyword",
+				{
+					"_index": 135,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"larg",
+				{
+					"_index": 289,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"let",
+				{
+					"_index": 273,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"librari",
+				{
+					"_index": 156,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"lifecycl",
+				{
+					"_index": 241,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"limit",
+				{
+					"_index": 211,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"limit/fetch",
+				{
+					"_index": 166,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"limit/offset",
+				{
+					"_index": 236,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"list",
+				{
+					"_index": 164,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"log",
+				{
+					"_index": 55,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"logic",
+				{
+					"_index": 150,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"manag",
+				{
+					"_index": 86,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"mani",
+				{
+					"_index": 216,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"mariadb",
+				{
+					"_index": 31,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"match",
+				{
+					"_index": 254,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"meadow",
+				{
+					"_index": 213,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"meadowendpoint",
+				{
+					"_index": 44,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"memori",
+				{
+					"_index": 38,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"memory/brows",
+				{
+					"_index": 161,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"method",
+				{
+					"_index": 69,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"microsoft",
+				{
+					"_index": 33,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"millisecond",
+				{
+					"_index": 205,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"mode",
+				{
+					"_index": 291,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"modifi",
+				{
+					"_index": 251,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"modul",
+				{
+					"_index": 17,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"mssql",
+				{
+					"_index": 32,
+					"title": {
+						"docs/dialects/dialects/mssql.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"mysql",
+				{
+					"_index": 30,
+					"title": {
+						"docs/dialects/dialects/mysql.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"mysql/mariadb",
+				{
+					"_index": 112,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"name",
+				{
+					"_index": 53,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"nativ",
+				{
+					"_index": 154,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"need",
+				{
+					"_index": 132,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"never",
+				{
+					"_index": 81,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"node.j",
+				{
+					"_index": 120,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"none",
+				{
+					"_index": 42,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"normal",
+				{
+					"_index": 284,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"note",
+				{
+					"_index": 134,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"null",
+				{
+					"_index": 187,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"number",
+				{
+					"_index": 226,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"object",
+				{
+					"_index": 67,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"offset",
+				{
+					"_index": 139,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"offset/fetch",
+				{
+					"_index": 195,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"omit",
+				{
+					"_index": 185,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"on",
+				{
+					"_index": 179,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"op",
+				{
+					"_index": 295,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"oper",
+				{
+					"_index": 208,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"order",
+				{
+					"_index": 165,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"output",
+				{
+					"_index": 217,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"overrid",
+				{
+					"_index": 103,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"overview",
+				{
+					"_index": 1,
+					"title": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"page",
+				{
+					"_index": 300,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"pagin",
+				{
+					"_index": 29,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"pair",
+				{
+					"_index": 298,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"paramet",
+				{
+					"_index": 21,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"parameter",
+				{
+					"_index": 75,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"pass",
+				{
+					"_index": 54,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"path",
+				{
+					"_index": 221,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"pattern",
+				{
+					"_index": 6,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"phase",
+				{
+					"_index": 239,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"plain",
+				{
+					"_index": 130,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"pre",
+				{
+					"_index": 247,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"precis",
+				{
+					"_index": 206,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"prefix",
+				{
+					"_index": 28,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"prepar",
+				{
+					"_index": 170,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"present",
+				{
+					"_index": 102,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"primari",
+				{
+					"_index": 151,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"process",
+				{
+					"_index": 240,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"produc",
+				{
+					"_index": 250,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"product",
+				{
+					"_index": 111,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"properli",
+				{
+					"_index": 197,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"properti",
+				{
+					"_index": 256,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"prose",
+				{
+					"_index": 43,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"prototyp",
+				{
+					"_index": 126,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"provid",
+				{
+					"_index": 173,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"pure",
+				{
+					"_index": 160,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"qualifi",
+				{
+					"_index": 198,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"queri",
+				{
+					"_index": 12,
+					"title": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					},
+					"module": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"quot",
+				{
+					"_index": 27,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"read",
+				{
+					"_index": 98,
+					"title": {
+						"docs/query/query/read.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"readabl",
+				{
+					"_index": 41,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"receiv",
+				{
+					"_index": 70,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"recommend",
+				{
+					"_index": 110,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"record",
+				{
+					"_index": 243,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"regist",
+				{
+					"_index": 133,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"relat",
+				{
+					"_index": 207,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"replac",
+				{
+					"_index": 218,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"repres",
+				{
+					"_index": 137,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"request",
+				{
+					"_index": 268,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"requir",
+				{
+					"_index": 146,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"reserv",
+				{
+					"_index": 194,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"reset",
+				{
+					"_index": 257,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"rest",
+				{
+					"_index": 45,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"restor",
+				{
+					"_index": 253,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"result",
+				{
+					"_index": 263,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"return",
+				{
+					"_index": 66,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"reus",
+				{
+					"_index": 259,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"row",
+				{
+					"_index": 101,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"runtim",
+				{
+					"_index": 153,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"same",
+				{
+					"_index": 11,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"schema",
+				{
+					"_index": 83,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"scope",
+				{
+					"_index": 242,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"see",
+				{
+					"_index": 299,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"segment",
+				{
+					"_index": 200,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"select",
+				{
+					"_index": 249,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"self",
+				{
+					"_index": 15,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"separ",
+				{
+					"_index": 201,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"server",
+				{
+					"_index": 34,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"server'",
+				{
+					"_index": 189,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"set",
+				{
+					"_index": 48,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"share",
+				{
+					"_index": 74,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"side",
+				{
+					"_index": 115,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"similar",
+				{
+					"_index": 147,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"six",
+				{
+					"_index": 68,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"skip",
+				{
+					"_index": 281,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"soft",
+				{
+					"_index": 90,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"sort",
+				{
+					"_index": 180,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"special",
+				{
+					"_index": 271,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"specif",
+				{
+					"_index": 9,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"sql",
+				{
+					"_index": 10,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"sqlite",
+				{
+					"_index": 35,
+					"title": {
+						"docs/dialects/dialects/sqlite.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"sqlite'",
+				{
+					"_index": 215,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"sqlite3",
+				{
+					"_index": 159,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"squar",
+				{
+					"_index": 168,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"stamp",
+				{
+					"_index": 89,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"standard",
+				{
+					"_index": 141,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"start",
+				{
+					"_index": 138,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {}
+					}
+				}
+			],
+			[
+				"statement",
+				{
+					"_index": 171,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"still",
+				{
+					"_index": 304,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"store",
+				{
+					"_index": 202,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {}
+					}
+				}
+			],
+			[
+				"strategi",
+				{
+					"_index": 5,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"string",
+				{
+					"_index": 47,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"style",
+				{
+					"_index": 210,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"suppli",
+				{
+					"_index": 303,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"support",
+				{
+					"_index": 104,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"synchron",
+				{
+					"_index": 232,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"syntax",
+				{
+					"_index": 23,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"tabl",
+				{
+					"_index": 129,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"target",
+				{
+					"_index": 22,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"templat",
+				{
+					"_index": 106,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"through",
+				{
+					"_index": 237,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"time",
+				{
+					"_index": 176,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"timestamp",
+				{
+					"_index": 88,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"togeth",
+				{
+					"_index": 212,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"track",
+				{
+					"_index": 282,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"translat",
+				{
+					"_index": 18,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"true",
+				{
+					"_index": 292,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"two",
+				{
+					"_index": 238,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {},
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"type",
+				{
+					"_index": 95,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"typic",
+				{
+					"_index": 285,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"undefin",
+				{
+					"_index": 231,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"undelet",
+				{
+					"_index": 294,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/delete.md": {}
+					}
+				}
+			],
+			[
+				"underscor",
+				{
+					"_index": 105,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"uniqu",
+				{
+					"_index": 266,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"unless",
+				{
+					"_index": 277,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"unlik",
+				{
+					"_index": 184,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"updat",
+				{
+					"_index": 209,
+					"title": {
+						"docs/query/query/update.md": {}
+					},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"url",
+				{
+					"_index": 46,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {}
+					}
+				}
+			],
+			[
+				"us",
+				{
+					"_index": 4,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"usag",
+				{
+					"_index": 265,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/count.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/read.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"user",
+				{
+					"_index": 77,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"usual",
+				{
+					"_index": 313,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"utc",
+				{
+					"_index": 174,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"uuid",
+				{
+					"_index": 276,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"valid",
+				{
+					"_index": 279,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"valu",
+				{
+					"_index": 76,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/README.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {},
+						"docs/query/query/create.md": {},
+						"docs/query/query/delete.md": {},
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"variabl",
+				{
+					"_index": 162,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/mssql.md": {},
+						"docs/dialects/dialects/mysql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {},
+						"docs/query/query/read.md": {}
+					}
+				}
+			],
+			[
+				"variant",
+				{
+					"_index": 260,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"via",
+				{
+					"_index": 157,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/query/query/create.md": {}
+					}
+				}
+			],
+			[
+				"want",
+				{
+					"_index": 310,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/query/query/update.md": {}
+					}
+				}
+			],
+			[
+				"with(index",
+				{
+					"_index": 196,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			],
+			[
+				"without",
+				{
+					"_index": 127,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/count.md": {}
+					}
+				}
+			],
+			[
+				"work",
+				{
+					"_index": 121,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/alasql.md": {},
+						"docs/dialects/dialects/sqlite.md": {},
+						"docs/query/query/README.md": {}
+					}
+				}
+			],
+			[
+				"wrap",
+				{
+					"_index": 233,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/sqlite.md": {}
+					}
+				}
+			],
+			[
+				"zone",
+				{
+					"_index": 177,
+					"title": {},
+					"module": {},
+					"group": {},
+					"body": {
+						"docs/dialects/dialects/mssql.md": {}
+					}
+				}
+			]
+		],
+		"pipeline": [
+			"stemmer"
+		]
+	},
+	"Documents": {
+		"docs/dialects/dialects/README.md": {
+			"Title": "Dialects Overview",
+			"Module": "dialects",
+			"Group": "docs",
+			"DocPath": "dialects/README.md"
+		},
+		"docs/dialects/dialects/alasql.md": {
+			"Title": "ALASQL Dialect",
+			"Module": "dialects",
+			"Group": "docs",
+			"DocPath": "dialects/alasql.md"
+		},
+		"docs/dialects/dialects/mssql.md": {
+			"Title": "MSSQL Dialect",
+			"Module": "dialects",
+			"Group": "docs",
+			"DocPath": "dialects/mssql.md"
+		},
+		"docs/dialects/dialects/mysql.md": {
+			"Title": "MySQL Dialect",
+			"Module": "dialects",
+			"Group": "docs",
+			"DocPath": "dialects/mysql.md"
+		},
+		"docs/dialects/dialects/sqlite.md": {
+			"Title": "SQLite Dialect",
+			"Module": "dialects",
+			"Group": "docs",
+			"DocPath": "dialects/sqlite.md"
+		},
+		"docs/query/query/README.md": {
+			"Title": "Query Building Overview",
+			"Module": "query",
+			"Group": "docs",
+			"DocPath": "query/README.md"
+		},
+		"docs/query/query/count.md": {
+			"Title": "Count Query",
+			"Module": "query",
+			"Group": "docs",
+			"DocPath": "query/count.md"
+		},
+		"docs/query/query/create.md": {
+			"Title": "Create Query",
+			"Module": "query",
+			"Group": "docs",
+			"DocPath": "query/create.md"
+		},
+		"docs/query/query/delete.md": {
+			"Title": "Delete Query",
+			"Module": "query",
+			"Group": "docs",
+			"DocPath": "query/delete.md"
+		},
+		"docs/query/query/read.md": {
+			"Title": "Read Query",
+			"Module": "query",
+			"Group": "docs",
+			"DocPath": "query/read.md"
+		},
+		"docs/query/query/update.md": {
+			"Title": "Update Query",
+			"Module": "query",
+			"Group": "docs",
+			"DocPath": "query/update.md"
+		}
+	}
+}
