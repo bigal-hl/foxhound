@@ -211,12 +211,29 @@ var FoxHoundDialectSQLite = function(pFable)
 				// Close a logical grouping
 				tmpWhere += ' )';
 			}
-			else if (tmpFilter[i].Operator === 'IN')
+			else if (tmpFilter[i].Operator === 'IN' || tmpFilter[i].Operator === 'NOT IN')
 			{
 				tmpColumnParameter = tmpFilter[i].Parameter+'_w'+i;
-				// Add the column name, operator and parameter name to the list of where value parenthetical
-				tmpWhere += ' '+escapeColumn(tmpFilter[i].Column, pParameters)+' '+tmpFilter[i].Operator+' ( :'+tmpColumnParameter+' )';
-				pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
+				// SQLite (better-sqlite3) cannot bind arrays as a single parameter.
+				// Expand the array into individual named parameters for each element.
+				var tmpFilterValue = tmpFilter[i].Value;
+				if (Array.isArray(tmpFilterValue))
+				{
+					var tmpParameterNames = [];
+					for (var j = 0; j < tmpFilterValue.length; j++)
+					{
+						var tmpElementParameter = tmpColumnParameter+'_'+j;
+						tmpParameterNames.push(':'+tmpElementParameter);
+						pParameters.query.parameters[tmpElementParameter] = tmpFilterValue[j];
+					}
+					tmpWhere += ' '+escapeColumn(tmpFilter[i].Column, pParameters)+' '+tmpFilter[i].Operator+' ( '+tmpParameterNames.join(', ')+' )';
+				}
+				else
+				{
+					// If for some reason the value is not an array, fall back to the old behavior
+					tmpWhere += ' '+escapeColumn(tmpFilter[i].Column, pParameters)+' '+tmpFilter[i].Operator+' ( :'+tmpColumnParameter+' )';
+					pParameters.query.parameters[tmpColumnParameter] = tmpFilterValue;
+				}
 			}
 			else if (tmpFilter[i].Operator === 'IS NOT NULL')
 			{
