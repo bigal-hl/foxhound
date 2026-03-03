@@ -2,12 +2,12 @@
 
 > A fluent query generation DSL for Node.js and the browser
 
-FoxHound is a database query builder that generates dialect-specific SQL from a single chainable API.  It keeps your application code database-agnostic while producing safe, parameterized queries for MySQL, Microsoft SQL Server, SQLite, and ALASQL.
+FoxHound is a database query builder that generates dialect-specific SQL from a single chainable API.  It keeps your application code database-agnostic while producing safe, parameterized queries for MySQL, PostgreSQL, Microsoft SQL Server, SQLite, and ALASQL.
 
 ## Features
 
 - **Chainable API** — every configuration method returns the query object for fluent composition
-- **Multiple Dialects** — generate SQL for MySQL, MSSQL, SQLite, ALASQL, or plain English from the same code
+- **Multiple Dialects** — generate SQL for MySQL, PostgreSQL, MSSQL, SQLite, ALASQL, or plain English from the same code
 - **Parameterized Queries** — user-supplied values are always bound as named parameters, preventing SQL injection
 - **Schema-Aware** — automatic management of identity columns, timestamps, user stamps, and soft-delete tracking
 - **Full CRUD + Count** — build CREATE, READ, UPDATE, DELETE, UNDELETE, and COUNT queries
@@ -70,6 +70,7 @@ Application Code
 | Dialect | Target | Identifier Quoting | Parameter Prefix | Pagination |
 |---------|--------|-------------------|-----------------|------------|
 | `MySQL` | MySQL / MariaDB | `` `backticks` `` | `:name` | `LIMIT offset, count` |
+| `PostgreSQL` | PostgreSQL 9.5+ | `"double quotes"` | `:name` | `LIMIT count OFFSET offset` |
 | `MSSQL` | Microsoft SQL Server | `[brackets]` | `@name` | `OFFSET/FETCH` |
 | `SQLite` | SQLite 3 | `` `backticks` `` | `:name` | `LIMIT count OFFSET offset` |
 | `ALASQL` | ALASQL (in-memory) | `` `backticks` `` | `:name` | `LIMIT count FETCH offset` |

@@ -176,7 +176,7 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 					{
 						tmpFilter.push(
 						{
-							Column: tmpTableName + '.' + tmpSchemaEntry.Column,
+							Column: generateSafeFieldName(pParameters.scope + '.' + tmpSchemaEntry.Column),
 							Operator: '=',
 							Value: 0,
 							Connector: 'AND',
@@ -220,21 +220,21 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			else if (tmpFilter[i].Operator === 'IN' || tmpFilter[i].Operator === "NOT IN")
 			{
 				tmpColumnParameter = tmpFilter[i].Parameter+'_w'+i;
-				tmpWhere += ' '+tmpFilter[i].Column+' '+tmpFilter[i].Operator+' ( :'+tmpColumnParameter+' )';
+				tmpWhere += ' '+generateSafeFieldName(tmpFilter[i].Column)+' '+tmpFilter[i].Operator+' ( :'+tmpColumnParameter+' )';
 				pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
 			}
 			else if (tmpFilter[i].Operator === 'IS NULL')
 			{
-				tmpWhere += ' '+tmpFilter[i].Column+' '+tmpFilter[i].Operator;
+				tmpWhere += ' '+generateSafeFieldName(tmpFilter[i].Column)+' '+tmpFilter[i].Operator;
 			}
 			else if (tmpFilter[i].Operator === 'IS NOT NULL')
 			{
-				tmpWhere += ' '+tmpFilter[i].Column+' '+tmpFilter[i].Operator;
+				tmpWhere += ' '+generateSafeFieldName(tmpFilter[i].Column)+' '+tmpFilter[i].Operator;
 			}
 			else
 			{
 				tmpColumnParameter = tmpFilter[i].Parameter+'_w'+i;
-				tmpWhere += ' '+tmpFilter[i].Column+' '+tmpFilter[i].Operator+' :'+tmpColumnParameter;
+				tmpWhere += ' '+generateSafeFieldName(tmpFilter[i].Column)+' '+tmpFilter[i].Operator+' :'+tmpColumnParameter;
 				pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
 			}
 		}
@@ -267,7 +267,7 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			{
 				tmpOrderClause += ',';
 			}
-			tmpOrderClause += ' '+tmpOrderBy[i].Column;
+			tmpOrderClause += ' '+generateSafeFieldName(tmpOrderBy[i].Column);
 
 			if (tmpOrderBy[i].Direction == 'Descending')
 			{
@@ -387,16 +387,16 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'UpdateDate':
-					tmpUpdate += ' '+tmpColumn+' = ' + SQL_NOW;
+					tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = ' + SQL_NOW;
 					break;
 				case 'UpdateIDUser':
 					var tmpColumnParameter = tmpColumn+'_'+tmpCurrentColumn;
-					tmpUpdate += ' '+tmpColumn+' = :'+tmpColumnParameter;
+					tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = :'+tmpColumnParameter;
 					pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
 					break;
 				default:
 					var tmpColumnDefaultParameter = tmpColumn+'_'+tmpCurrentColumn;
-					tmpUpdate += ' '+tmpColumn+' = :'+tmpColumnDefaultParameter;
+					tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = :'+tmpColumnDefaultParameter;
 					pParameters.query.parameters[tmpColumnDefaultParameter] = tmpRecords[0][tmpColumn];
 					break;
 			}
@@ -440,18 +440,18 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'Deleted':
-					tmpUpdateSql = ' '+tmpSchemaEntry.Column+' = 1';
+					tmpUpdateSql = ' '+generateSafeFieldName(tmpSchemaEntry.Column)+' = 1';
 					tmpHasDeletedField = true;
 					break;
 				case 'DeleteDate':
-					tmpUpdateSql = ' '+tmpSchemaEntry.Column+' = ' + SQL_NOW;
+					tmpUpdateSql = ' '+generateSafeFieldName(tmpSchemaEntry.Column)+' = ' + SQL_NOW;
 					break;
 				case 'UpdateDate':
-					tmpUpdateSql = ' '+tmpSchemaEntry.Column+' = ' + SQL_NOW;
+					tmpUpdateSql = ' '+generateSafeFieldName(tmpSchemaEntry.Column)+' = ' + SQL_NOW;
 					break;
 				case 'DeleteIDUser':
 					var tmpColumnParameter = tmpSchemaEntry.Column+'_'+tmpCurrentColumn;
-					tmpUpdateSql = ' '+tmpSchemaEntry.Column+' = :'+tmpColumnParameter;
+					tmpUpdateSql = ' '+generateSafeFieldName(tmpSchemaEntry.Column)+' = :'+tmpColumnParameter;
 					pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
 					break;
 				default:
@@ -501,15 +501,15 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'Deleted':
-					tmpUpdateSql = ' '+tmpSchemaEntry.Column+' = 0';
+					tmpUpdateSql = ' '+generateSafeFieldName(tmpSchemaEntry.Column)+' = 0';
 					tmpHasDeletedField = true;
 					break;
 				case 'UpdateDate':
-					tmpUpdateSql = ' '+tmpSchemaEntry.Column+' = ' + SQL_NOW;
+					tmpUpdateSql = ' '+generateSafeFieldName(tmpSchemaEntry.Column)+' = ' + SQL_NOW;
 					break;
 				case 'UpdateIDUser':
 					var tmpColumnParameter = tmpSchemaEntry.Column+'_'+tmpCurrentColumn;
-					tmpUpdateSql = ' '+tmpSchemaEntry.Column+' = :'+tmpColumnParameter;
+					tmpUpdateSql = ' '+generateSafeFieldName(tmpSchemaEntry.Column)+' = :'+tmpColumnParameter;
 					pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
 					break;
 				default:
@@ -702,7 +702,7 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 					{
 						tmpCreateSet += ',';
 					}
-					tmpCreateSet += ' '+tmpColumn;
+					tmpCreateSet += ' '+generateSafeFieldName(tmpColumn);
 					break;
 			}
 		}

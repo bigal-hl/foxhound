@@ -1,5 +1,5 @@
 {
-	"Generated": "2026-02-18T01:02:40.710Z",
+	"Generated": "2026-03-03T14:33:09.873Z",
 	"GitHubOrg": "stevenvelozo",
 	"DefaultBranch": "master",
 	"Groups": [
@@ -70,6 +70,44 @@
 			"Description": "",
 			"Modules": [
 				{
+					"Name": "api",
+					"Repo": "api",
+					"Group": "docs",
+					"Branch": "master",
+					"HasDocs": true,
+					"HasCover": false,
+					"Sidebar": [],
+					"DocFiles": [
+						"api/README.md",
+						"api/addFilter.md",
+						"api/addJoin.md",
+						"api/addRecord.md",
+						"api/addSort.md",
+						"api/behaviorFlags.md",
+						"api/buildQuery.md",
+						"api/clone.md",
+						"api/queryOverrides.md",
+						"api/setCap.md",
+						"api/setDataElements.md",
+						"api/setDialect.md",
+						"api/setDistinct.md",
+						"api/setIDUser.md",
+						"api/setScope.md"
+					]
+				},
+				{
+					"Name": "css",
+					"Repo": "css",
+					"Group": "docs",
+					"Branch": "master",
+					"HasDocs": true,
+					"HasCover": false,
+					"Sidebar": [],
+					"DocFiles": [
+						"css/docuserve.css"
+					]
+				},
+				{
 					"Name": "dialects",
 					"Repo": "dialects",
 					"Group": "docs",
@@ -82,6 +120,7 @@
 						"dialects/alasql.md",
 						"dialects/mssql.md",
 						"dialects/mysql.md",
+						"dialects/postgresql.md",
 						"dialects/sqlite.md"
 					]
 				},

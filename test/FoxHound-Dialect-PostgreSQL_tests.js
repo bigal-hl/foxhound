@@ -87,7 +87,7 @@ suite
 						tmpQuery.buildCreateQuery();
 						_Fable.log.trace('Create Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('INSERT INTO "Animal" ( IDAnimal, Name, Age) VALUES ( :IDAnimal_0, :Name_1, :Age_2) RETURNING *;');
+							.to.equal('INSERT INTO "Animal" ( "IDAnimal", "Name", "Age") VALUES ( :IDAnimal_0, :Name_1, :Age_2) RETURNING *;');
 					}
 				);
 				test
@@ -135,7 +135,7 @@ suite
 						tmpQuery.buildReadQuery();
 						_Fable.log.trace('Simple Select Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('SELECT "Animal".* FROM "Animal" ORDER BY Cost DESC;');
+							.to.equal('SELECT "Animal".* FROM "Animal" ORDER BY "Cost" DESC;');
 					}
 				);
 				test
@@ -149,7 +149,7 @@ suite
 						tmpQuery.buildReadQuery();
 						_Fable.log.trace('Simple Select Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('SELECT DISTINCT "Animal".* FROM "Animal" ORDER BY Cost DESC;');
+							.to.equal('SELECT DISTINCT "Animal".* FROM "Animal" ORDER BY "Cost" DESC;');
 					}
 				);
 				test
@@ -169,7 +169,7 @@ suite
 						tmpQuery.buildReadQuery();
 						_Fable.log.trace('Select Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('SELECT "Name", "Age", "Cost" FROM "Animal" WHERE Age = :Age_w0 ORDER BY Age, Cost LIMIT 10 OFFSET 0;');
+							.to.equal('SELECT "Name", "Age", "Cost" FROM "Animal" WHERE "Age" = :Age_w0 ORDER BY "Age", "Cost" LIMIT 10 OFFSET 0;');
 					}
 				);
 				test
@@ -189,7 +189,7 @@ suite
 						tmpQuery.buildReadQuery();
 						_Fable.log.trace('Select Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('SELECT *, "Name", "Age", "Cost", "Animal".* FROM "Animal" WHERE Age = :Age_w0 ORDER BY Age, Cost LIMIT 10 OFFSET 0;');
+							.to.equal('SELECT *, "Name", "Age", "Cost", "Animal".* FROM "Animal" WHERE "Age" = :Age_w0 ORDER BY "Age", "Cost" LIMIT 10 OFFSET 0;');
 					}
 				);
 				test
@@ -213,7 +213,7 @@ suite
 						tmpQuery.buildReadQuery();
 						_Fable.log.trace('Select Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('SELECT "Name", "Age", "Cost" FROM "Animal" WHERE Age = :Age_w0 AND ( Color = :Color_w2 OR Color = :Color_w3 ) AND Description IS NOT NULL AND IDOffice IN ( :IDOffice_w6 ) ORDER BY Age LIMIT 100;');
+							.to.equal('SELECT "Name", "Age", "Cost" FROM "Animal" WHERE "Age" = :Age_w0 AND ( "Color" = :Color_w2 OR "Color" = :Color_w3 ) AND "Description" IS NOT NULL AND "IDOffice" IN ( :IDOffice_w6 ) ORDER BY "Age" LIMIT 100;');
 					}
 				);
 				test
@@ -229,7 +229,7 @@ suite
 						tmpQuery.buildUpdateQuery();
 						_Fable.log.trace('Update Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('UPDATE "Animal" SET Name = :Name_0, Age = :Age_1 WHERE IDAnimal = :IDAnimal_w0;');
+							.to.equal('UPDATE "Animal" SET "Name" = :Name_0, "Age" = :Age_1 WHERE "IDAnimal" = :IDAnimal_w0;');
 					}
 				);
 				test
@@ -244,7 +244,7 @@ suite
 						tmpQuery.buildCountQuery();
 						_Fable.log.trace('Count Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('SELECT COUNT(*) AS RowCount FROM "Animal" WHERE Age = :Age_w0;');
+							.to.equal('SELECT COUNT(*) AS RowCount FROM "Animal" WHERE "Age" = :Age_w0;');
 					}
 				);
 				test
@@ -263,7 +263,7 @@ suite
 						Expect(tmpQuery.query.body)
 							.to.contain('UPDATE "Animal" SET');
 						Expect(tmpQuery.query.body)
-							.to.contain('Deleted = 1');
+							.to.contain('"Deleted" = 1');
 						Expect(tmpQuery.query.body)
 							.to.contain('NOW()');
 					}
@@ -280,7 +280,7 @@ suite
 						tmpQuery.buildDeleteQuery();
 						_Fable.log.trace('Delete Query', tmpQuery.query);
 						Expect(tmpQuery.query.body)
-							.to.equal('DELETE FROM "Animal" WHERE IDAnimal = :IDAnimal_w0;');
+							.to.equal('DELETE FROM "Animal" WHERE "IDAnimal" = :IDAnimal_w0;');
 					}
 				);
 				test
@@ -299,7 +299,7 @@ suite
 						Expect(tmpQuery.query.body)
 							.to.contain('UPDATE "Animal" SET');
 						Expect(tmpQuery.query.body)
-							.to.contain('Deleted = 0');
+							.to.contain('"Deleted" = 0');
 						Expect(tmpQuery.query.body)
 							.to.contain('NOW()');
 					}

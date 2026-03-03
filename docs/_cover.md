@@ -5,7 +5,8 @@
 - Chainable API that generates dialect-specific SQL
 - Parameterized queries for safe, injection-free operation
 - Schema-aware with automatic identity, timestamp, and soft-delete management
-- Multiple dialects: MySQL, MSSQL, SQLite, ALASQL, and more
+- Multiple dialects: MySQL, PostgreSQL, MSSQL, SQLite, ALASQL, and more
 
+[Get Started](quickstart.md)
+[API Reference](api/README.md)
 [GitHub](https://github.com/stevenvelozo/foxhound)
-[Get Started](#foxhound)
