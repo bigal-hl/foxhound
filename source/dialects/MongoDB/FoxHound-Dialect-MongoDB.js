@@ -13,7 +13,7 @@
 
 var FoxHoundDialectMongoDB = function(pFable)
 {
-	_Fable = pFable;
+	let _Fable = pFable;
 
 	/**
 	* Strip any table-name prefix from a column name.

@@ -20,7 +20,7 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 {
 	const SQL_NOW = "NOW()";
 
-	_Fable = pFable;
+	let _Fable = pFable;
 
 	/**
 	* Generate a table name from the scope

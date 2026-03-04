@@ -21,7 +21,7 @@ var FoxHoundDialectMySQL = function(pFable)
 	//Request time from SQL server with microseconds resolution
 	const SQL_NOW = "NOW(3)";
 
-	_Fable = pFable;
+	let _Fable = pFable;
 
 	/**
 	* Generate a table name from the scope

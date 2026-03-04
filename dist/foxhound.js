@@ -1058,7 +1058,7 @@
       var FoxHoundDialectALASQL = function FoxHoundDialectALASQL(pFable) {
         //Request time from SQL server with microseconds resolution
         const SQL_NOW = "NOW(3)";
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Generate a table name from the scope.
@@ -1801,7 +1801,7 @@
       */
 
       var FoxHoundDialectDGraph = function FoxHoundDialectDGraph(pFable) {
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Strip any table-name prefix from a column name.
@@ -3030,7 +3030,7 @@
       var FoxHoundDialectMSSQL = function FoxHoundDialectMSSQL(pFable) {
         //Request time from SQL server with microseconds resolution
         const SQL_NOW = "GETUTCDATE()";
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Generate a table name from the scope
@@ -3910,7 +3910,7 @@
       */
 
       var FoxHoundDialectMongoDB = function FoxHoundDialectMongoDB(pFable) {
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Strip any table-name prefix from a column name.
@@ -4680,7 +4680,7 @@
       var FoxHoundDialectMySQL = function FoxHoundDialectMySQL(pFable) {
         //Request time from SQL server with microseconds resolution
         const SQL_NOW = "NOW(3)";
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Generate a table name from the scope
@@ -5486,7 +5486,7 @@
 
       var FoxHoundDialectPostgreSQL = function FoxHoundDialectPostgreSQL(pFable) {
         const SQL_NOW = "NOW()";
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Generate a table name from the scope
@@ -6170,7 +6170,7 @@
       var FoxHoundDialectSQLite = function FoxHoundDialectSQLite(pFable) {
         //Request time from SQL server with microseconds resolution
         const SQL_NOW = "NOW(3)";
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Generate a table name from the scope.
@@ -6926,7 +6926,7 @@
       */
 
       var FoxHoundDialectSolr = function FoxHoundDialectSolr(pFable) {
-        _Fable = pFable;
+        let _Fable = pFable;
 
         /**
         * Strip any table-name prefix from a column name.

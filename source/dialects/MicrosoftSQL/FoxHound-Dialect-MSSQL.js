@@ -21,7 +21,7 @@ var FoxHoundDialectMSSQL = function(pFable)
 	//Request time from SQL server with microseconds resolution
 	const SQL_NOW = "GETUTCDATE()";
 
-	_Fable = pFable;
+	let _Fable = pFable;
 
 	/**
 	* Generate a table name from the scope
