@@ -1,4 +1,4 @@
-getDialects = () =>
+let getDialects = () =>
 {
 	let tmpDialects = {};
 

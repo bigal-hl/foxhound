@@ -1,3 +1,5 @@
+"use strict";
+
 (function (f) {
   if (typeof exports === "object" && typeof module !== "undefined") {
     module.exports = f();
@@ -46,38 +48,6 @@
   }()({
     1: [function (require, module, exports) {
       /**
-      * Simple browser shim loader - assign the npm module to a window global automatically
-      *
-      * @license MIT
-      * @author <steven@velozo.com>
-      */
-      var libNPMModuleWrapper = require('./Foxhound.js');
-      if (typeof window === 'object' && !window.hasOwnProperty('Foxhound')) {
-        window.Foxhound = libNPMModuleWrapper;
-      }
-      module.exports = libNPMModuleWrapper;
-    }, {
-      "./Foxhound.js": 3
-    }],
-    2: [function (require, module, exports) {
-      getDialects = () => {
-        let tmpDialects = {};
-        tmpDialects.ALASQL = require('./dialects/ALASQL/FoxHound-Dialect-ALASQL.js');
-        tmpDialects.English = require('./dialects/English/FoxHound-Dialect-English.js');
-        tmpDialects.MeadowEndpoints = require('./dialects/MeadowEndpoints/FoxHound-Dialect-MeadowEndpoints.js');
-        tmpDialects.MySQL = require('./dialects/MySQL/FoxHound-Dialect-MySQL.js');
-        tmpDialects.default = tmpDialects.English;
-        return tmpDialects;
-      };
-      module.exports = getDialects();
-    }, {
-      "./dialects/ALASQL/FoxHound-Dialect-ALASQL.js": 5,
-      "./dialects/English/FoxHound-Dialect-English.js": 6,
-      "./dialects/MeadowEndpoints/FoxHound-Dialect-MeadowEndpoints.js": 7,
-      "./dialects/MySQL/FoxHound-Dialect-MySQL.js": 8
-    }],
-    3: [function (require, module, exports) {
-      /**
       * FoxHound Query Generation Library
       * @license MIT
       * @author Steven Velozo <steven@velozo.com>
@@ -85,7 +55,7 @@
 
       // Load our base parameters skeleton object
       const baseParameters = require('./Parameters.js');
-      var FoxHound = function () {
+      var FoxHound = function FoxHound() {
         function createNew(pFable, pFromParameters) {
           // If a valid Fable object isn't passed in, return a constructor
           if (typeof pFable !== 'object' || !('fable' in pFable)) {
@@ -120,7 +90,7 @@
           * @method clone
           * @return {Object} Returns a cloned Query.  This is still chainable.
           */
-          var clone = function () {
+          var clone = function clone() {
             var tmpFoxHound = createNew(_Fable, baseParameters).setScope(_Parameters.scope).setBegin(_Parameters.begin).setCap(_Parameters.cap);
 
             // Schema is the only part of a query that carries forward.
@@ -128,17 +98,14 @@
             if (_Parameters.dataElements) {
               tmpFoxHound.parameters.dataElements = _Parameters.dataElements.slice(); // Copy the array of dataElements
             }
-
             if (_Parameters.sort) {
               tmpFoxHound.parameters.sort = _Parameters.sort.slice(); // Copy the sort array.
               // TODO: Fix the side affect nature of these being objects in the array .. they are technically clones of the previous.
             }
-
             if (_Parameters.filter) {
               tmpFoxHound.parameters.filter = _Parameters.filter.slice(); // Copy the filter array.
               // TODO: Fix the side affect nature of these being objects in the array .. they are technically clones of the previous.
             }
-
             return tmpFoxHound;
           };
 
@@ -149,7 +116,7 @@
           * @method resetParameters
           * @return {Object} Returns the current Query for chaining.
           */
-          var resetParameters = function () {
+          var resetParameters = function resetParameters() {
             _Parameters = _Fable.Utility.extend({}, baseParameters, _DefaultParameters);
             _Parameters.query = {
               disableAutoIdentity: false,
@@ -175,7 +142,6 @@
               // Updated below due to changes in how Async.js responds to a false value here
               error: undefined // The error message of the last run query
             };
-
             return this;
           };
           resetParameters();
@@ -188,7 +154,7 @@
           * @param {Object} pFromParameters A Parameters Object to merge from
           * @return {Object} Returns the current Query for chaining.
           */
-          var mergeParameters = function (pFromParameters) {
+          var mergeParameters = function mergeParameters(pFromParameters) {
             _Parameters = _Fable.Utility.extend({}, _Parameters, pFromParameters);
             return this;
           };
@@ -206,7 +172,7 @@
           * @param {Number} pLogLevel The log level for our object
           * @return {Object} Returns the current Query for chaining.
           */
-          var setLogLevel = function (pLogLevel) {
+          var setLogLevel = function setLogLevel(pLogLevel) {
             var tmpLogLevel = 0;
             if (typeof pLogLevel === 'number' && pLogLevel % 1 === 0) {
               tmpLogLevel = pLogLevel;
@@ -226,7 +192,7 @@
           * @param {String} pScope A Scope for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setScope = function (pScope) {
+          var setScope = function setScope(pScope) {
             var tmpScope = false;
             if (typeof pScope === 'string') {
               tmpScope = pScope;
@@ -255,7 +221,7 @@
           * @param {Boolean} pDistinct True if the query should be distinct.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setDistinct = function (pDistinct) {
+          var setDistinct = function setDistinct(pDistinct) {
             _Parameters.distinct = !!pDistinct;
             if (_LogLevel > 2) {
               _Fable.log.info('Distinct set: ' + _Parameters.distinct, {
@@ -277,7 +243,7 @@
           * @param {String} pDataElements The Data Element(s) for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setDataElements = function (pDataElements) {
+          var setDataElements = function setDataElements(pDataElements) {
             var tmpDataElements = false;
             if (Array.isArray(pDataElements)) {
               // TODO: Check each entry of the array are all strings
@@ -308,7 +274,7 @@
           * @param {String} pSort The sort criteria(s) for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setSort = function (pSort) {
+          var setSort = function setSort(pSort) {
             var tmpSort = false;
             if (Array.isArray(pSort)) {
               // TODO: Check each entry of the array are all conformant sort objects
@@ -345,7 +311,7 @@
           * @param {Object} pJoin The join criteria(s) for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setJoin = function (pJoin) {
+          var setJoin = function setJoin(pJoin) {
             _Parameters.join = [];
             if (Array.isArray(pJoin)) {
               pJoin.forEach(function (join) {
@@ -369,7 +335,7 @@
           * @param {String} pSort The sort criteria to add to the Query.
           * @return {Object} Returns the current Query for chaining.
           */
-          var addSort = function (pSort) {
+          var addSort = function addSort(pSort) {
             var tmpSort = false;
             if (typeof pSort === 'string') {
               // Default to ascending
@@ -407,7 +373,7 @@
           * @param {Number} pBeginAmount The index to begin returning Query data.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setBegin = function (pBeginAmount) {
+          var setBegin = function setBegin(pBeginAmount) {
             var tmpBegin = false;
 
             // Test if it is an integer > -1
@@ -443,7 +409,7 @@
           * @param {Number} pCapAmount The maximum records for the Query set.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setCap = function (pCapAmount) {
+          var setCap = function setCap(pCapAmount) {
             var tmpCapAmount = false;
             if (typeof pCapAmount === 'number' && pCapAmount % 1 === 0 && pCapAmount >= 0) {
               tmpCapAmount = pCapAmount;
@@ -477,7 +443,7 @@
           * @param {String} pFilter The filter(s) for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setFilter = function (pFilter) {
+          var setFilter = function setFilter(pFilter) {
             var tmpFilter = false;
             if (Array.isArray(pFilter)) {
               // TODO: Check each entry of the array are all conformant Filter objects
@@ -504,7 +470,7 @@
           * @method addFilter
           * @return {Object} Returns the current Query for chaining.
           */
-          var addFilter = function (pColumn, pValue, pOperator, pConnector, pParameter) {
+          var addFilter = function addFilter(pColumn, pValue, pOperator, pConnector, pParameter) {
             if (typeof pColumn !== 'string') {
               _Fable.log.warn('Tried to add an invalid query filter column', {
                 queryUUID: _UUID,
@@ -556,7 +522,7 @@
           * @method addJoin
           * @return {Object} Returns the current Query for chaining.
           */
-          var addJoin = function (pTable, pFrom, pTo, pType) {
+          var addJoin = function addJoin(pTable, pFrom, pTo, pType) {
             if (typeof pTable !== 'string') {
               _Fable.log.warn('Tried to add an invalid query join table', {
                 queryUUID: _UUID,
@@ -617,7 +583,7 @@
           * @param {Object} pRecord The record to add.
           * @return {Object} Returns the current Query for chaining.
           */
-          var addRecord = function (pRecord) {
+          var addRecord = function addRecord(pRecord) {
             if (typeof pRecord !== 'object') {
               _Fable.log.warn('Tried to add an invalid record to the query -- records must be an object', {
                 queryUUID: _UUID,
@@ -650,14 +616,14 @@
           * @param {String} pDialectName The dialect for query generation.
           * @return {Object} Returns the current Query for chaining.
           */
-          var setDialect = function (pDialectName) {
+          var _setDialect = function setDialect(pDialectName) {
             if (typeof pDialectName !== 'string') {
               _Fable.log.warn('Dialect set to English - invalid name', {
                 queryUUID: _UUID,
                 parameters: _Parameters,
                 invalidDialect: pDialectName
               });
-              return setDialect('English');
+              return _setDialect('English');
             }
             if (_Dialects.hasOwnProperty(pDialectName)) {
               _Dialect = _Dialects[pDialectName](_Fable);
@@ -673,7 +639,7 @@
                 parameters: _Parameters,
                 invalidDialect: pDialectName
               });
-              setDialect('English');
+              _setDialect('English');
             }
             return this;
           };
@@ -683,7 +649,7 @@
           *
           * @method setIDUser
           */
-          var setIDUser = function (pIDUser) {
+          var setIDUser = function setIDUser(pIDUser) {
             var tmpUserID = 0;
             if (typeof pIDUser === 'number' && pIDUser % 1 === 0 && pIDUser >= 0) {
               tmpUserID = pIDUser;
@@ -710,7 +676,7 @@
           *
           * @method setDisableAutoIdentity
           */
-          var setDisableAutoIdentity = function (pFlag) {
+          var setDisableAutoIdentity = function setDisableAutoIdentity(pFlag) {
             _Parameters.query.disableAutoIdentity = pFlag;
             return this; //chainable
           };
@@ -720,7 +686,7 @@
           *
           * @method setDisableAutoDateStamp
           */
-          var setDisableAutoDateStamp = function (pFlag) {
+          var setDisableAutoDateStamp = function setDisableAutoDateStamp(pFlag) {
             _Parameters.query.disableAutoDateStamp = pFlag;
             return this; //chainable
           };
@@ -730,7 +696,7 @@
           *
           * @method setDisableAutoUserStamp
           */
-          var setDisableAutoUserStamp = function (pFlag) {
+          var setDisableAutoUserStamp = function setDisableAutoUserStamp(pFlag) {
             _Parameters.query.disableAutoUserStamp = pFlag;
             return this; //chainable
           };
@@ -740,7 +706,7 @@
           *
           * @method setDisableDeleteTracking
           */
-          var setDisableDeleteTracking = function (pFlag) {
+          var setDisableDeleteTracking = function setDisableDeleteTracking(pFlag) {
             _Parameters.query.disableDeleteTracking = pFlag;
             return this; //chainable
           };
@@ -753,37 +719,37 @@
           *
           * @method checkDialect
           */
-          var checkDialect = function () {
+          var checkDialect = function checkDialect() {
             if (_Dialect === false) {
-              setDialect('English');
+              _setDialect('English');
             }
           };
-          var buildCreateQuery = function () {
+          var buildCreateQuery = function buildCreateQuery() {
             checkDialect();
             _Parameters.query.body = _Dialect.Create(_Parameters);
             return this;
           };
-          var buildReadQuery = function () {
+          var buildReadQuery = function buildReadQuery() {
             checkDialect();
             _Parameters.query.body = _Dialect.Read(_Parameters);
             return this;
           };
-          var buildUpdateQuery = function () {
+          var buildUpdateQuery = function buildUpdateQuery() {
             checkDialect();
             _Parameters.query.body = _Dialect.Update(_Parameters);
             return this;
           };
-          var buildDeleteQuery = function () {
+          var buildDeleteQuery = function buildDeleteQuery() {
             checkDialect();
             _Parameters.query.body = _Dialect.Delete(_Parameters);
             return this;
           };
-          var buildUndeleteQuery = function () {
+          var buildUndeleteQuery = function buildUndeleteQuery() {
             checkDialect();
             _Parameters.query.body = _Dialect.Undelete(_Parameters);
             return this;
           };
-          var buildCountQuery = function () {
+          var buildCountQuery = function buildCountQuery() {
             checkDialect();
             _Parameters.query.body = _Dialect.Count(_Parameters);
             return this;
@@ -813,7 +779,7 @@
             setDisableAutoDateStamp: setDisableAutoDateStamp,
             setDisableAutoUserStamp: setDisableAutoUserStamp,
             setDisableDeleteTracking: setDisableDeleteTracking,
-            setDialect: setDialect,
+            setDialect: _setDialect,
             buildCreateQuery: buildCreateQuery,
             buildReadQuery: buildReadQuery,
             buildUpdateQuery: buildUpdateQuery,
@@ -831,11 +797,27 @@
            * @type Object
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'query', {
-            get: function () {
+            get: function get() {
               return _Parameters.query;
             },
-            set: function (pQuery) {
+            set: function set(pQuery) {
               _Parameters.query = pQuery;
+            },
+            enumerable: true
+          });
+
+          /**
+           * Query
+           *
+           * @property query
+           * @type Object
+           */
+          Object.defineProperty(tmpNewFoxHoundObject, 'indexHints', {
+            get: function get() {
+              return _Parameters.indexHints;
+            },
+            set: function set(pHints) {
+              _Parameters.indexHints = pHints;
             },
             enumerable: true
           });
@@ -847,10 +829,10 @@
            * @type Object
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'result', {
-            get: function () {
+            get: function get() {
               return _Parameters.result;
             },
-            set: function (pResult) {
+            set: function set(pResult) {
               _Parameters.result = pResult;
             },
             enumerable: true
@@ -863,10 +845,10 @@
            * @type Object
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'parameters', {
-            get: function () {
+            get: function get() {
               return _Parameters;
             },
-            set: function (pParameters) {
+            set: function set(pParameters) {
               _Parameters = pParameters;
             },
             enumerable: true
@@ -879,7 +861,7 @@
            * @type Object
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'dialect', {
-            get: function () {
+            get: function get() {
               return _Dialect;
             },
             enumerable: true
@@ -892,7 +874,7 @@
            * @type String
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'uuid', {
-            get: function () {
+            get: function get() {
               return _UUID;
             },
             enumerable: true
@@ -905,7 +887,7 @@
            * @type Integer
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'logLevel', {
-            get: function () {
+            get: function get() {
               return _LogLevel;
             },
             enumerable: true
@@ -917,9 +899,38 @@
       module.exports = FoxHound();
     }, {
       "./Foxhound-Dialects.js": 2,
-      "./Parameters.js": 4
+      "./Parameters.js": 3
     }],
-    4: [function (require, module, exports) {
+    2: [function (require, module, exports) {
+      let getDialects = () => {
+        let tmpDialects = {};
+        tmpDialects.English = require('./dialects/English/FoxHound-Dialect-English.js');
+        tmpDialects.SQLite = require('./dialects/SQLite/FoxHound-Dialect-SQLite.js');
+        tmpDialects.ALASQL = require('./dialects/ALASQL/FoxHound-Dialect-ALASQL.js');
+        tmpDialects.MeadowEndpoints = require('./dialects/MeadowEndpoints/FoxHound-Dialect-MeadowEndpoints.js');
+        tmpDialects.MySQL = require('./dialects/MySQL/FoxHound-Dialect-MySQL.js');
+        tmpDialects.MSSQL = require('./dialects/MicrosoftSQL/FoxHound-Dialect-MSSQL.js');
+        tmpDialects.PostgreSQL = require('./dialects/PostgreSQL/FoxHound-Dialect-PostgreSQL.js');
+        tmpDialects.MongoDB = require('./dialects/MongoDB/FoxHound-Dialect-MongoDB.js');
+        tmpDialects.DGraph = require('./dialects/DGraph/FoxHound-Dialect-DGraph.js');
+        tmpDialects.Solr = require('./dialects/Solr/FoxHound-Dialect-Solr.js');
+        tmpDialects.default = tmpDialects.English;
+        return tmpDialects;
+      };
+      module.exports = getDialects();
+    }, {
+      "./dialects/ALASQL/FoxHound-Dialect-ALASQL.js": 4,
+      "./dialects/DGraph/FoxHound-Dialect-DGraph.js": 5,
+      "./dialects/English/FoxHound-Dialect-English.js": 6,
+      "./dialects/MeadowEndpoints/FoxHound-Dialect-MeadowEndpoints.js": 7,
+      "./dialects/MicrosoftSQL/FoxHound-Dialect-MSSQL.js": 8,
+      "./dialects/MongoDB/FoxHound-Dialect-MongoDB.js": 9,
+      "./dialects/MySQL/FoxHound-Dialect-MySQL.js": 10,
+      "./dialects/PostgreSQL/FoxHound-Dialect-PostgreSQL.js": 11,
+      "./dialects/SQLite/FoxHound-Dialect-SQLite.js": 12,
+      "./dialects/Solr/FoxHound-Dialect-Solr.js": 13
+    }],
+    3: [function (require, module, exports) {
       /**
       * Query Parameters Object
       *
@@ -1006,6 +1017,11 @@
         	}
         */
 
+        indexHints: false,
+        /*
+        	['IndexName1', 'IndexName2'] // A list of index names to hint to the underlying provider, if supported
+         */
+
         // Who is making the query
         userID: 0,
         // Where the query results are stuck
@@ -1018,10 +1034,9 @@
         	}
         */
       };
-
       module.exports = FoxHoundQueryParameters;
     }, {}],
-    5: [function (require, module, exports) {
+    4: [function (require, module, exports) {
       /**
       * FoxHound ALASQL Dialect
       *
@@ -1040,7 +1055,7 @@
       * @class FoxHoundDialectALASQL
       */
 
-      var FoxHoundDialectALASQL = function (pFable) {
+      var FoxHoundDialectALASQL = function FoxHoundDialectALASQL(pFable) {
         //Request time from SQL server with microseconds resolution
         const SQL_NOW = "NOW(3)";
         _Fable = pFable;
@@ -1056,7 +1071,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateTableName = function (pParameters) {
+        var generateTableName = function generateTableName(pParameters) {
           return ' ' + pParameters.scope;
         };
 
@@ -1089,7 +1104,7 @@
         * @return: {String} Returns the field list clause, or empty string if explicit fields are requested but cannot be fulfilled
         *          due to missing schema.
         */
-        var generateFieldList = function (pParameters, pIsForCountClause) {
+        var generateFieldList = function generateFieldList(pParameters, pIsForCountClause) {
           var tmpDataElements = pParameters.dataElements;
           if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
             if (!pIsForCountClause) {
@@ -1106,7 +1121,7 @@
               // this means there is no autoincrementing unique ID column; treat as above
               return '';
             }
-            return ` ${idColumn.Column}`;
+            return " ".concat(idColumn.Column);
           }
           var tmpFieldList = ' ';
           for (var i = 0; i < tmpDataElements.length; i++) {
@@ -1134,7 +1149,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
         */
-        var generateWhere = function (pParameters) {
+        var generateWhere = function generateWhere(pParameters) {
           var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
           var tmpTableName = generateTableName(pParameters).trim();
           if (!pParameters.query.disableDeleteTracking) {
@@ -1218,7 +1233,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the field list clause
         */
-        var generateOrderBy = function (pParameters) {
+        var generateOrderBy = function generateOrderBy(pParameters) {
           var tmpOrderBy = pParameters.sort;
           if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1) {
             return '';
@@ -1243,7 +1258,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateLimit = function (pParameters) {
+        var generateLimit = function generateLimit(pParameters) {
           if (!pParameters.cap) {
             return '';
           }
@@ -1265,7 +1280,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateUpdateSetters = function (pParameters) {
+        var generateUpdateSetters = function generateUpdateSetters(pParameters) {
           var tmpRecords = pParameters.query.records;
           // We need to tell the query not to generate improperly if there are no values to set.
           if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
@@ -1351,7 +1366,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateUpdateDeleteSetters = function (pParameters) {
+        var generateUpdateDeleteSetters = function generateUpdateDeleteSetters(pParameters) {
           if (pParameters.query.disableDeleteTracking) {
             //Don't generate an UPDATE query if Delete tracking is disabled
             return false;
@@ -1417,7 +1432,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateUpdateUndeleteSetters = function (pParameters) {
+        var generateUpdateUndeleteSetters = function generateUpdateUndeleteSetters(pParameters) {
           // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
           var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
           var tmpCurrentColumn = 0;
@@ -1476,7 +1491,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateCreateSetValues = function (pParameters) {
+        var generateCreateSetValues = function generateCreateSetValues(pParameters) {
           var tmpRecords = pParameters.query.records;
           // We need to tell the query not to generate improperly if there are no values to set.
           if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
@@ -1513,7 +1528,7 @@
             }
 
             //define a re-usable method for setting up field definitions in a default pattern
-            var buildDefaultDefinition = function () {
+            var buildDefaultDefinition = function buildDefaultDefinition() {
               var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
               tmpCreateSet += ' :' + tmpColumnParameter;
               // Set the query parameter
@@ -1592,7 +1607,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateCreateSetList = function (pParameters) {
+        var generateCreateSetList = function generateCreateSetList(pParameters) {
           // The records were already validated by generateCreateSetValues
           var tmpRecords = pParameters.query.records;
 
@@ -1631,7 +1646,7 @@
           }
           return tmpCreateSet;
         };
-        var Create = function (pParameters) {
+        var Create = function Create(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpCreateSetList = generateCreateSetList(pParameters);
           var tmpCreateSetValues = generateCreateSetValues(pParameters);
@@ -1655,7 +1670,7 @@
         * @param {Object} pParameters SQL Query parameters
         * @return {String} Returns the current Query for chaining.
         */
-        var Read = function (pParameters) {
+        var Read = function Read(pParameters) {
           var tmpFieldList = generateFieldList(pParameters);
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
@@ -1680,9 +1695,9 @@
               return false;
             }
           }
-          return `SELECT${tmpOptDistinct}${tmpFieldList} FROM${tmpTableName}${tmpWhere}${tmpOrderBy}${tmpLimit};`;
+          return "SELECT".concat(tmpOptDistinct).concat(tmpFieldList, " FROM").concat(tmpTableName).concat(tmpWhere).concat(tmpOrderBy).concat(tmpLimit, ";");
         };
-        var Update = function (pParameters) {
+        var Update = function Update(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
           var tmpUpdateSetters = generateUpdateSetters(pParameters);
@@ -1691,7 +1706,7 @@
           }
           return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateSetters + tmpWhere + ';';
         };
-        var Delete = function (pParameters) {
+        var Delete = function Delete(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
           var tmpUpdateDeleteSetters = generateUpdateDeleteSetters(pParameters);
@@ -1702,7 +1717,7 @@
             return 'DELETE FROM' + tmpTableName + tmpWhere + ';';
           }
         };
-        var Undelete = function (pParameters) {
+        var Undelete = function Undelete(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           let tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
           pParameters.query.disableDeleteTracking = true;
@@ -1716,7 +1731,7 @@
             return 'SELECT NULL;';
           }
         };
-        var Count = function (pParameters) {
+        var Count = function Count(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
           const tmpFieldList = pParameters.distinct ? generateFieldList(pParameters, true) : '*';
@@ -1744,7 +1759,7 @@
               return false;
             }
           }
-          return `SELECT COUNT(${tmpOptDistinct}${tmpFieldList || '*'}) AS RowCount FROM${tmpTableName}${tmpWhere};`;
+          return "SELECT COUNT(".concat(tmpOptDistinct).concat(tmpFieldList || '*', ") AS RowCount FROM").concat(tmpTableName).concat(tmpWhere, ";");
         };
         var tmpDialect = {
           Create: Create,
@@ -1762,7 +1777,7 @@
         * @type string
         */
         Object.defineProperty(tmpDialect, 'name', {
-          get: function () {
+          get: function get() {
             return 'ALASQL';
           },
           enumerable: true
@@ -1770,6 +1785,772 @@
         return tmpDialect;
       };
       module.exports = FoxHoundDialectALASQL;
+    }, {}],
+    5: [function (require, module, exports) {
+      /**
+      * FoxHound DGraph Dialect
+      *
+      * Generates DQL query strings and JSON mutation descriptors for DGraph.
+      * The query body is a JSON string; the parsed operation object is also
+      * stored in query.parameters.dgraphOperation for direct provider consumption.
+      *
+      * @license MIT
+      *
+      * @author Steven Velozo <steven@velozo.com>
+      * @class FoxHoundDialectDGraph
+      */
+
+      var FoxHoundDialectDGraph = function FoxHoundDialectDGraph(pFable) {
+        _Fable = pFable;
+
+        /**
+        * Strip any table-name prefix from a column name.
+        * DGraph uses plain predicate names without table qualification.
+        *
+        * @method stripTablePrefix
+        * @param {String} pColumn Column name, possibly table-qualified
+        * @return {String} Plain column name
+        */
+        var stripTablePrefix = function stripTablePrefix(pColumn) {
+          if (typeof pColumn !== 'string') {
+            return pColumn;
+          }
+          // Remove backtick and double-quote quoting
+          var tmpColumn = pColumn.replace(/[`"]/g, '');
+          // Strip table prefix (e.g. "Animal.Name" -> "Name")
+          if (tmpColumn.indexOf('.') >= 0) {
+            var tmpParts = tmpColumn.split('.');
+            if (tmpParts[tmpParts.length - 1] === '*') {
+              return '*';
+            }
+            return tmpParts[tmpParts.length - 1];
+          }
+          return tmpColumn;
+        };
+
+        /**
+        * Find the schema entry for a given column name.
+        *
+        * @method findSchemaEntry
+        * @param {String} pColumn Column name
+        * @param {Array} pSchema Schema array
+        * @return {Object} Schema entry or default
+        */
+        var findSchemaEntry = function findSchemaEntry(pColumn, pSchema) {
+          for (var i = 0; i < pSchema.length; i++) {
+            if (pColumn == pSchema[i].Column) {
+              return pSchema[i];
+            }
+          }
+          return {
+            Column: pColumn,
+            Type: 'Default'
+          };
+        };
+
+        /**
+        * Format a value for inclusion in a DQL string.
+        * Strings are double-quoted, numbers stay bare, arrays become bracketed.
+        *
+        * @method formatDGraphValue
+        * @param {*} pValue The value to format
+        * @return {String} Formatted value string
+        */
+        var _formatDGraphValue = function formatDGraphValue(pValue) {
+          if (Array.isArray(pValue)) {
+            var tmpItems = [];
+            for (var i = 0; i < pValue.length; i++) {
+              tmpItems.push(_formatDGraphValue(pValue[i]));
+            }
+            return '[' + tmpItems.join(', ') + ']';
+          }
+          if (typeof pValue === 'number') {
+            return String(pValue);
+          }
+          if (typeof pValue === 'boolean') {
+            return pValue ? 'true' : 'false';
+          }
+          // Escape double quotes inside strings
+          return '"' + String(pValue).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+        };
+
+        /**
+        * Translate a single FoxHound filter entry into a DGraph DQL filter function call.
+        *
+        * @method translateOperator
+        * @param {Object} pFilterEntry A FoxHound filter object
+        * @return {String} DQL filter function string
+        */
+        var translateOperator = function translateOperator(pFilterEntry) {
+          var tmpColumn = stripTablePrefix(pFilterEntry.Column);
+          var tmpValue = pFilterEntry.Value;
+          switch (pFilterEntry.Operator) {
+            case '=':
+              return 'eq(' + tmpColumn + ', ' + _formatDGraphValue(tmpValue) + ')';
+            case '!=':
+              return 'NOT eq(' + tmpColumn + ', ' + _formatDGraphValue(tmpValue) + ')';
+            case '>':
+              return 'gt(' + tmpColumn + ', ' + _formatDGraphValue(tmpValue) + ')';
+            case '>=':
+              return 'ge(' + tmpColumn + ', ' + _formatDGraphValue(tmpValue) + ')';
+            case '<':
+              return 'lt(' + tmpColumn + ', ' + _formatDGraphValue(tmpValue) + ')';
+            case '<=':
+              return 'le(' + tmpColumn + ', ' + _formatDGraphValue(tmpValue) + ')';
+            case 'LIKE':
+              // Convert SQL LIKE pattern to regex: % -> .*, _ -> .
+              var tmpPattern = String(tmpValue).replace(/%/g, '.*').replace(/_/g, '.');
+              return 'regexp(' + tmpColumn + ', /' + tmpPattern + '/i)';
+            case 'IN':
+              // DGraph eq() supports array values as IN
+              var tmpInValues = Array.isArray(tmpValue) ? tmpValue : [tmpValue];
+              return 'eq(' + tmpColumn + ', ' + _formatDGraphValue(tmpInValues) + ')';
+            case 'NOT IN':
+              var tmpNinValues = Array.isArray(tmpValue) ? tmpValue : [tmpValue];
+              return 'NOT eq(' + tmpColumn + ', ' + _formatDGraphValue(tmpNinValues) + ')';
+            case 'IS NULL':
+              return 'NOT has(' + tmpColumn + ')';
+            case 'IS NOT NULL':
+              return 'has(' + tmpColumn + ')';
+            default:
+              // Unknown operator, treat as equality
+              return 'eq(' + tmpColumn + ', ' + _formatDGraphValue(tmpValue) + ')';
+          }
+        };
+
+        /**
+        * Generate the DGraph @filter(...) clause from the FoxHound filter array.
+        * Uses a stack-based approach for parenthetical groups.
+        *
+        * @method generateFilter
+        * @param {Object} pParameters Query Parameters
+        * @return {String} DQL @filter clause or empty string
+        */
+        var generateFilter = function generateFilter(pParameters) {
+          var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter.slice() : [];
+
+          // Auto-add Deleted filter if applicable
+          if (!pParameters.query.disableDeleteTracking) {
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpSchema[i].Type === 'Deleted') {
+                var tmpHasDeletedParam = false;
+                for (var x = 0; x < tmpFilter.length; x++) {
+                  if (stripTablePrefix(tmpFilter[x].Column) === tmpSchema[i].Column) {
+                    tmpHasDeletedParam = true;
+                    break;
+                  }
+                }
+                if (!tmpHasDeletedParam) {
+                  tmpFilter.push({
+                    Column: tmpSchema[i].Column,
+                    Operator: '=',
+                    Value: 0,
+                    Connector: 'AND',
+                    Parameter: 'Deleted'
+                  });
+                }
+                break;
+              }
+            }
+          }
+          if (tmpFilter.length < 1) {
+            return '';
+          }
+
+          // Stack-based processing for parenthetical groups
+          // Each stack level is an array of { text: 'eq(...)', connector: 'AND' }
+          var tmpStack = [[]];
+          for (var i = 0; i < tmpFilter.length; i++) {
+            var tmpEntry = tmpFilter[i];
+            if (tmpEntry.Operator === '(') {
+              tmpStack.push([]);
+            } else if (tmpEntry.Operator === ')') {
+              var tmpGroupConditions = tmpStack.pop();
+
+              // Check if any condition inside the group used OR
+              var tmpHasOR = false;
+              for (var g = 0; g < tmpGroupConditions.length; g++) {
+                if (tmpGroupConditions[g].connector === 'OR') {
+                  tmpHasOR = true;
+                  break;
+                }
+              }
+
+              // Join conditions in the group
+              var tmpGroupText = '';
+              for (var g2 = 0; g2 < tmpGroupConditions.length; g2++) {
+                if (g2 > 0) {
+                  tmpGroupText += tmpHasOR ? ' OR ' : ' AND ';
+                }
+                tmpGroupText += tmpGroupConditions[g2].text;
+              }
+              tmpStack[tmpStack.length - 1].push({
+                text: '(' + tmpGroupText + ')',
+                connector: tmpEntry.Connector || 'AND'
+              });
+            } else {
+              tmpStack[tmpStack.length - 1].push({
+                text: translateOperator(tmpEntry),
+                connector: tmpEntry.Connector || 'AND'
+              });
+            }
+          }
+
+          // Collapse root level
+          var tmpRootConditions = tmpStack[0];
+          if (tmpRootConditions.length === 0) {
+            return '';
+          }
+          var tmpFilterText = '';
+          for (var r = 0; r < tmpRootConditions.length; r++) {
+            if (r > 0) {
+              tmpFilterText += ' ' + tmpRootConditions[r].connector + ' ';
+            }
+            tmpFilterText += tmpRootConditions[r].text;
+          }
+          return ' @filter(' + tmpFilterText + ')';
+        };
+
+        /**
+        * Generate the field list for a DQL query from dataElements.
+        * Always includes uid. Falls back to all schema columns if no dataElements.
+        *
+        * @method generateFieldList
+        * @param {Object} pParameters Query Parameters
+        * @return {String} Space-separated field list
+        */
+        var generateFieldList = function generateFieldList(pParameters) {
+          var tmpFields = ['uid'];
+          var tmpDataElements = pParameters.dataElements;
+          if (Array.isArray(tmpDataElements) && tmpDataElements.length > 0) {
+            for (var i = 0; i < tmpDataElements.length; i++) {
+              var tmpField = tmpDataElements[i];
+              if (Array.isArray(tmpField)) {
+                tmpField = tmpField[0];
+              }
+              tmpField = stripTablePrefix(tmpField);
+              if (tmpField !== '*' && tmpFields.indexOf(tmpField) < 0) {
+                tmpFields.push(tmpField);
+              }
+            }
+          } else {
+            // Use all schema columns
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (var j = 0; j < tmpSchema.length; j++) {
+              var tmpCol = tmpSchema[j].Column;
+              if (tmpFields.indexOf(tmpCol) < 0) {
+                tmpFields.push(tmpCol);
+              }
+            }
+          }
+
+          // If we still only have uid, include dgraph.type for completeness
+          if (tmpFields.length === 1) {
+            tmpFields.push('dgraph.type');
+          }
+          return tmpFields.join(' ');
+        };
+
+        /**
+        * Generate DQL sort parameters from sort array.
+        *
+        * @method generateSort
+        * @param {Object} pParameters Query Parameters
+        * @return {String} Sort parameters (e.g. "orderasc: Name") or empty string
+        */
+        var generateSort = function generateSort(pParameters) {
+          var tmpSort = pParameters.sort;
+          if (!Array.isArray(tmpSort) || tmpSort.length < 1) {
+            return '';
+          }
+          var tmpParts = [];
+          for (var i = 0; i < tmpSort.length; i++) {
+            var tmpColumn = stripTablePrefix(tmpSort[i].Column);
+            var tmpDir = tmpSort[i].Direction === 'Descending' ? 'orderdesc' : 'orderasc';
+            tmpParts.push(tmpDir + ': ' + tmpColumn);
+          }
+          return tmpParts.join(', ');
+        };
+
+        /**
+        * Generate DQL pagination parameters from begin/cap.
+        *
+        * @method generatePagination
+        * @param {Object} pParameters Query Parameters
+        * @return {String} Pagination parameters (e.g. "first: 10, offset: 5") or empty string
+        */
+        var generatePagination = function generatePagination(pParameters) {
+          var tmpParts = [];
+          if (pParameters.cap) {
+            tmpParts.push('first: ' + pParameters.cap);
+          }
+          if (pParameters.begin !== false && pParameters.begin > 0) {
+            tmpParts.push('offset: ' + pParameters.begin);
+          }
+          return tmpParts.join(', ');
+        };
+
+        /**
+        * Generate the document for a create (mutation set) operation.
+        * Walks the record through the schema to handle special column types.
+        *
+        * @method generateCreateDocument
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Document object or false if no record
+        */
+        var generateCreateDocument = function generateCreateDocument(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpDocument = {};
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                continue;
+              }
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+                if (pParameters.query.disableAutoIdentity) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = '$$AUTOINCREMENT';
+                }
+                break;
+              case 'AutoGUID':
+                if (pParameters.query.disableAutoIdentity) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else if (tmpRecords[0][tmpColumn] && tmpRecords[0][tmpColumn].length >= 5 && tmpRecords[0][tmpColumn] !== '0x0000000000000000') {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = pParameters.query.UUID;
+                }
+                break;
+              case 'UpdateDate':
+              case 'CreateDate':
+                if (pParameters.query.disableAutoDateStamp) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = '$$NOW';
+                }
+                break;
+              case 'DeleteIDUser':
+              case 'UpdateIDUser':
+              case 'CreateIDUser':
+                if (pParameters.query.disableAutoUserStamp) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = pParameters.query.IDUser;
+                }
+                break;
+              case 'Deleted':
+                tmpDocument[tmpColumn] = 0;
+                break;
+              default:
+                tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                break;
+            }
+          }
+          if (Object.keys(tmpDocument).length === 0) {
+            return false;
+          }
+          return tmpDocument;
+        };
+
+        /**
+        * Generate the update fields for a mutation operation.
+        * Walks the record through the schema, skipping identity/create/delete columns.
+        *
+        * @method generateUpdateDocument
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Update document or false if no record
+        */
+        var generateUpdateDocument = function generateUpdateDocument(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpUpdateDoc = {};
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
+            if (pParameters.query.disableAutoDateStamp && tmpSchemaEntry.Type === 'UpdateDate') {
+              continue;
+            }
+            if (pParameters.query.disableAutoUserStamp && tmpSchemaEntry.Type === 'UpdateIDUser') {
+              continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+              case 'CreateDate':
+              case 'CreateIDUser':
+              case 'DeleteDate':
+              case 'DeleteIDUser':
+                continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'UpdateDate':
+                tmpUpdateDoc[tmpColumn] = '$$NOW';
+                break;
+              case 'UpdateIDUser':
+                tmpUpdateDoc[tmpColumn] = pParameters.query.IDUser;
+                break;
+              default:
+                tmpUpdateDoc[tmpColumn] = tmpRecords[0][tmpColumn];
+                break;
+            }
+          }
+          if (Object.keys(tmpUpdateDoc).length === 0) {
+            return false;
+          }
+          return tmpUpdateDoc;
+        };
+
+        /**
+        * Generate the soft-delete setters.
+        * Returns false if no Deleted column exists or delete tracking is disabled.
+        *
+        * @method generateDeleteSetters
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Delete setters or false
+        */
+        var generateDeleteSetters = function generateDeleteSetters(pParameters) {
+          if (pParameters.query.disableDeleteTracking) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpHasDeletedField = false;
+          var tmpSetters = {};
+          for (var i = 0; i < tmpSchema.length; i++) {
+            var tmpSchemaEntry = tmpSchema[i];
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpSetters[tmpSchemaEntry.Column] = 1;
+                tmpHasDeletedField = true;
+                break;
+              case 'DeleteDate':
+                tmpSetters[tmpSchemaEntry.Column] = '$$NOW';
+                break;
+              case 'UpdateDate':
+                tmpSetters[tmpSchemaEntry.Column] = '$$NOW';
+                break;
+              case 'DeleteIDUser':
+                tmpSetters[tmpSchemaEntry.Column] = pParameters.query.IDUser;
+                break;
+              default:
+                continue;
+            }
+          }
+          if (!tmpHasDeletedField || Object.keys(tmpSetters).length === 0) {
+            return false;
+          }
+          return tmpSetters;
+        };
+
+        /**
+        * Generate the undelete setters.
+        * Returns false if no Deleted column exists.
+        *
+        * @method generateUndeleteSetters
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Undelete setters or false
+        */
+        var generateUndeleteSetters = function generateUndeleteSetters(pParameters) {
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpHasDeletedField = false;
+          var tmpSetters = {};
+          for (var i = 0; i < tmpSchema.length; i++) {
+            var tmpSchemaEntry = tmpSchema[i];
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpSetters[tmpSchemaEntry.Column] = 0;
+                tmpHasDeletedField = true;
+                break;
+              case 'UpdateDate':
+                tmpSetters[tmpSchemaEntry.Column] = '$$NOW';
+                break;
+              case 'UpdateIDUser':
+                tmpSetters[tmpSchemaEntry.Column] = pParameters.query.IDUser;
+                break;
+              default:
+                continue;
+            }
+          }
+          if (!tmpHasDeletedField || Object.keys(tmpSetters).length === 0) {
+            return false;
+          }
+          return tmpSetters;
+        };
+
+        /**
+        * Build the func: arguments portion of a DQL query root.
+        * Combines type filter, pagination, and sort.
+        *
+        * @method buildFuncArgs
+        * @param {String} pType DGraph type name
+        * @param {String} pPagination Pagination string
+        * @param {String} pSort Sort string
+        * @return {String} Func arguments (e.g. "func: type(Animal), first: 10, orderasc: Name")
+        */
+        var buildFuncArgs = function buildFuncArgs(pType, pPagination, pSort) {
+          var tmpParts = ['func: type(' + pType + ')'];
+          if (pPagination) {
+            tmpParts.push(pPagination);
+          }
+          if (pSort) {
+            tmpParts.push(pSort);
+          }
+          return tmpParts.join(', ');
+        };
+
+        /**
+        * Create a new record
+        *
+        * @method Create
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor or false
+        */
+        var Create = function Create(pParameters) {
+          var tmpDocument = generateCreateDocument(pParameters);
+          if (!tmpDocument) {
+            return false;
+          }
+
+          // Add DGraph type predicate
+          tmpDocument['dgraph.type'] = pParameters.scope;
+
+          // Determine if we need a counter scope for auto-increment
+          var tmpCounterScope = false;
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          for (var i = 0; i < tmpSchema.length; i++) {
+            if (tmpSchema[i].Type === 'AutoIdentity' && !pParameters.query.disableAutoIdentity) {
+              tmpCounterScope = pParameters.scope + '.' + tmpSchema[i].Column;
+              break;
+            }
+          }
+          var tmpResult = {
+            type: pParameters.scope,
+            operation: 'mutate',
+            mutationType: 'set',
+            document: tmpDocument
+          };
+          if (tmpCounterScope) {
+            tmpResult.counterScope = tmpCounterScope;
+          }
+          pParameters.query.parameters.dgraphOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Read one or many records
+        *
+        * @method Read
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Read = function Read(pParameters) {
+          if (pParameters.join && Array.isArray(pParameters.join) && pParameters.join.length > 0) {
+            _Fable.log.warn('DGraph dialect does not support JOINs; join parameter will be ignored.');
+          }
+          var tmpFilterClause = generateFilter(pParameters);
+          var tmpFieldList = generateFieldList(pParameters);
+          var tmpSort = generateSort(pParameters);
+          var tmpPagination = generatePagination(pParameters);
+          var tmpFuncArgs = buildFuncArgs(pParameters.scope, tmpPagination, tmpSort);
+          var tmpDQL = '{ results(' + tmpFuncArgs + ')' + tmpFilterClause + ' { ' + tmpFieldList + ' } }';
+          var tmpResult = {
+            type: pParameters.scope,
+            operation: 'query',
+            query: tmpDQL,
+            queryName: 'results'
+          };
+          if (pParameters.distinct) {
+            tmpResult.distinct = true;
+          }
+          pParameters.query.parameters.dgraphOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Update one or many records
+        *
+        * @method Update
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor or false
+        */
+        var Update = function Update(pParameters) {
+          var tmpFilterClause = generateFilter(pParameters);
+          var tmpUpdateDoc = generateUpdateDocument(pParameters);
+          if (!tmpUpdateDoc) {
+            return false;
+          }
+
+          // Build a DQL query to find the UIDs of matching nodes
+          var tmpFuncArgs = buildFuncArgs(pParameters.scope, '', '');
+          var tmpQueryForUIDs = '{ updateTargets(' + tmpFuncArgs + ')' + tmpFilterClause + ' { uid } }';
+          var tmpResult = {
+            type: pParameters.scope,
+            operation: 'upsert',
+            queryForUIDs: tmpQueryForUIDs,
+            queryName: 'updateTargets',
+            update: tmpUpdateDoc
+          };
+          pParameters.query.parameters.dgraphOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Delete one or many records (soft or hard depending on schema)
+        *
+        * @method Delete
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Delete = function Delete(pParameters) {
+          var tmpDeleteSetters = generateDeleteSetters(pParameters);
+          var tmpFilterClause = generateFilter(pParameters);
+
+          // Build a DQL query to find the UIDs of matching nodes
+          var tmpFuncArgs = buildFuncArgs(pParameters.scope, '', '');
+          var tmpQueryForUIDs = '{ deleteTargets(' + tmpFuncArgs + ')' + tmpFilterClause + ' { uid } }';
+          if (tmpDeleteSetters) {
+            // Soft delete via mutation
+            var tmpResult = {
+              type: pParameters.scope,
+              operation: 'upsert',
+              queryForUIDs: tmpQueryForUIDs,
+              queryName: 'deleteTargets',
+              update: tmpDeleteSetters
+            };
+            pParameters.query.parameters.dgraphOperation = tmpResult;
+            return JSON.stringify(tmpResult);
+          } else {
+            // Hard delete
+            var tmpHardResult = {
+              type: pParameters.scope,
+              operation: 'delete',
+              queryForUIDs: tmpQueryForUIDs,
+              queryName: 'deleteTargets'
+            };
+            pParameters.query.parameters.dgraphOperation = tmpHardResult;
+            return JSON.stringify(tmpHardResult);
+          }
+        };
+
+        /**
+        * Undelete (restore) a soft-deleted record
+        *
+        * @method Undelete
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Undelete = function Undelete(pParameters) {
+          var tmpUndeleteSetters = generateUndeleteSetters(pParameters);
+
+          // Temporarily disable delete tracking for filter generation
+          // so we can find records where Deleted=1
+          var tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
+          pParameters.query.disableDeleteTracking = true;
+          var tmpFilterClause = generateFilter(pParameters);
+          pParameters.query.disableDeleteTracking = tmpDeleteTrackingState;
+          if (tmpUndeleteSetters) {
+            var tmpFuncArgs = buildFuncArgs(pParameters.scope, '', '');
+            var tmpQueryForUIDs = '{ undeleteTargets(' + tmpFuncArgs + ')' + tmpFilterClause + ' { uid } }';
+            var tmpResult = {
+              type: pParameters.scope,
+              operation: 'upsert',
+              queryForUIDs: tmpQueryForUIDs,
+              queryName: 'undeleteTargets',
+              update: tmpUndeleteSetters
+            };
+            pParameters.query.parameters.dgraphOperation = tmpResult;
+            return JSON.stringify(tmpResult);
+          } else {
+            // No-op -- can't undelete without a Deleted column
+            var tmpNoopResult = {
+              type: pParameters.scope,
+              operation: 'noop'
+            };
+            pParameters.query.parameters.dgraphOperation = tmpNoopResult;
+            return JSON.stringify(tmpNoopResult);
+          }
+        };
+
+        /**
+        * Count records
+        *
+        * @method Count
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Count = function Count(pParameters) {
+          var tmpFilterClause = generateFilter(pParameters);
+          var tmpFuncArgs = buildFuncArgs(pParameters.scope, '', '');
+          var tmpDQL = '{ results(' + tmpFuncArgs + ')' + tmpFilterClause + ' { total: count(uid) } }';
+          var tmpResult = {
+            type: pParameters.scope,
+            operation: 'query',
+            query: tmpDQL,
+            queryName: 'results',
+            isCount: true
+          };
+          if (pParameters.distinct) {
+            tmpResult.distinct = true;
+            var tmpDataElements = pParameters.dataElements;
+            if (Array.isArray(tmpDataElements) && tmpDataElements.length > 0) {
+              var tmpFields = [];
+              for (var i = 0; i < tmpDataElements.length; i++) {
+                var tmpField = Array.isArray(tmpDataElements[i]) ? tmpDataElements[i][0] : tmpDataElements[i];
+                tmpField = stripTablePrefix(tmpField);
+                if (tmpField !== '*') {
+                  tmpFields.push(tmpField);
+                }
+              }
+              if (tmpFields.length > 0) {
+                tmpResult.distinctFields = tmpFields;
+              }
+            } else {
+              // Fall back to AutoIdentity column from schema
+              var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+              for (var j = 0; j < tmpSchema.length; j++) {
+                if (tmpSchema[j].Type === 'AutoIdentity') {
+                  tmpResult.distinctFields = [tmpSchema[j].Column];
+                  break;
+                }
+              }
+            }
+          }
+          pParameters.query.parameters.dgraphOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+        var tmpDialect = {
+          Create: Create,
+          Read: Read,
+          Update: Update,
+          Delete: Delete,
+          Undelete: Undelete,
+          Count: Count
+        };
+
+        /**
+        * Dialect Name
+        *
+        * @property name
+        * @type string
+        */
+        Object.defineProperty(tmpDialect, 'name', {
+          get: function get() {
+            return 'DGraph';
+          },
+          enumerable: true
+        });
+        return tmpDialect;
+      };
+      module.exports = FoxHoundDialectDGraph;
     }, {}],
     6: [function (require, module, exports) {
       /**
@@ -1783,8 +2564,8 @@
       * @author Steven Velozo <steven@velozo.com>
       * @class FoxHoundDialectEnglish
       */
-      var FoxHoundDialectEnglish = function () {
-        var Create = function (pParameters) {
+      var FoxHoundDialectEnglish = function FoxHoundDialectEnglish() {
+        var Create = function Create(pParameters) {
           var tmpScope = pParameters.scope;
           return 'Here is a ' + tmpScope + '.';
         };
@@ -1803,27 +2584,27 @@
         * @param {Number} pLogLevel The log level for our object
         * @return {String} Returns the current Query for chaining.
         */
-        var Read = function (pParameters) {
+        var Read = function Read(pParameters) {
           var tmpScope = pParameters.scope;
           const tmpDistinct = pParameters.distinct ? 'unique ' : '';
-          return `Please give me all your ${tmpDistinct}${tmpScope} records.  Thanks.`;
+          return "Please give me all your ".concat(tmpDistinct).concat(tmpScope, " records.  Thanks.");
         };
-        var Update = function (pParameters) {
+        var Update = function Update(pParameters) {
           var tmpScope = pParameters.scope;
           return 'I am changing your ' + tmpScope + '.';
         };
-        var Delete = function (pParameters) {
+        var Delete = function Delete(pParameters) {
           var tmpScope = pParameters.scope;
           return 'I am deleting your ' + tmpScope + '.';
         };
-        var Undelete = function (pParameters) {
+        var Undelete = function Undelete(pParameters) {
           var tmpScope = pParameters.scope;
           return 'I am undeleting your ' + tmpScope + '.';
         };
-        var Count = function (pParameters) {
+        var Count = function Count(pParameters) {
           var tmpScope = pParameters.scope;
           const tmpDistinct = pParameters.distinct ? 'unique ' : '';
-          return `Count your ${tmpDistinct}${tmpScope}.`;
+          return "Count your ".concat(tmpDistinct).concat(tmpScope, ".");
         };
         var tmpDialect = {
           Create: Create,
@@ -1841,7 +2622,7 @@
          * @type string
          */
         Object.defineProperty(tmpDialect, 'name', {
-          get: function () {
+          get: function get() {
             return 'English';
           },
           enumerable: true
@@ -1860,7 +2641,7 @@
       * @class FoxHoundDialectMeadowEndpoints
       */
 
-      var FoxHoundDialectMeadowEndpoints = function () {
+      var FoxHoundDialectMeadowEndpoints = function FoxHoundDialectMeadowEndpoints() {
         /**
          * Generate a table name from the scope
          *
@@ -1868,7 +2649,7 @@
          * @param: {Object} pParameters SQL Query Parameters
          * @return: {String} Returns the table name clause
          */
-        var generateTableName = function (pParameters) {
+        var generateTableName = function generateTableName(pParameters) {
           return pParameters.scope;
         };
 
@@ -1879,9 +2660,9 @@
          * @param: {Object} pParameters SQL Query Parameters
          * @return: {String} Returns the table name clause
          */
-        var generateIdentityColumnName = function (pParameters) {
+        var generateIdentityColumnName = function generateIdentityColumnName(pParameters) {
           // TODO: See about using the Schema or the Schemata for this
-          return `ID${pParameters.scope}`;
+          return "ID".concat(pParameters.scope);
         };
 
         /**
@@ -1893,7 +2674,7 @@
          * @param: {Object} pParameters SQL Query Parameters
          * @return: {String} Returns the field list clause
          */
-        var generateFieldList = function (pParameters) {
+        var generateFieldList = function generateFieldList(pParameters) {
           var tmpDataElements = pParameters.dataElements;
           if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
             return '';
@@ -1924,7 +2705,7 @@
          * @param: {Object} pParameters SQL Query Parameters
          * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
          */
-        var generateWhere = function (pParameters) {
+        var generateWhere = function generateWhere(pParameters) {
           var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
           var tmpTableName = generateTableName(pParameters);
           var tmpURL = '';
@@ -1932,7 +2713,7 @@
             if (tmpURL.length > 0) {
               tmpURL += '~';
             }
-            tmpURL += `${pFilterCommand}~${pFilterParameters[0]}~${pFilterParameters[1]}~${pFilterParameters[2]}`;
+            tmpURL += "".concat(pFilterCommand, "~").concat(pFilterParameters[0], "~").concat(pFilterParameters[1], "~").concat(pFilterParameters[2]);
           };
           let tmpfTranslateOperator = pOperator => {
             tmpNewOperator = 'EQ';
@@ -2046,7 +2827,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} ID of the record in string form for the URI
         */
-        var getIDRecord = function (pParameters) {
+        var getIDRecord = function getIDRecord(pParameters) {
           var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
           var tmpIDRecord = false;
           if (tmpFilter.length < 1) {
@@ -2080,7 +2861,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the field list clause
         */
-        var generateOrderBy = function (pParameters) {
+        var generateOrderBy = function generateOrderBy(pParameters) {
           var tmpOrderBy = pParameters.sort;
           var tmpOrderClause = false;
           if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1) {
@@ -2091,7 +2872,7 @@
             if (i > 0) {
               tmpOrderClause += '~';
             }
-            tmpOrderClause += `FSF~${tmpOrderBy[i].Column}~`;
+            tmpOrderClause += "FSF~".concat(tmpOrderBy[i].Column, "~");
             if (tmpOrderBy[i].Direction == 'Descending') {
               tmpOrderClause += 'DESC~0';
             } else {
@@ -2108,20 +2889,20 @@
          * @param: {Object} pParameters SQL Query Parameters
          * @return: {String} Returns the table name clause
          */
-        var generateLimit = function (pParameters) {
+        var generateLimit = function generateLimit(pParameters) {
           if (!pParameters.cap) {
             return '';
           }
           let tmpBegin = pParameters.begin !== false ? pParameters.begin : 0;
-          return `${tmpBegin}/${pParameters.cap}`;
+          return "".concat(tmpBegin, "/").concat(pParameters.cap);
         };
-        var Create = function (pParameters) {
+        var Create = function Create(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpFlags = generateFlags(pParameters);
           if (tmpTableName) {
             let tmpURL = tmpTableName;
             if (tmpFlags) {
-              tmpURL = `${tmpURL}/WithFlags/${tmpFlags}`;
+              tmpURL = "".concat(tmpURL, "/WithFlags/").concat(tmpFlags);
             }
             return tmpURL;
           } else {
@@ -2136,12 +2917,12 @@
         * @param {Object} pParameters SQL Query parameters
         * @return {String} Returns the current Query for chaining.
         */
-        var Read = function (pParameters) {
+        var Read = function Read(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpFieldList = generateFieldList(pParameters);
           var tmpWhere = generateWhere(pParameters);
           var tmpLimit = generateLimit(pParameters);
-          var tmpURL = `${tmpTableName}`;
+          var tmpURL = "".concat(tmpTableName);
           // In the case that there is only a single query parameter, and the parameter is a single identity, 
           // we will cast it to the READ endpoint rather than READS.
           if (pParameters.filter && pParameters.filter.length == 1
@@ -2158,48 +2939,48 @@
               // THEN This is a SINGLE READ by presumption.
               // There are some bad side affects this could cause with chaining and overridden behaviors, if 
               // we are requesting a filtered list of 1 record.
-              tmpURL = `${tmpURL}/${pParameters.filter[0].Value}`;
+              tmpURL = "".concat(tmpURL, "/").concat(pParameters.filter[0].Value);
             } else {
-            tmpURL = `${tmpURL}s`;
+            tmpURL = "".concat(tmpURL, "s");
             if (tmpFieldList) {
-              tmpURL = `${tmpURL}/LiteExtended/${tmpFieldList}`;
+              tmpURL = "".concat(tmpURL, "/LiteExtended/").concat(tmpFieldList);
             }
             if (tmpWhere) {
-              tmpURL = `${tmpURL}/FilteredTo/${tmpWhere}`;
+              tmpURL = "".concat(tmpURL, "/FilteredTo/").concat(tmpWhere);
             }
             if (tmpLimit) {
-              tmpURL = `${tmpURL}/${tmpLimit}`;
+              tmpURL = "".concat(tmpURL, "/").concat(tmpLimit);
             }
           }
           return tmpURL;
         };
-        var Update = function (pParameters) {
+        var Update = function Update(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpFlags = generateFlags(pParameters);
           if (tmpTableName) {
             let tmpURL = tmpTableName;
             if (tmpFlags) {
-              tmpURL = `${tmpURL}/WithFlags/${tmpFlags}`;
+              tmpURL = "".concat(tmpURL, "/WithFlags/").concat(tmpFlags);
             }
             return tmpURL;
           } else {
             return false;
           }
         };
-        var Delete = function (pParameters) {
+        var Delete = function Delete(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpIDRecord = getIDRecord(pParameters);
           if (!tmpIDRecord) {
             return false;
           }
-          return `${tmpTableName}/${tmpIDRecord}`;
+          return "".concat(tmpTableName, "/").concat(tmpIDRecord);
         };
-        var Count = function (pParameters) {
+        var Count = function Count(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
-          let tmpCountQuery = `${tmpTableName}s/Count`;
+          let tmpCountQuery = "".concat(tmpTableName, "s/Count");
           if (tmpWhere) {
-            return `${tmpTableName}s/Count/FilteredTo/${tmpWhere}`;
+            return "".concat(tmpTableName, "s/Count/FilteredTo/").concat(tmpWhere);
           }
           return tmpCountQuery;
         };
@@ -2218,7 +2999,7 @@
          * @type string
          */
         Object.defineProperty(tmpDialect, 'name', {
-          get: function () {
+          get: function get() {
             return 'MeadowEndpoints';
           },
           enumerable: true
@@ -2228,6 +3009,1656 @@
       module.exports = FoxHoundDialectMeadowEndpoints;
     }, {}],
     8: [function (require, module, exports) {
+      /**
+      * FoxHound MSSQL Dialect
+      *
+      * @license MIT
+      *
+      * For a MSSQL query override:
+      // An underscore template with the following values:
+      //      <%= DataElements %> = Field1, Field2, Field3, Field4
+      //      <%= Begin %>        = 0
+      //      <%= Cap %>          = 10
+      //      <%= Filter %>       = WHERE StartDate > :MyStartDate
+      //      <%= Sort %>         = ORDER BY Field1
+      // The values are empty strings if they aren't set.
+      *
+      * @author Steven Velozo <steven@velozo.com>
+      * @class FoxHoundDialectMSSQL
+      */
+
+      var FoxHoundDialectMSSQL = function FoxHoundDialectMSSQL(pFable) {
+        //Request time from SQL server with microseconds resolution
+        const SQL_NOW = "GETUTCDATE()";
+        _Fable = pFable;
+
+        /**
+        * Generate a table name from the scope
+        *
+        * @method: generateTableName
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateTableName = function generateTableName(pParameters) {
+          // Every Foxhound query has a table name; this puts it on here even if there are no columns
+          // Which occurs when you generate a query like SELECT COUNT(*) FROM SomeTable;
+          if (!pParameters.query.hasOwnProperty('parameterTypes')) {
+            pParameters.query.parameterTypes = {};
+          }
+          return ' [' + pParameters.scope + ']';
+        };
+        var generateMSSQLParameterTypeEntry = function generateMSSQLParameterTypeEntry(pParameters, pColumnParameterName, pColumn) {
+          // Lazily create the parameterTypes object if it doesn't exist
+          if (!pParameters.query.hasOwnProperty('parameterTypes')) {
+            pParameters.query.parameterTypes = {};
+          }
+          // Find the column parameter type for our prepared statement
+          let tmpColumnParameterTypeString = 'VarChar';
+          if (typeof pColumn == 'object') {
+            // See if it has a type, set the type string
+            tmpColumnParameterTypeString = pColumn.Type;
+          } else if (typeof pColumn == 'string') {
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (let i = 0; i < tmpSchema.length; i++) {
+              if (tmpSchema[i].Column == pColumn) {
+                tmpColumnParameterTypeString = tmpSchema[i].Type;
+                break;
+              }
+            }
+          } else {
+            _Fable.log.warn("Meadow MSSQL query attempted to add a parameter type but no valid column schema entry object or column name was passed; parameter name ".concat(pColumnParameterName, "."));
+          }
+          if (tmpColumnParameterTypeString == null || tmpColumnParameterTypeString == undefined) {
+            return false;
+          }
+          switch (tmpColumnParameterTypeString) {
+            case 'AutoIdentity':
+            case 'CreateIDUser':
+            case 'UpdateIDUser':
+            case 'DeleteIDUser':
+            case 'Integer':
+              pParameters.query.parameterTypes[pColumnParameterName] = 'Int';
+              break;
+            case 'Deleted':
+            case 'Boolean':
+              pParameters.query.parameterTypes[pColumnParameterName] = 'TinyInt';
+              break;
+            case 'Decimal':
+              pParameters.query.parameterTypes[pColumnParameterName] = 'Decimal';
+              break;
+            case 'String':
+            case 'AutoGUID':
+              pParameters.query.parameterTypes[pColumnParameterName] = 'VarChar';
+              break;
+            case 'CreateDate':
+            case 'UpdateDate':
+            case 'DeleteDate':
+            case 'DateTime':
+              pParameters.query.parameterTypes[pColumnParameterName] = 'DateTime';
+              break;
+            default:
+              // TODO: This might should throw?  It would mean a new type was added to stricture we don't know about.
+              pParameters.query.parameterTypes[pColumnParameterName] = tmpColumnParameterTypeString;
+              return false;
+          }
+          return true;
+        };
+
+        /**
+        * Generate a field list from the array of dataElements
+        *
+        * Each entry in the dataElements is a simple string
+        *
+        * @method: generateFieldList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @param {Boolean} pIsForCountClause (optional) If true, generate fields for use within a count clause.
+        * @return: {String} Returns the field list clause, or empty string if explicit fields are requested but cannot be fulfilled
+        *          due to missing schema.
+        */
+        var generateFieldList = function generateFieldList(pParameters, pIsForCountClause) {
+          var tmpDataElements = pParameters.dataElements;
+          if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
+            const tmpTableName = generateTableName(pParameters);
+            if (!pIsForCountClause) {
+              return tmpTableName + '.*';
+            }
+            // we need to list all of the table fields explicitly; get them from the schema
+            const tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            if (tmpSchema.length < 1) {
+              // this means we have no schema; returning an empty string here signals the calling code to handle this case
+              return '';
+            }
+            const idColumn = tmpSchema.find(entry => entry.Type === 'AutoIdentity');
+            if (!idColumn) {
+              // this means there is no autoincrementing unique ID column; treat as above
+              return '';
+            }
+            const qualifiedIDColumn = "".concat(idColumn.Column);
+            return " ".concat(generateSafeFieldName(qualifiedIDColumn));
+          }
+          var tmpFieldList = ' ';
+          for (var i = 0; i < tmpDataElements.length; i++) {
+            if (i > 0) {
+              tmpFieldList += ', ';
+            }
+            if (Array.isArray(tmpDataElements[i])) {
+              tmpFieldList += generateSafeFieldName(tmpDataElements[i][0]);
+              if (tmpDataElements[i].length > 1 && tmpDataElements[i][1]) {
+                tmpFieldList += " AS " + generateSafeFieldName(tmpDataElements[i][1]);
+              }
+            } else {
+              tmpFieldList += generateSafeFieldName(tmpDataElements[i]);
+            }
+          }
+          return tmpFieldList;
+        };
+
+        /**
+        * Ensure a field name is properly escaped.
+        */
+        var generateSafeFieldName = function generateSafeFieldName(pFieldName) {
+          // This isn't great but best we can do for MS SQL needing brackets around field names for reserved keywords
+          if (pFieldName != '*' && pFieldName.indexOf('[') < 0 && pFieldName.indexOf('.') < 0) {
+            return '[' + pFieldName + ']';
+          } else {
+            return pFieldName;
+          }
+        };
+
+        /**
+        * Generate a query from the array of where clauses
+        *
+        * Each clause is an object like:
+        	{
+        		Column:'Name',
+        		Operator:'EQ',
+        		Value:'John',
+        		Connector:'And',
+        		Parameter:'Name'
+        	}
+        *
+        * @method: generateWhere
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
+        */
+        var generateWhere = function generateWhere(pParameters) {
+          var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
+          var tmpTableName = generateTableName(pParameters);
+          if (!pParameters.query.disableDeleteTracking) {
+            // Check if there is a Deleted column on the Schema. If so, we add this to the filters automatically (if not already present)
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (var i = 0; i < tmpSchema.length; i++) {
+              // There is a schema entry for it.  Process it accordingly.
+              var tmpSchemaEntry = tmpSchema[i];
+              if (tmpSchemaEntry.Type === 'Deleted') {
+                var tmpHasDeletedParameter = false;
+
+                //first, check to see if filters are already looking for Deleted column
+                if (tmpFilter.length > 0) {
+                  for (var x = 0; x < tmpFilter.length; x++) {
+                    if (tmpFilter[x].Column === tmpSchemaEntry.Column) {
+                      tmpHasDeletedParameter = true;
+                      break;
+                    }
+                  }
+                }
+                if (!tmpHasDeletedParameter) {
+                  //if not, we need to add it
+                  tmpFilter.push({
+                    Column: tmpSchemaEntry.Column,
+                    Operator: '=',
+                    Value: 0,
+                    Connector: 'AND',
+                    Parameter: 'Deleted'
+                  });
+                }
+                break;
+              }
+            }
+          }
+          if (tmpFilter.length < 1) {
+            return '';
+          }
+          var tmpWhere = ' WHERE';
+
+          // This is used to disable the connectors for subsequent queries.
+          // Only the open parenthesis operator uses this, currently.
+          var tmpLastOperatorNoConnector = false;
+          for (var i = 0; i < tmpFilter.length; i++) {
+            if (tmpFilter[i].Connector != 'NONE' && tmpFilter[i].Operator != ')' && tmpWhere != ' WHERE' && tmpLastOperatorNoConnector == false) {
+              tmpWhere += ' ' + tmpFilter[i].Connector;
+            }
+            tmpLastOperatorNoConnector = false;
+            var tmpColumnParameter;
+            if (tmpFilter[i].Operator === '(') {
+              // Open a logical grouping
+              tmpWhere += ' (';
+              tmpLastOperatorNoConnector = true;
+            } else if (tmpFilter[i].Operator === ')') {
+              // Close a logical grouping
+              tmpWhere += ' )';
+            } else if (tmpFilter[i].Operator === 'IN' || tmpFilter[i].Operator === "NOT IN") {
+              tmpColumnParameter = tmpFilter[i].Parameter + '_w' + i;
+              // Add the column name, operator and parameter name to the list of where value parenthetical
+              tmpWhere += ' [' + tmpFilter[i].Column + '] ' + tmpFilter[i].Operator + ' ( @' + tmpColumnParameter + ' )';
+              pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
+              // Find the column in the schema
+              generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpFilter[i].Parameter);
+            } else if (tmpFilter[i].Operator === 'IS NULL') {
+              // IS NULL is a special operator which doesn't require a value, or parameter
+              tmpWhere += ' [' + tmpFilter[i].Column + '] ' + tmpFilter[i].Operator;
+            } else if (tmpFilter[i].Operator === 'IS NOT NULL') {
+              // IS NOT NULL is a special operator which doesn't require a value, or parameter
+              tmpWhere += ' [' + tmpFilter[i].Column + '] ' + tmpFilter[i].Operator;
+            } else {
+              tmpColumnParameter = tmpFilter[i].Parameter + '_w' + i;
+              // Add the column name, operator and parameter name to the list of where value parenthetical
+              tmpWhere += ' [' + tmpFilter[i].Column + '] ' + tmpFilter[i].Operator + ' @' + tmpColumnParameter;
+              pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
+              generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpFilter[i].Parameter);
+            }
+          }
+          return tmpWhere;
+        };
+
+        /**
+        * Generate an ORDER BY clause from the sort array
+        *
+        * Each entry in the sort is an object like:
+        * {Column:'Color',Direction:'Descending'}
+        *
+        * @method: generateOrderBy
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the field list clause
+        */
+        var generateOrderBy = function generateOrderBy(pParameters) {
+          var tmpOrderBy = pParameters.sort;
+          if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1) {
+            return '';
+          }
+          var tmpOrderClause = ' ORDER BY';
+          for (var i = 0; i < tmpOrderBy.length; i++) {
+            if (i > 0) {
+              tmpOrderClause += ',';
+            }
+            tmpOrderClause += ' [' + tmpOrderBy[i].Column + ']';
+            if (tmpOrderBy[i].Direction == 'Descending') {
+              tmpOrderClause += ' DESC';
+            }
+          }
+          return tmpOrderClause;
+        };
+
+        /**
+        * Generate the limit clause
+        *
+        * @method: generateLimit
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table limit clause
+        */
+        var generateLimit = function generateLimit(pParameters) {
+          if (!pParameters.cap) {
+            return '';
+          }
+          var tmpLimit = ' OFFSET ';
+          // If there is a begin record, we'll pass that in as well.
+          if (pParameters.begin !== false) {
+            tmpLimit += pParameters.begin;
+          } else {
+            tmpLimit += '0';
+          }
+          // Cap is required for a limit clause.
+          tmpLimit += " ROWS FETCH NEXT ".concat(pParameters.cap, " ROWS ONLY");
+          return tmpLimit;
+        };
+
+        /**
+        * Generate the an index hinting clause
+        *
+        * @method: generateIndexHints
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table index hint clause
+        */
+        var generateIndexHints = function generateIndexHints(pParameters) {
+          if (!Array.isArray(pParameters.indexHints) || pParameters.indexHints.length < 1) {
+            return '';
+          }
+          return " WITH(INDEX(".concat(pParameters.indexHints.join(','), "))");
+        };
+
+        /**
+        * Generate the join clause
+        *
+        * @method: generateJoins
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the join clause
+        */
+        var generateJoins = function generateJoins(pParameters) {
+          var tmpJoins = pParameters.join;
+          if (!Array.isArray(tmpJoins) || tmpJoins.length < 1) {
+            return '';
+          }
+          var tmpJoinClause = ''; //ex. ' INNER JOIN';
+          for (var i = 0; i < tmpJoins.length; i++) {
+            var join = tmpJoins[i];
+            //verify that all required fields are valid
+            if (join.Type && join.Table && join.From && join.To) {
+              tmpJoinClause += " ".concat(join.Type, " [").concat(join.Table, "] ON ").concat(join.From, " = ").concat(join.To);
+            }
+          }
+          return tmpJoinClause;
+        };
+
+        /**
+        * Generate the update SET clause
+        *
+        * @method: generateUpdateSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateSetters = function generateUpdateSetters(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          // We need to tell the query not to generate improperly if there are no values to set.
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpUpdate = '';
+          // If there is more than one record in records, we are going to ignore them for now.
+          var tmpCurrentColumn = 0;
+          for (var tmpColumn in tmpRecords[0]) {
+            // No hash table yet, so, we will just linear search it for now.
+            // This uses the schema to decide if we want to treat a column differently on insert
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                // There is a schema entry for it.  Process it accordingly.
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+
+            // if (pParameters.query.disableAutoDateStamp &&
+            // 	tmpSchemaEntry.Type === 'UpdateDate')
+            // {
+            // 	// This is ignored if flag is set
+            // 	continue;
+            // }
+            if (pParameters.query.disableAutoUserStamp && tmpSchemaEntry.Type === 'UpdateIDUser') {
+              // This is ignored if flag is set
+              continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+              case 'CreateDate':
+              case 'CreateIDUser':
+              case 'DeleteDate':
+              case 'DeleteIDUser':
+                // These are all ignored on update
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'UpdateDate':
+                // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                if (pParameters.query.disableAutoDateStamp) {
+                  var tmpColumnParameter = 'MANUAL_UpdateDate';
+                  tmpUpdate += ' [' + tmpColumn + '] = @MANUAL_UpdateDate';
+                  pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+                  generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpSchemaEntry);
+                } else {
+                  tmpUpdate += ' [' + tmpColumn + '] = ' + SQL_NOW;
+                }
+                break;
+              case 'UpdateIDUser':
+                // This is the user ID, which we hope is in the query.
+                // This is how to deal with a normal column
+                var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                tmpUpdate += ' [' + tmpColumn + '] = @' + tmpColumnParameter;
+                // Set the query parameter
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpColumn);
+                break;
+              default:
+                var tmpColumnDefaultParameter = tmpColumn + '_' + tmpCurrentColumn;
+                tmpUpdate += ' [' + tmpColumn + '] = @' + tmpColumnDefaultParameter;
+
+                // Set the query parameter
+                pParameters.query.parameters[tmpColumnDefaultParameter] = tmpRecords[0][tmpColumn];
+                generateMSSQLParameterTypeEntry(pParameters, tmpColumnDefaultParameter, tmpSchemaEntry);
+                break;
+            }
+
+            // We use a number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the update-delete SET clause
+        *
+        * @method: generateUpdateDeleteSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateDeleteSetters = function generateUpdateDeleteSetters(pParameters) {
+          if (pParameters.query.disableDeleteTracking) {
+            //Don't generate an UPDATE query if Delete tracking is disabled
+            return false;
+          }
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCurrentColumn = 0;
+          var tmpHasDeletedField = false;
+          var tmpUpdate = '';
+          // No hash table yet, so, we will just linear search it for now.
+          // This uses the schema to decide if we want to treat a column differently on insert
+          var tmpSchemaEntry = {
+            Type: 'Default'
+          };
+          for (var i = 0; i < tmpSchema.length; i++) {
+            // There is a schema entry for it.  Process it accordingly.
+            tmpSchemaEntry = tmpSchema[i];
+            var tmpUpdateSql = null;
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpUpdateSql = ' [' + tmpSchemaEntry.Column + '] = 1';
+                tmpHasDeletedField = true; //this field is required in order for query to be built
+                break;
+              case 'DeleteDate':
+                tmpUpdateSql = ' [' + tmpSchemaEntry.Column + '] = ' + SQL_NOW;
+                break;
+              case 'UpdateDate':
+                // Delete operation is an Update, so we should stamp the update time
+                tmpUpdateSql = ' [' + tmpSchemaEntry.Column + '] = ' + SQL_NOW;
+                break;
+              case 'DeleteIDUser':
+                // This is the user ID, which we hope is in the query.
+                // This is how to deal with a normal column
+                var tmpColumnParameter = tmpSchemaEntry.Column + '_' + tmpCurrentColumn;
+                tmpUpdateSql = ' [' + tmpSchemaEntry.Column + '] = @' + tmpColumnParameter;
+                // Set the query parameter
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpSchemaEntry);
+                break;
+              default:
+                //DON'T allow update of other fields in this query
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            tmpUpdate += tmpUpdateSql;
+
+            // We use a number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (!tmpHasDeletedField || tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the update-undelete SET clause
+        *
+        * @method: generateUpdateUndeleteSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateUndeleteSetters = function generateUpdateUndeleteSetters(pParameters) {
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCurrentColumn = 0;
+          var tmpHasDeletedField = false;
+          var tmpUpdate = '';
+          // No hash table yet, so, we will just linear search it for now.
+          // This uses the schema to decide if we want to treat a column differently on insert
+          var tmpSchemaEntry = {
+            Type: 'Default'
+          };
+          for (var i = 0; i < tmpSchema.length; i++) {
+            // There is a schema entry for it.  Process it accordingly.
+            tmpSchemaEntry = tmpSchema[i];
+            var tmpUpdateSql = null;
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpUpdateSql = ' [' + tmpSchemaEntry.Column + '] = 0';
+                tmpHasDeletedField = true; //this field is required in order for query to be built
+                break;
+              case 'UpdateDate':
+                // The undelete operation is an Update, so we should stamp the update time
+                tmpUpdateSql = ' [' + tmpSchemaEntry.Column + '] = ' + SQL_NOW;
+                break;
+              case 'UpdateIDUser':
+                var tmpColumnParameter = tmpSchemaEntry.Column + '_' + tmpCurrentColumn;
+                tmpUpdateSql = ' [' + tmpSchemaEntry.Column + '] = @' + tmpColumnParameter;
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpSchemaEntry);
+                break;
+              default:
+                //DON'T allow update of other fields in this query
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            tmpUpdate += tmpUpdateSql;
+
+            // We use a number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (!tmpHasDeletedField || tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the create SET clause
+        *
+        * @method: generateCreateSetList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateCreateSetValues = function generateCreateSetValues(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          // We need to tell the query not to generate improperly if there are no values to set.
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCreateSet = '';
+          // If there is more than one record in records, we are going to ignore them for now.
+          var tmpCurrentColumn = 0;
+          for (var tmpColumn in tmpRecords[0]) {
+            // No hash table yet, so, we will just linear search it for now.
+            // This uses the schema to decide if we want to treat a column differently on insert
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                // There is a schema entry for it.  Process it accordingly.
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                // These are all ignored on insert (if delete tracking is enabled as normal)
+                continue;
+              }
+            }
+            if (tmpCurrentColumn > 0 && tmpCreateSet != '') {
+              tmpCreateSet += ',';
+            }
+
+            //define a re-usable method for setting up field definitions in a default pattern
+            var buildDefaultDefinition = function buildDefaultDefinition() {
+              var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+              tmpCreateSet += ' @' + tmpColumnParameter;
+              // Set the query parameter
+              pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+              generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpSchemaEntry);
+            };
+            var tmpColumnParameter;
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+                if (pParameters.query.disableAutoIdentity) {
+                  buildDefaultDefinition();
+                } else {
+                  // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                  //tmpCreateSet += ' NULL';
+                  // For MSSQL we have to skip this.  NULL and DEFAULT both error for autoidentities.
+                }
+                break;
+              case 'AutoGUID':
+                if (pParameters.query.disableAutoIdentity) {
+                  buildDefaultDefinition();
+                } else if (tmpRecords[0][tmpColumn] && tmpRecords[0][tmpColumn].length >= 5 && tmpRecords[0][tmpColumn] !== '0x0000000000000000')
+                  //stricture default
+                  {
+                    // Allow consumer to override AutoGUID
+                    buildDefaultDefinition();
+                  } else {
+                  // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                  tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                  tmpCreateSet += ' @' + tmpColumnParameter;
+                  // Set the query parameter
+                  pParameters.query.parameters[tmpColumnParameter] = pParameters.query.UUID;
+                  generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpSchemaEntry);
+                }
+                break;
+              case 'UpdateDate':
+              case 'CreateDate':
+              case 'DeleteDate':
+                if (pParameters.query.disableAutoDateStamp) {
+                  buildDefaultDefinition();
+                } else {
+                  // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                  tmpCreateSet += ' ' + SQL_NOW;
+                }
+                break;
+              case 'DeleteIDUser':
+              case 'UpdateIDUser':
+              case 'CreateIDUser':
+                if (pParameters.query.disableAutoUserStamp) {
+                  buildDefaultDefinition();
+                } else {
+                  // This is the user ID, which we hope is in the query.
+                  // This is how to deal with a normal column
+                  tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                  tmpCreateSet += ' @' + tmpColumnParameter;
+                  // Set the query parameter
+                  pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                  generateMSSQLParameterTypeEntry(pParameters, tmpColumnParameter, tmpSchemaEntry);
+                }
+                break;
+              default:
+                buildDefaultDefinition();
+                break;
+            }
+
+            // We use an appended number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (tmpCreateSet === '') {
+            return false;
+          }
+          return tmpCreateSet;
+        };
+
+        /**
+        * Generate the create SET clause
+        *
+        * @method: generateCreateSetList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateCreateSetList = function generateCreateSetList(pParameters) {
+          // The records were already validated by generateCreateSetValues
+          var tmpRecords = pParameters.query.records;
+
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCreateSet = '';
+          // If there is more than one record in records, we are going to ignore them for now.
+          for (var tmpColumn in tmpRecords[0]) {
+            // No hash table yet, so, we will just linear search it for now.
+            // This uses the schema to decide if we want to treat a column differently on insert
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                // There is a schema entry for it.  Process it accordingly.
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                // These are all ignored on insert (if delete tracking is enabled as normal)
+                continue;
+              }
+            }
+            switch (tmpSchemaEntry.Type) {
+              // We skip these for MSSQL on INSERT or they cause an error for some versions (different errors for different versions)
+              case 'AutoIdentity':
+                if (pParameters.query.disableAutoIdentity) {
+                  if (tmpCreateSet != '') {
+                    tmpCreateSet += ',';
+                  }
+                  tmpCreateSet += ' [' + tmpColumn + ']';
+                }
+                continue;
+              default:
+                if (tmpCreateSet != '') {
+                  tmpCreateSet += ',';
+                }
+                tmpCreateSet += ' [' + tmpColumn + ']';
+                break;
+            }
+          }
+          return tmpCreateSet;
+        };
+        var Create = function Create(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpCreateSetList = generateCreateSetList(pParameters);
+          var tmpCreateSetValues = generateCreateSetValues(pParameters);
+          if (!tmpCreateSetValues) {
+            return false;
+          }
+          return 'INSERT INTO' + tmpTableName + ' (' + tmpCreateSetList + ') VALUES (' + tmpCreateSetValues + ');';
+        };
+
+        /**
+        * Read one or many records
+        *
+        * Some examples:
+        * SELECT * FROM WIDGETS;
+        * SELECT * FROM WIDGETS LIMIT 0, 20;
+        * SELECT * FROM WIDGETS LIMIT 5, 20;
+        * SELECT ID, Name, Cost FROM WIDGETS LIMIT 5, 20;
+        * SELECT ID, Name, Cost FROM WIDGETS LIMIT 5, 20 WHERE LastName = 'Smith';
+        *
+        * @method Read
+        * @param {Object} pParameters SQL Query parameters
+        * @return {String} Returns the current Query for chaining.
+        */
+        var Read = function Read(pParameters) {
+          var tmpFieldList = generateFieldList(pParameters);
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpJoin = generateJoins(pParameters);
+          var tmpOrderBy = generateOrderBy(pParameters);
+          var tmpLimit = generateLimit(pParameters);
+          var tmpIndexHints = generateIndexHints(pParameters);
+          const tmpOptDistinct = pParameters.distinct ? ' DISTINCT' : '';
+          if (pParameters.queryOverride) {
+            try {
+              var tmpQueryTemplate = _Fable.Utility.template(pParameters.queryOverride);
+              return tmpQueryTemplate({
+                FieldList: tmpFieldList,
+                TableName: tmpTableName,
+                Where: tmpWhere,
+                Join: tmpJoin,
+                OrderBy: tmpOrderBy,
+                Limit: tmpLimit,
+                IndexHints: tmpIndexHints,
+                Distinct: tmpOptDistinct,
+                _Params: pParameters
+              });
+            } catch (pError) {
+              // This pokemon is here to give us a convenient way of not throwing up totally if the query fails.
+              console.log('Error with custom Read Query [' + pParameters.queryOverride + ']: ' + pError);
+              return false;
+            }
+          }
+          return "SELECT".concat(tmpOptDistinct).concat(tmpFieldList, " FROM").concat(tmpTableName).concat(tmpIndexHints).concat(tmpJoin).concat(tmpWhere).concat(tmpOrderBy).concat(tmpLimit, ";");
+        };
+        var Update = function Update(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateSetters = generateUpdateSetters(pParameters);
+          if (!tmpUpdateSetters) {
+            return false;
+          }
+          return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateSetters + tmpWhere + ';';
+        };
+        var Delete = function Delete(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateDeleteSetters = generateUpdateDeleteSetters(pParameters);
+          if (tmpUpdateDeleteSetters) {
+            //If it has a deleted bit, update it instead of actually deleting the record
+            return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateDeleteSetters + tmpWhere + ';';
+          } else {
+            return 'DELETE FROM' + tmpTableName + tmpWhere + ';';
+          }
+        };
+        var Undelete = function Undelete(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          // TODO: Fix these
+          let tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
+          pParameters.query.disableDeleteTracking = true;
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateUndeleteSetters = generateUpdateUndeleteSetters(pParameters);
+          pParameters.query.disableDeleteTracking = tmpDeleteTrackingState;
+          if (tmpUpdateUndeleteSetters) {
+            //If the table has a deleted bit, go forward with the update to change things.
+            return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateUndeleteSetters + tmpWhere + ';';
+          } else {
+            // This is a no-op because the record can't be undeleted.
+            // TODO: Should it throw instead?
+            return 'SELECT NULL;';
+          }
+        };
+        var Count = function Count(pParameters) {
+          var tmpFieldList = pParameters.distinct ? generateFieldList(pParameters, true) : '*';
+          var tmpTableName = generateTableName(pParameters);
+          var tmpJoin = generateJoins(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpIndexHints = generateIndexHints(pParameters);
+          // here, we ignore the distinct keyword if no fields have been specified and
+          if (pParameters.distinct && tmpFieldList.length < 1) {
+            console.warn('Distinct requested but no field list or schema are available, so not honoring distinct for count query.');
+          }
+          const tmpOptDistinct = pParameters.distinct && tmpFieldList.length > 0 ? 'DISTINCT' : '';
+          if (pParameters.queryOverride) {
+            try {
+              var tmpQueryTemplate = _Fable.Utility.template(pParameters.queryOverride);
+              return tmpQueryTemplate({
+                FieldList: [],
+                TableName: tmpTableName,
+                Where: tmpWhere,
+                OrderBy: '',
+                IndexHints: tmpIndexHints,
+                Limit: '',
+                Distinct: tmpOptDistinct,
+                _Params: pParameters
+              });
+            } catch (pError) {
+              // This pokemon is here to give us a convenient way of not throwing up totally if the query fails.
+              console.log('Error with custom Count Query [' + pParameters.queryOverride + ']: ' + pError);
+              return false;
+            }
+          }
+          return "SELECT COUNT(".concat(tmpOptDistinct).concat(tmpFieldList || '*', ") AS Row_Count FROM").concat(tmpTableName).concat(tmpIndexHints).concat(tmpJoin).concat(tmpWhere, ";");
+        };
+        var tmpDialect = {
+          Create: Create,
+          Read: Read,
+          Update: Update,
+          Delete: Delete,
+          Undelete: Undelete,
+          Count: Count
+        };
+
+        /**
+        * Dialect Name
+        *
+        * @property name
+        * @type string
+        */
+        Object.defineProperty(tmpDialect, 'name', {
+          get: function get() {
+            return 'MSSQL';
+          },
+          enumerable: true
+        });
+        return tmpDialect;
+      };
+      module.exports = FoxHoundDialectMSSQL;
+    }, {}],
+    9: [function (require, module, exports) {
+      /**
+      * FoxHound MongoDB Dialect
+      *
+      * Generates JSON operation descriptors for MongoDB queries.
+      * The query body is a JSON string; the parsed operation object is also
+      * stored in query.parameters.mongoOperation for direct provider consumption.
+      *
+      * @license MIT
+      *
+      * @author Steven Velozo <steven@velozo.com>
+      * @class FoxHoundDialectMongoDB
+      */
+
+      var FoxHoundDialectMongoDB = function FoxHoundDialectMongoDB(pFable) {
+        _Fable = pFable;
+
+        /**
+        * Strip any table-name prefix from a column name.
+        * MongoDB has no table-qualified field names.
+        *
+        * @method stripTablePrefix
+        * @param {String} pColumn Column name, possibly table-qualified
+        * @return {String} Plain column name
+        */
+        var stripTablePrefix = function stripTablePrefix(pColumn) {
+          if (typeof pColumn !== 'string') {
+            return pColumn;
+          }
+          // Remove backtick and double-quote quoting
+          var tmpColumn = pColumn.replace(/[`"]/g, '');
+          // Strip table prefix (e.g. "Animal.Name" -> "Name")
+          if (tmpColumn.indexOf('.') >= 0) {
+            var tmpParts = tmpColumn.split('.');
+            // If it ends with *, just ignore it (wildcard in MongoDB = all fields)
+            if (tmpParts[tmpParts.length - 1] === '*') {
+              return '*';
+            }
+            return tmpParts[tmpParts.length - 1];
+          }
+          return tmpColumn;
+        };
+
+        /**
+        * Find the schema entry for a given column name.
+        *
+        * @method findSchemaEntry
+        * @param {String} pColumn Column name
+        * @param {Array} pSchema Schema array
+        * @return {Object} Schema entry or default
+        */
+        var findSchemaEntry = function findSchemaEntry(pColumn, pSchema) {
+          for (var i = 0; i < pSchema.length; i++) {
+            if (pColumn == pSchema[i].Column) {
+              return pSchema[i];
+            }
+          }
+          return {
+            Column: pColumn,
+            Type: 'Default'
+          };
+        };
+
+        /**
+        * Translate a single FoxHound filter operator into a MongoDB condition object.
+        *
+        * @method translateOperator
+        * @param {Object} pFilterEntry A FoxHound filter object
+        * @return {Object} MongoDB condition object
+        */
+        var translateOperator = function translateOperator(pFilterEntry) {
+          var tmpColumn = stripTablePrefix(pFilterEntry.Column);
+          var tmpValue = pFilterEntry.Value;
+          switch (pFilterEntry.Operator) {
+            case '=':
+              var tmpObj = {};
+              tmpObj[tmpColumn] = tmpValue;
+              return tmpObj;
+            case '!=':
+              var tmpNeObj = {};
+              tmpNeObj[tmpColumn] = {
+                $ne: tmpValue
+              };
+              return tmpNeObj;
+            case '>':
+              var tmpGtObj = {};
+              tmpGtObj[tmpColumn] = {
+                $gt: tmpValue
+              };
+              return tmpGtObj;
+            case '>=':
+              var tmpGteObj = {};
+              tmpGteObj[tmpColumn] = {
+                $gte: tmpValue
+              };
+              return tmpGteObj;
+            case '<':
+              var tmpLtObj = {};
+              tmpLtObj[tmpColumn] = {
+                $lt: tmpValue
+              };
+              return tmpLtObj;
+            case '<=':
+              var tmpLteObj = {};
+              tmpLteObj[tmpColumn] = {
+                $lte: tmpValue
+              };
+              return tmpLteObj;
+            case 'LIKE':
+              // Convert SQL LIKE pattern to regex: % -> .*, _ -> .
+              var tmpPattern = String(tmpValue).replace(/%/g, '.*').replace(/_/g, '.');
+              var tmpLikeObj = {};
+              tmpLikeObj[tmpColumn] = {
+                $regex: tmpPattern,
+                $options: 'i'
+              };
+              return tmpLikeObj;
+            case 'IN':
+              var tmpInObj = {};
+              tmpInObj[tmpColumn] = {
+                $in: Array.isArray(tmpValue) ? tmpValue : [tmpValue]
+              };
+              return tmpInObj;
+            case 'NOT IN':
+              var tmpNinObj = {};
+              tmpNinObj[tmpColumn] = {
+                $nin: Array.isArray(tmpValue) ? tmpValue : [tmpValue]
+              };
+              return tmpNinObj;
+            case 'IS NULL':
+              var tmpNullObj = {};
+              tmpNullObj[tmpColumn] = null;
+              return tmpNullObj;
+            case 'IS NOT NULL':
+              var tmpNotNullObj = {};
+              tmpNotNullObj[tmpColumn] = {
+                $ne: null
+              };
+              return tmpNotNullObj;
+            default:
+              // Unknown operator, treat as equality
+              var tmpDefaultObj = {};
+              tmpDefaultObj[tmpColumn] = tmpValue;
+              return tmpDefaultObj;
+          }
+        };
+
+        /**
+        * Safely merge an array of condition objects into a single MongoDB filter.
+        * If there are key collisions, wrap in $and.
+        *
+        * @method mergeConditions
+        * @param {Array} pConditions Array of condition objects
+        * @return {Object} Merged MongoDB filter
+        */
+        var mergeConditions = function mergeConditions(pConditions) {
+          if (!pConditions || pConditions.length === 0) {
+            return {};
+          }
+          if (pConditions.length === 1) {
+            var tmpSingle = pConditions[0];
+            delete tmpSingle._connector;
+            return tmpSingle;
+          }
+
+          // Check for key collisions
+          var tmpKeysSeen = {};
+          var tmpHasCollision = false;
+          for (var i = 0; i < pConditions.length; i++) {
+            var tmpKeys = Object.keys(pConditions[i]);
+            for (var j = 0; j < tmpKeys.length; j++) {
+              var tmpKey = tmpKeys[j];
+              if (tmpKey === '_connector') continue;
+              if (tmpKey.charAt(0) === '$') {
+                tmpHasCollision = true;
+                break;
+              }
+              if (tmpKeysSeen[tmpKey]) {
+                tmpHasCollision = true;
+                break;
+              }
+              tmpKeysSeen[tmpKey] = true;
+            }
+            if (tmpHasCollision) break;
+          }
+          if (tmpHasCollision) {
+            // Must use $and
+            var tmpAndArray = [];
+            for (var k = 0; k < pConditions.length; k++) {
+              var tmpCond = pConditions[k];
+              delete tmpCond._connector;
+              tmpAndArray.push(tmpCond);
+            }
+            return {
+              $and: tmpAndArray
+            };
+          } else {
+            // Safe to merge into a single object
+            var tmpMerged = {};
+            for (var m = 0; m < pConditions.length; m++) {
+              var tmpCondM = pConditions[m];
+              var tmpKeysM = Object.keys(tmpCondM);
+              for (var n = 0; n < tmpKeysM.length; n++) {
+                if (tmpKeysM[n] !== '_connector') {
+                  tmpMerged[tmpKeysM[n]] = tmpCondM[tmpKeysM[n]];
+                }
+              }
+            }
+            return tmpMerged;
+          }
+        };
+
+        /**
+        * Generate the MongoDB filter object from the FoxHound filter array.
+        * Uses a stack-based approach for parenthetical groups.
+        *
+        * @method generateFilter
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {Object} MongoDB filter object
+        */
+        var generateFilter = function generateFilter(pParameters) {
+          var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter.slice() : [];
+
+          // Auto-add Deleted filter if applicable
+          if (!pParameters.query.disableDeleteTracking) {
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpSchema[i].Type === 'Deleted') {
+                var tmpHasDeletedParam = false;
+                for (var x = 0; x < tmpFilter.length; x++) {
+                  if (stripTablePrefix(tmpFilter[x].Column) === tmpSchema[i].Column) {
+                    tmpHasDeletedParam = true;
+                    break;
+                  }
+                }
+                if (!tmpHasDeletedParam) {
+                  tmpFilter.push({
+                    Column: tmpSchema[i].Column,
+                    Operator: '=',
+                    Value: 0,
+                    Connector: 'AND',
+                    Parameter: 'Deleted'
+                  });
+                }
+                break;
+              }
+            }
+          }
+          if (tmpFilter.length < 1) {
+            return {};
+          }
+
+          // Stack-based processing for parenthetical groups
+          var tmpStack = [[]]; // Stack of condition arrays
+
+          for (var i = 0; i < tmpFilter.length; i++) {
+            var tmpEntry = tmpFilter[i];
+            if (tmpEntry.Operator === '(') {
+              tmpStack.push([]);
+            } else if (tmpEntry.Operator === ')') {
+              var tmpGroupConditions = tmpStack.pop();
+
+              // Check if any condition inside the group used OR
+              var tmpHasOR = false;
+              for (var g = 0; g < tmpGroupConditions.length; g++) {
+                if (tmpGroupConditions[g]._connector === 'OR') {
+                  tmpHasOR = true;
+                  break;
+                }
+              }
+              var tmpWrapped;
+              if (tmpHasOR) {
+                var tmpOrArray = [];
+                for (var g2 = 0; g2 < tmpGroupConditions.length; g2++) {
+                  delete tmpGroupConditions[g2]._connector;
+                  tmpOrArray.push(tmpGroupConditions[g2]);
+                }
+                tmpWrapped = {
+                  $or: tmpOrArray
+                };
+              } else {
+                tmpWrapped = mergeConditions(tmpGroupConditions);
+              }
+              tmpWrapped._connector = tmpEntry.Connector || 'AND';
+              tmpStack[tmpStack.length - 1].push(tmpWrapped);
+            } else {
+              var tmpCondition = translateOperator(tmpEntry);
+              tmpCondition._connector = tmpEntry.Connector || 'AND';
+              tmpStack[tmpStack.length - 1].push(tmpCondition);
+            }
+          }
+
+          // Collapse root level
+          var tmpRootConditions = tmpStack[0];
+          return mergeConditions(tmpRootConditions);
+        };
+
+        /**
+        * Generate the MongoDB projection object from dataElements.
+        *
+        * @method generateProjection
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {Object} MongoDB projection object (empty = all fields)
+        */
+        var generateProjection = function generateProjection(pParameters) {
+          var tmpDataElements = pParameters.dataElements;
+          if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
+            return {};
+          }
+          var tmpProjection = {};
+          for (var i = 0; i < tmpDataElements.length; i++) {
+            var tmpField = tmpDataElements[i];
+            // Handle array format [FieldName, Alias]
+            if (Array.isArray(tmpField)) {
+              tmpField = tmpField[0];
+            }
+            tmpField = stripTablePrefix(tmpField);
+            if (tmpField !== '*') {
+              tmpProjection[tmpField] = 1;
+            }
+          }
+          return tmpProjection;
+        };
+
+        /**
+        * Generate the MongoDB sort object from sort array.
+        *
+        * @method generateSort
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {Object} MongoDB sort object (empty = no sort)
+        */
+        var generateSort = function generateSort(pParameters) {
+          var tmpSort = pParameters.sort;
+          if (!Array.isArray(tmpSort) || tmpSort.length < 1) {
+            return {};
+          }
+          var tmpSortObj = {};
+          for (var i = 0; i < tmpSort.length; i++) {
+            var tmpColumn = stripTablePrefix(tmpSort[i].Column);
+            tmpSortObj[tmpColumn] = tmpSort[i].Direction === 'Descending' ? -1 : 1;
+          }
+          return tmpSortObj;
+        };
+
+        /**
+        * Generate the document for a create (insertOne) operation.
+        * Walks the record through the schema to handle special column types.
+        *
+        * @method generateCreateDocument
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {Object|false} Document object or false if no record
+        */
+        var generateCreateDocument = function generateCreateDocument(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpDocument = {};
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                continue;
+              }
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+                if (pParameters.query.disableAutoIdentity) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = '$$AUTOINCREMENT';
+                }
+                break;
+              case 'AutoGUID':
+                if (pParameters.query.disableAutoIdentity) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else if (tmpRecords[0][tmpColumn] && tmpRecords[0][tmpColumn].length >= 5 && tmpRecords[0][tmpColumn] !== '0x0000000000000000') {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = pParameters.query.UUID;
+                }
+                break;
+              case 'UpdateDate':
+              case 'CreateDate':
+                if (pParameters.query.disableAutoDateStamp) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = '$$NOW';
+                }
+                break;
+              case 'DeleteIDUser':
+              case 'UpdateIDUser':
+              case 'CreateIDUser':
+                if (pParameters.query.disableAutoUserStamp) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = pParameters.query.IDUser;
+                }
+                break;
+              case 'Deleted':
+                tmpDocument[tmpColumn] = 0;
+                break;
+              default:
+                tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                break;
+            }
+          }
+          if (Object.keys(tmpDocument).length === 0) {
+            return false;
+          }
+          return tmpDocument;
+        };
+
+        /**
+        * Generate the $set document for an update operation.
+        * Walks the record through the schema, skipping identity/create/delete columns.
+        *
+        * @method generateUpdateDocument
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {Object|false} Update document or false if no record
+        */
+        var generateUpdateDocument = function generateUpdateDocument(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpUpdateDoc = {};
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
+            if (pParameters.query.disableAutoDateStamp && tmpSchemaEntry.Type === 'UpdateDate') {
+              continue;
+            }
+            if (pParameters.query.disableAutoUserStamp && tmpSchemaEntry.Type === 'UpdateIDUser') {
+              continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+              case 'CreateDate':
+              case 'CreateIDUser':
+              case 'DeleteDate':
+              case 'DeleteIDUser':
+                continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'UpdateDate':
+                tmpUpdateDoc[tmpColumn] = '$$NOW';
+                break;
+              case 'UpdateIDUser':
+                tmpUpdateDoc[tmpColumn] = pParameters.query.IDUser;
+                break;
+              default:
+                tmpUpdateDoc[tmpColumn] = tmpRecords[0][tmpColumn];
+                break;
+            }
+          }
+          if (Object.keys(tmpUpdateDoc).length === 0) {
+            return false;
+          }
+          return tmpUpdateDoc;
+        };
+
+        /**
+        * Generate the soft-delete $set document.
+        * Returns false if no Deleted column exists or delete tracking is disabled.
+        *
+        * @method generateDeleteSetters
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {Object|false} Delete setters or false
+        */
+        var generateDeleteSetters = function generateDeleteSetters(pParameters) {
+          if (pParameters.query.disableDeleteTracking) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpHasDeletedField = false;
+          var tmpSetters = {};
+          for (var i = 0; i < tmpSchema.length; i++) {
+            var tmpSchemaEntry = tmpSchema[i];
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpSetters[tmpSchemaEntry.Column] = 1;
+                tmpHasDeletedField = true;
+                break;
+              case 'DeleteDate':
+                tmpSetters[tmpSchemaEntry.Column] = '$$NOW';
+                break;
+              case 'UpdateDate':
+                tmpSetters[tmpSchemaEntry.Column] = '$$NOW';
+                break;
+              case 'DeleteIDUser':
+                tmpSetters[tmpSchemaEntry.Column] = pParameters.query.IDUser;
+                break;
+              default:
+                continue;
+            }
+          }
+          if (!tmpHasDeletedField || Object.keys(tmpSetters).length === 0) {
+            return false;
+          }
+          return tmpSetters;
+        };
+
+        /**
+        * Generate the undelete $set document.
+        * Returns false if no Deleted column exists.
+        *
+        * @method generateUndeleteSetters
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {Object|false} Undelete setters or false
+        */
+        var generateUndeleteSetters = function generateUndeleteSetters(pParameters) {
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpHasDeletedField = false;
+          var tmpSetters = {};
+          for (var i = 0; i < tmpSchema.length; i++) {
+            var tmpSchemaEntry = tmpSchema[i];
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpSetters[tmpSchemaEntry.Column] = 0;
+                tmpHasDeletedField = true;
+                break;
+              case 'UpdateDate':
+                tmpSetters[tmpSchemaEntry.Column] = '$$NOW';
+                break;
+              case 'UpdateIDUser':
+                tmpSetters[tmpSchemaEntry.Column] = pParameters.query.IDUser;
+                break;
+              default:
+                continue;
+            }
+          }
+          if (!tmpHasDeletedField || Object.keys(tmpSetters).length === 0) {
+            return false;
+          }
+          return tmpSetters;
+        };
+
+        /**
+        * Create a new record
+        *
+        * @method Create
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor or false
+        */
+        var Create = function Create(pParameters) {
+          var tmpDocument = generateCreateDocument(pParameters);
+          if (!tmpDocument) {
+            return false;
+          }
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'insertOne',
+            document: tmpDocument
+          };
+          pParameters.query.parameters.mongoOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Read one or many records
+        *
+        * @method Read
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Read = function Read(pParameters) {
+          if (pParameters.join && Array.isArray(pParameters.join) && pParameters.join.length > 0) {
+            _Fable.log.warn('MongoDB dialect does not support JOINs; join parameter will be ignored.');
+          }
+          var tmpFilter = generateFilter(pParameters);
+          var tmpProjection = generateProjection(pParameters);
+          var tmpSort = generateSort(pParameters);
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'find',
+            filter: tmpFilter
+          };
+          if (Object.keys(tmpProjection).length > 0) {
+            tmpResult.projection = tmpProjection;
+          }
+          if (Object.keys(tmpSort).length > 0) {
+            tmpResult.sort = tmpSort;
+          }
+          if (pParameters.cap) {
+            tmpResult.limit = pParameters.cap;
+          }
+          if (pParameters.begin !== false && pParameters.begin > 0) {
+            tmpResult.skip = pParameters.begin;
+          }
+          if (pParameters.distinct) {
+            tmpResult.distinct = true;
+          }
+          pParameters.query.parameters.mongoOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Update one or many records
+        *
+        * @method Update
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor or false
+        */
+        var Update = function Update(pParameters) {
+          var tmpFilter = generateFilter(pParameters);
+          var tmpUpdateDoc = generateUpdateDocument(pParameters);
+          if (!tmpUpdateDoc) {
+            return false;
+          }
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'updateMany',
+            filter: tmpFilter,
+            update: {
+              $set: tmpUpdateDoc
+            }
+          };
+          pParameters.query.parameters.mongoOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Delete one or many records (soft or hard depending on schema)
+        *
+        * @method Delete
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Delete = function Delete(pParameters) {
+          var tmpDeleteSetters = generateDeleteSetters(pParameters);
+          var tmpFilter = generateFilter(pParameters);
+          if (tmpDeleteSetters) {
+            // Soft delete via update
+            var tmpResult = {
+              collection: pParameters.scope,
+              operation: 'updateMany',
+              filter: tmpFilter,
+              update: {
+                $set: tmpDeleteSetters
+              }
+            };
+            pParameters.query.parameters.mongoOperation = tmpResult;
+            return JSON.stringify(tmpResult);
+          } else {
+            // Hard delete
+            var tmpHardResult = {
+              collection: pParameters.scope,
+              operation: 'deleteMany',
+              filter: tmpFilter
+            };
+            pParameters.query.parameters.mongoOperation = tmpHardResult;
+            return JSON.stringify(tmpHardResult);
+          }
+        };
+
+        /**
+        * Undelete (restore) a soft-deleted record
+        *
+        * @method Undelete
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Undelete = function Undelete(pParameters) {
+          var tmpUndeleteSetters = generateUndeleteSetters(pParameters);
+
+          // Temporarily disable delete tracking for filter generation
+          // so we can find records where Deleted=1
+          var tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
+          pParameters.query.disableDeleteTracking = true;
+          var tmpFilter = generateFilter(pParameters);
+          pParameters.query.disableDeleteTracking = tmpDeleteTrackingState;
+          if (tmpUndeleteSetters) {
+            var tmpResult = {
+              collection: pParameters.scope,
+              operation: 'updateMany',
+              filter: tmpFilter,
+              update: {
+                $set: tmpUndeleteSetters
+              }
+            };
+            pParameters.query.parameters.mongoOperation = tmpResult;
+            return JSON.stringify(tmpResult);
+          } else {
+            // No-op -- can't undelete without a Deleted column
+            var tmpNoopResult = {
+              collection: pParameters.scope,
+              operation: 'noop'
+            };
+            pParameters.query.parameters.mongoOperation = tmpNoopResult;
+            return JSON.stringify(tmpNoopResult);
+          }
+        };
+
+        /**
+        * Count records
+        *
+        * @method Count
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Count = function Count(pParameters) {
+          var tmpFilter = generateFilter(pParameters);
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'countDocuments',
+            filter: tmpFilter
+          };
+          if (pParameters.distinct) {
+            tmpResult.distinct = true;
+            var tmpDataElements = pParameters.dataElements;
+            if (Array.isArray(tmpDataElements) && tmpDataElements.length > 0) {
+              var tmpFields = [];
+              for (var i = 0; i < tmpDataElements.length; i++) {
+                var tmpField = Array.isArray(tmpDataElements[i]) ? tmpDataElements[i][0] : tmpDataElements[i];
+                tmpField = stripTablePrefix(tmpField);
+                if (tmpField !== '*') {
+                  tmpFields.push(tmpField);
+                }
+              }
+              if (tmpFields.length > 0) {
+                tmpResult.distinctFields = tmpFields;
+              }
+            } else {
+              // Fall back to AutoIdentity column from schema
+              var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+              for (var j = 0; j < tmpSchema.length; j++) {
+                if (tmpSchema[j].Type === 'AutoIdentity') {
+                  tmpResult.distinctFields = [tmpSchema[j].Column];
+                  break;
+                }
+              }
+            }
+          }
+          pParameters.query.parameters.mongoOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+        var tmpDialect = {
+          Create: Create,
+          Read: Read,
+          Update: Update,
+          Delete: Delete,
+          Undelete: Undelete,
+          Count: Count
+        };
+
+        /**
+        * Dialect Name
+        *
+        * @property name
+        * @type string
+        */
+        Object.defineProperty(tmpDialect, 'name', {
+          get: function get() {
+            return 'MongoDB';
+          },
+          enumerable: true
+        });
+        return tmpDialect;
+      };
+      module.exports = FoxHoundDialectMongoDB;
+    }, {}],
+    10: [function (require, module, exports) {
       /**
       * FoxHound MySQL Dialect
       *
@@ -2246,7 +4677,7 @@
       * @class FoxHoundDialectMySQL
       */
 
-      var FoxHoundDialectMySQL = function (pFable) {
+      var FoxHoundDialectMySQL = function FoxHoundDialectMySQL(pFable) {
         //Request time from SQL server with microseconds resolution
         const SQL_NOW = "NOW(3)";
         _Fable = pFable;
@@ -2258,7 +4689,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateTableName = function (pParameters) {
+        var generateTableName = function generateTableName(pParameters) {
           if (pParameters.scope && pParameters.scope.indexOf('`') >= 0) return ' ' + pParameters.scope + '';else return ' `' + pParameters.scope + '`';
         };
 
@@ -2273,7 +4704,7 @@
         * @return: {String} Returns the field list clause, or empty string if explicit fields are requested but cannot be fulfilled
         *          due to missing schema.
         */
-        var generateFieldList = function (pParameters, pIsForCountClause) {
+        var generateFieldList = function generateFieldList(pParameters, pIsForCountClause) {
           var tmpDataElements = pParameters.dataElements;
           if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
             const tmpTableName = generateTableName(pParameters);
@@ -2291,8 +4722,8 @@
               // this means there is no autoincrementing unique ID column; treat as above
               return '';
             }
-            const qualifiedIDColumn = `${tmpTableName}.${idColumn.Column}`;
-            return ` ${generateSafeFieldName(qualifiedIDColumn)}`;
+            const qualifiedIDColumn = "".concat(tmpTableName, ".").concat(idColumn.Column);
+            return " ".concat(generateSafeFieldName(qualifiedIDColumn));
           }
           var tmpFieldList = ' ';
           for (var i = 0; i < tmpDataElements.length; i++) {
@@ -2318,7 +4749,7 @@
         /**
         * Ensure a field name is properly escaped.
         */
-        var generateSafeFieldName = function (pFieldName) {
+        var generateSafeFieldName = function generateSafeFieldName(pFieldName) {
           let pFieldNames = pFieldName.split('.');
           if (pFieldNames.length > 1) {
             const cleansedFieldName = cleanseQuoting(pFieldNames[1]);
@@ -2352,7 +4783,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
         */
-        var generateWhere = function (pParameters) {
+        var generateWhere = function generateWhere(pParameters) {
           var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
           var tmpTableName = generateTableName(pParameters);
           if (!pParameters.query.disableDeleteTracking) {
@@ -2439,7 +4870,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the field list clause
         */
-        var generateOrderBy = function (pParameters) {
+        var generateOrderBy = function generateOrderBy(pParameters) {
           var tmpOrderBy = pParameters.sort;
           if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1) {
             return '';
@@ -2462,9 +4893,9 @@
         *
         * @method: generateLimit
         * @param: {Object} pParameters SQL Query Parameters
-        * @return: {String} Returns the table name clause
+        * @return: {String} Returns the table limit clause
         */
-        var generateLimit = function (pParameters) {
+        var generateLimit = function generateLimit(pParameters) {
           if (!pParameters.cap) {
             return '';
           }
@@ -2479,13 +4910,27 @@
         };
 
         /**
+        * Generate the use index clause
+        *
+        * @method: generateIndexHints
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table limit clause
+        */
+        var generateIndexHints = function generateIndexHints(pParameters) {
+          if (!Array.isArray(pParameters.indexHints) || pParameters.indexHints.length < 1) {
+            return '';
+          }
+          return " USE INDEX (".concat(pParameters.indexHints.join(','), ")");
+        };
+
+        /**
         * Generate the join clause
         *
         * @method: generateJoins
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the join clause
         */
-        var generateJoins = function (pParameters) {
+        var generateJoins = function generateJoins(pParameters) {
           var tmpJoins = pParameters.join;
           if (!Array.isArray(tmpJoins) || tmpJoins.length < 1) {
             return '';
@@ -2495,7 +4940,7 @@
             var join = tmpJoins[i];
             //verify that all required fields are valid
             if (join.Type && join.Table && join.From && join.To) {
-              tmpJoinClause += ` ${join.Type} ${join.Table} ON ${join.From} = ${join.To}`;
+              tmpJoinClause += " ".concat(join.Type, " ").concat(join.Table, " ON ").concat(join.From, " = ").concat(join.To);
             }
           }
           return tmpJoinClause;
@@ -2508,7 +4953,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateUpdateSetters = function (pParameters) {
+        var generateUpdateSetters = function generateUpdateSetters(pParameters) {
           var tmpRecords = pParameters.query.records;
           // We need to tell the query not to generate improperly if there are no values to set.
           if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
@@ -2594,7 +5039,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateUpdateDeleteSetters = function (pParameters) {
+        var generateUpdateDeleteSetters = function generateUpdateDeleteSetters(pParameters) {
           if (pParameters.query.disableDeleteTracking) {
             //Don't generate an UPDATE query if Delete tracking is disabled
             return false;
@@ -2660,7 +5105,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateUpdateUndeleteSetters = function (pParameters) {
+        var generateUpdateUndeleteSetters = function generateUpdateUndeleteSetters(pParameters) {
           // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
           var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
           var tmpCurrentColumn = 0;
@@ -2716,7 +5161,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateCreateSetValues = function (pParameters) {
+        var generateCreateSetValues = function generateCreateSetValues(pParameters) {
           var tmpRecords = pParameters.query.records;
           // We need to tell the query not to generate improperly if there are no values to set.
           if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
@@ -2753,7 +5198,7 @@
             }
 
             //define a re-usable method for setting up field definitions in a default pattern
-            var buildDefaultDefinition = function () {
+            var buildDefaultDefinition = function buildDefaultDefinition() {
               var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
               tmpCreateSet += ' :' + tmpColumnParameter;
               // Set the query parameter
@@ -2832,7 +5277,7 @@
         * @param: {Object} pParameters SQL Query Parameters
         * @return: {String} Returns the table name clause
         */
-        var generateCreateSetList = function (pParameters) {
+        var generateCreateSetList = function generateCreateSetList(pParameters) {
           // The records were already validated by generateCreateSetValues
           var tmpRecords = pParameters.query.records;
 
@@ -2871,7 +5316,7 @@
           }
           return tmpCreateSet;
         };
-        var Create = function (pParameters) {
+        var Create = function Create(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpCreateSetList = generateCreateSetList(pParameters);
           var tmpCreateSetValues = generateCreateSetValues(pParameters);
@@ -2895,7 +5340,699 @@
         * @param {Object} pParameters SQL Query parameters
         * @return {String} Returns the current Query for chaining.
         */
-        var Read = function (pParameters) {
+        var Read = function Read(pParameters) {
+          var tmpFieldList = generateFieldList(pParameters);
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpJoin = generateJoins(pParameters);
+          var tmpOrderBy = generateOrderBy(pParameters);
+          var tmpLimit = generateLimit(pParameters);
+          var tmpIndexHints = generateIndexHints(pParameters);
+          const tmpOptDistinct = pParameters.distinct ? ' DISTINCT' : '';
+          if (pParameters.queryOverride) {
+            try {
+              var tmpQueryTemplate = _Fable.Utility.template(pParameters.queryOverride);
+              return tmpQueryTemplate({
+                FieldList: tmpFieldList,
+                TableName: tmpTableName,
+                Where: tmpWhere,
+                Join: tmpJoin,
+                OrderBy: tmpOrderBy,
+                Limit: tmpLimit,
+                IndexHints: tmpIndexHints,
+                Distinct: tmpOptDistinct,
+                _Params: pParameters
+              });
+            } catch (pError) {
+              // This pokemon is here to give us a convenient way of not throwing up totally if the query fails.
+              console.log('Error with custom Read Query [' + pParameters.queryOverride + ']: ' + pError);
+              return false;
+            }
+          }
+          return "SELECT".concat(tmpOptDistinct).concat(tmpFieldList, " FROM").concat(tmpTableName).concat(tmpIndexHints).concat(tmpJoin).concat(tmpWhere).concat(tmpOrderBy).concat(tmpLimit, ";");
+        };
+        var Update = function Update(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateSetters = generateUpdateSetters(pParameters);
+          if (!tmpUpdateSetters) {
+            return false;
+          }
+          return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateSetters + tmpWhere + ';';
+        };
+        var Delete = function Delete(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateDeleteSetters = generateUpdateDeleteSetters(pParameters);
+          if (tmpUpdateDeleteSetters) {
+            //If it has a deleted bit, update it instead of actually deleting the record
+            return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateDeleteSetters + tmpWhere + ';';
+          } else {
+            return 'DELETE FROM' + tmpTableName + tmpWhere + ';';
+          }
+        };
+        var Undelete = function Undelete(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          // TODO: Fix these
+          let tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
+          pParameters.query.disableDeleteTracking = true;
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateUndeleteSetters = generateUpdateUndeleteSetters(pParameters);
+          pParameters.query.disableDeleteTracking = tmpDeleteTrackingState;
+          if (tmpUpdateUndeleteSetters) {
+            //If the table has a deleted bit, go forward with the update to change things.
+            return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateUndeleteSetters + tmpWhere + ';';
+          } else {
+            // This is a no-op because the record can't be undeleted.
+            // TODO: Should it throw instead?
+            return 'SELECT NULL;';
+          }
+        };
+        var Count = function Count(pParameters) {
+          var tmpFieldList = pParameters.distinct ? generateFieldList(pParameters, true) : '*';
+          var tmpTableName = generateTableName(pParameters);
+          var tmpJoin = generateJoins(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpIndexHints = generateIndexHints(pParameters);
+          // here, we ignore the distinct keyword if no fields have been specified and
+          if (pParameters.distinct && tmpFieldList.length < 1) {
+            console.warn('Distinct requested but no field list or schema are available, so not honoring distinct for count query.');
+          }
+          const tmpOptDistinct = pParameters.distinct && tmpFieldList.length > 0 ? 'DISTINCT' : '';
+          if (pParameters.queryOverride) {
+            try {
+              var tmpQueryTemplate = _Fable.Utility.template(pParameters.queryOverride);
+              return tmpQueryTemplate({
+                FieldList: [],
+                TableName: tmpTableName,
+                Where: tmpWhere,
+                OrderBy: '',
+                Limit: '',
+                IndexHints: tmpIndexHints,
+                Distinct: tmpOptDistinct,
+                _Params: pParameters
+              });
+            } catch (pError) {
+              // This pokemon is here to give us a convenient way of not throwing up totally if the query fails.
+              console.log('Error with custom Count Query [' + pParameters.queryOverride + ']: ' + pError);
+              return false;
+            }
+          }
+          return "SELECT COUNT(".concat(tmpOptDistinct).concat(tmpFieldList || '*', ") AS RowCount FROM").concat(tmpTableName).concat(tmpIndexHints).concat(tmpJoin).concat(tmpWhere, ";");
+        };
+        var tmpDialect = {
+          Create: Create,
+          Read: Read,
+          Update: Update,
+          Delete: Delete,
+          Undelete: Undelete,
+          Count: Count
+        };
+
+        /**
+        * Dialect Name
+        *
+        * @property name
+        * @type string
+        */
+        Object.defineProperty(tmpDialect, 'name', {
+          get: function get() {
+            return 'MySQL';
+          },
+          enumerable: true
+        });
+        return tmpDialect;
+      };
+      module.exports = FoxHoundDialectMySQL;
+    }, {}],
+    11: [function (require, module, exports) {
+      /**
+      * FoxHound PostgreSQL Dialect
+      *
+      * @license MIT
+      *
+      * For a PostgreSQL query override:
+      // An underscore template with the following values:
+      //      <%= DataElements %> = Field1, Field2, Field3, Field4
+      //      <%= Begin %>        = 0
+      //      <%= Cap %>          = 10
+      //      <%= Filter %>       = WHERE StartDate > $1
+      //      <%= Sort %>         = ORDER BY Field1
+      // The values are empty strings if they aren't set.
+      *
+      * @author Steven Velozo <steven@velozo.com>
+      * @class FoxHoundDialectPostgreSQL
+      */
+
+      var FoxHoundDialectPostgreSQL = function FoxHoundDialectPostgreSQL(pFable) {
+        const SQL_NOW = "NOW()";
+        _Fable = pFable;
+
+        /**
+        * Generate a table name from the scope
+        *
+        * @method: generateTableName
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateTableName = function generateTableName(pParameters) {
+          if (pParameters.scope && pParameters.scope.indexOf('"') >= 0) return ' ' + pParameters.scope + '';else return ' "' + pParameters.scope + '"';
+        };
+
+        /**
+        * Generate a field list from the array of dataElements
+        *
+        * Each entry in the dataElements is a simple string
+        *
+        * @method: generateFieldList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @param {Boolean} pIsForCountClause (optional) If true, generate fields for use within a count clause.
+        * @return: {String} Returns the field list clause, or empty string if explicit fields are requested but cannot be fulfilled
+        *          due to missing schema.
+        */
+        var generateFieldList = function generateFieldList(pParameters, pIsForCountClause) {
+          var tmpDataElements = pParameters.dataElements;
+          if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
+            const tmpTableName = generateTableName(pParameters);
+            if (!pIsForCountClause) {
+              return tmpTableName + '.*';
+            }
+            // we need to list all of the table fields explicitly; get them from the schema
+            const tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            if (tmpSchema.length < 1) {
+              // this means we have no schema; returning an empty string here signals the calling code to handle this case
+              return '';
+            }
+            const idColumn = tmpSchema.find(entry => entry.Type === 'AutoIdentity');
+            if (!idColumn) {
+              // this means there is no autoincrementing unique ID column; treat as above
+              return '';
+            }
+            const qualifiedIDColumn = "".concat(tmpTableName, ".").concat(idColumn.Column);
+            return " ".concat(generateSafeFieldName(qualifiedIDColumn));
+          }
+          var tmpFieldList = ' ';
+          for (var i = 0; i < tmpDataElements.length; i++) {
+            if (i > 0) {
+              tmpFieldList += ', ';
+            }
+            if (Array.isArray(tmpDataElements[i])) {
+              tmpFieldList += generateSafeFieldName(tmpDataElements[i][0]);
+              if (tmpDataElements[i].length > 1 && tmpDataElements[i][1]) {
+                tmpFieldList += " AS " + generateSafeFieldName(tmpDataElements[i][1]);
+              }
+            } else {
+              tmpFieldList += generateSafeFieldName(tmpDataElements[i]);
+            }
+          }
+          return tmpFieldList;
+        };
+        const SURROUNDING_QUOTES_AND_WHITESPACE_REGEX = /^[" ]+|[" ]+$/g;
+        const cleanseQuoting = str => {
+          return str.replace(SURROUNDING_QUOTES_AND_WHITESPACE_REGEX, '');
+        };
+
+        /**
+        * Ensure a field name is properly escaped with double quotes.
+        */
+        var generateSafeFieldName = function generateSafeFieldName(pFieldName) {
+          let pFieldNames = pFieldName.split('.');
+          if (pFieldNames.length > 1) {
+            const cleansedFieldName = cleanseQuoting(pFieldNames[1]);
+            if (cleansedFieldName === '*') {
+              return '"' + cleanseQuoting(pFieldNames[0]) + '".*';
+            }
+            return '"' + cleanseQuoting(pFieldNames[0]) + '"."' + cleansedFieldName + '"';
+          }
+          const cleansedFieldName = cleanseQuoting(pFieldNames[0]);
+          if (cleansedFieldName === '*') {
+            return '*';
+          }
+          return '"' + cleanseQuoting(pFieldNames[0]) + '"';
+        };
+
+        /**
+        * Generate a query from the array of where clauses
+        *
+        * Each clause is an object like:
+        	{
+        		Column:'Name',
+        		Operator:'EQ',
+        		Value:'John',
+        		Connector:'And',
+        		Parameter:'Name'
+        	}
+        *
+        * @method: generateWhere
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
+        */
+        var generateWhere = function generateWhere(pParameters) {
+          var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
+          var tmpTableName = generateTableName(pParameters);
+          if (!pParameters.query.disableDeleteTracking) {
+            // Check if there is a Deleted column on the Schema. If so, we add this to the filters automatically (if not already present)
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (var i = 0; i < tmpSchema.length; i++) {
+              var tmpSchemaEntry = tmpSchema[i];
+              if (tmpSchemaEntry.Type === 'Deleted') {
+                var tmpHasDeletedParameter = false;
+                if (tmpFilter.length > 0) {
+                  for (var x = 0; x < tmpFilter.length; x++) {
+                    if (tmpFilter[x].Column === tmpSchemaEntry.Column) {
+                      tmpHasDeletedParameter = true;
+                      break;
+                    }
+                  }
+                }
+                if (!tmpHasDeletedParameter) {
+                  tmpFilter.push({
+                    Column: generateSafeFieldName(pParameters.scope + '.' + tmpSchemaEntry.Column),
+                    Operator: '=',
+                    Value: 0,
+                    Connector: 'AND',
+                    Parameter: 'Deleted'
+                  });
+                }
+                break;
+              }
+            }
+          }
+          if (tmpFilter.length < 1) {
+            return '';
+          }
+          var tmpWhere = ' WHERE';
+          var tmpLastOperatorNoConnector = false;
+          for (var i = 0; i < tmpFilter.length; i++) {
+            if (tmpFilter[i].Connector != 'NONE' && tmpFilter[i].Operator != ')' && tmpWhere != ' WHERE' && tmpLastOperatorNoConnector == false) {
+              tmpWhere += ' ' + tmpFilter[i].Connector;
+            }
+            tmpLastOperatorNoConnector = false;
+            var tmpColumnParameter;
+            if (tmpFilter[i].Operator === '(') {
+              tmpWhere += ' (';
+              tmpLastOperatorNoConnector = true;
+            } else if (tmpFilter[i].Operator === ')') {
+              tmpWhere += ' )';
+            } else if (tmpFilter[i].Operator === 'IN' || tmpFilter[i].Operator === "NOT IN") {
+              tmpColumnParameter = tmpFilter[i].Parameter + '_w' + i;
+              tmpWhere += ' ' + generateSafeFieldName(tmpFilter[i].Column) + ' ' + tmpFilter[i].Operator + ' ( :' + tmpColumnParameter + ' )';
+              pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
+            } else if (tmpFilter[i].Operator === 'IS NULL') {
+              tmpWhere += ' ' + generateSafeFieldName(tmpFilter[i].Column) + ' ' + tmpFilter[i].Operator;
+            } else if (tmpFilter[i].Operator === 'IS NOT NULL') {
+              tmpWhere += ' ' + generateSafeFieldName(tmpFilter[i].Column) + ' ' + tmpFilter[i].Operator;
+            } else {
+              tmpColumnParameter = tmpFilter[i].Parameter + '_w' + i;
+              tmpWhere += ' ' + generateSafeFieldName(tmpFilter[i].Column) + ' ' + tmpFilter[i].Operator + ' :' + tmpColumnParameter;
+              pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
+            }
+          }
+          return tmpWhere;
+        };
+
+        /**
+        * Generate an ORDER BY clause from the sort array
+        *
+        * Each entry in the sort is an object like:
+        * {Column:'Color',Direction:'Descending'}
+        *
+        * @method: generateOrderBy
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the field list clause
+        */
+        var generateOrderBy = function generateOrderBy(pParameters) {
+          var tmpOrderBy = pParameters.sort;
+          if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1) {
+            return '';
+          }
+          var tmpOrderClause = ' ORDER BY';
+          for (var i = 0; i < tmpOrderBy.length; i++) {
+            if (i > 0) {
+              tmpOrderClause += ',';
+            }
+            tmpOrderClause += ' ' + generateSafeFieldName(tmpOrderBy[i].Column);
+            if (tmpOrderBy[i].Direction == 'Descending') {
+              tmpOrderClause += ' DESC';
+            }
+          }
+          return tmpOrderClause;
+        };
+
+        /**
+        * Generate the limit clause using PostgreSQL LIMIT/OFFSET syntax
+        *
+        * @method: generateLimit
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table limit clause
+        */
+        var generateLimit = function generateLimit(pParameters) {
+          if (!pParameters.cap) {
+            return '';
+          }
+          var tmpLimit = ' LIMIT ' + pParameters.cap;
+          if (pParameters.begin !== false) {
+            tmpLimit += ' OFFSET ' + pParameters.begin;
+          }
+          return tmpLimit;
+        };
+
+        /**
+        * Generate the join clause
+        *
+        * @method: generateJoins
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the join clause
+        */
+        var generateJoins = function generateJoins(pParameters) {
+          var tmpJoins = pParameters.join;
+          if (!Array.isArray(tmpJoins) || tmpJoins.length < 1) {
+            return '';
+          }
+          var tmpJoinClause = '';
+          for (var i = 0; i < tmpJoins.length; i++) {
+            var join = tmpJoins[i];
+            if (join.Type && join.Table && join.From && join.To) {
+              tmpJoinClause += " ".concat(join.Type, " ").concat(join.Table, " ON ").concat(join.From, " = ").concat(join.To);
+            }
+          }
+          return tmpJoinClause;
+        };
+
+        /**
+        * Generate the update SET clause
+        *
+        * @method: generateUpdateSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateSetters = function generateUpdateSetters(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpUpdate = '';
+          var tmpCurrentColumn = 0;
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (pParameters.query.disableAutoDateStamp && tmpSchemaEntry.Type === 'UpdateDate') {
+              continue;
+            }
+            if (pParameters.query.disableAutoUserStamp && tmpSchemaEntry.Type === 'UpdateIDUser') {
+              continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+              case 'CreateDate':
+              case 'CreateIDUser':
+              case 'DeleteDate':
+              case 'DeleteIDUser':
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'UpdateDate':
+                tmpUpdate += ' ' + generateSafeFieldName(tmpColumn) + ' = ' + SQL_NOW;
+                break;
+              case 'UpdateIDUser':
+                var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                tmpUpdate += ' ' + generateSafeFieldName(tmpColumn) + ' = :' + tmpColumnParameter;
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                break;
+              default:
+                var tmpColumnDefaultParameter = tmpColumn + '_' + tmpCurrentColumn;
+                tmpUpdate += ' ' + generateSafeFieldName(tmpColumn) + ' = :' + tmpColumnDefaultParameter;
+                pParameters.query.parameters[tmpColumnDefaultParameter] = tmpRecords[0][tmpColumn];
+                break;
+            }
+            tmpCurrentColumn++;
+          }
+          if (tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the update-delete SET clause
+        *
+        * @method: generateUpdateDeleteSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateDeleteSetters = function generateUpdateDeleteSetters(pParameters) {
+          if (pParameters.query.disableDeleteTracking) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCurrentColumn = 0;
+          var tmpHasDeletedField = false;
+          var tmpUpdate = '';
+          var tmpSchemaEntry = {
+            Type: 'Default'
+          };
+          for (var i = 0; i < tmpSchema.length; i++) {
+            tmpSchemaEntry = tmpSchema[i];
+            var tmpUpdateSql = null;
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpUpdateSql = ' ' + generateSafeFieldName(tmpSchemaEntry.Column) + ' = 1';
+                tmpHasDeletedField = true;
+                break;
+              case 'DeleteDate':
+                tmpUpdateSql = ' ' + generateSafeFieldName(tmpSchemaEntry.Column) + ' = ' + SQL_NOW;
+                break;
+              case 'UpdateDate':
+                tmpUpdateSql = ' ' + generateSafeFieldName(tmpSchemaEntry.Column) + ' = ' + SQL_NOW;
+                break;
+              case 'DeleteIDUser':
+                var tmpColumnParameter = tmpSchemaEntry.Column + '_' + tmpCurrentColumn;
+                tmpUpdateSql = ' ' + generateSafeFieldName(tmpSchemaEntry.Column) + ' = :' + tmpColumnParameter;
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                break;
+              default:
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            tmpUpdate += tmpUpdateSql;
+            tmpCurrentColumn++;
+          }
+          if (!tmpHasDeletedField || tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the update-undelete SET clause
+        *
+        * @method: generateUpdateUndeleteSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateUndeleteSetters = function generateUpdateUndeleteSetters(pParameters) {
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCurrentColumn = 0;
+          var tmpHasDeletedField = false;
+          var tmpUpdate = '';
+          var tmpSchemaEntry = {
+            Type: 'Default'
+          };
+          for (var i = 0; i < tmpSchema.length; i++) {
+            tmpSchemaEntry = tmpSchema[i];
+            var tmpUpdateSql = null;
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpUpdateSql = ' ' + generateSafeFieldName(tmpSchemaEntry.Column) + ' = 0';
+                tmpHasDeletedField = true;
+                break;
+              case 'UpdateDate':
+                tmpUpdateSql = ' ' + generateSafeFieldName(tmpSchemaEntry.Column) + ' = ' + SQL_NOW;
+                break;
+              case 'UpdateIDUser':
+                var tmpColumnParameter = tmpSchemaEntry.Column + '_' + tmpCurrentColumn;
+                tmpUpdateSql = ' ' + generateSafeFieldName(tmpSchemaEntry.Column) + ' = :' + tmpColumnParameter;
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                break;
+              default:
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            tmpUpdate += tmpUpdateSql;
+            tmpCurrentColumn++;
+          }
+          if (!tmpHasDeletedField || tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the create SET clause values
+        *
+        * @method: generateCreateSetValues
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateCreateSetValues = function generateCreateSetValues(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCreateSet = '';
+          var tmpCurrentColumn = 0;
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                continue;
+              }
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpCreateSet += ',';
+            }
+            var buildDefaultDefinition = function buildDefaultDefinition() {
+              var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+              tmpCreateSet += ' :' + tmpColumnParameter;
+              pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+            };
+            var tmpColumnParameter;
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+                if (pParameters.query.disableAutoIdentity) {
+                  buildDefaultDefinition();
+                } else {
+                  // PostgreSQL SERIAL columns use DEFAULT rather than NULL
+                  tmpCreateSet += ' DEFAULT';
+                }
+                break;
+              case 'AutoGUID':
+                if (pParameters.query.disableAutoIdentity) {
+                  buildDefaultDefinition();
+                } else if (tmpRecords[0][tmpColumn] && tmpRecords[0][tmpColumn].length >= 5 && tmpRecords[0][tmpColumn] !== '0x0000000000000000')
+                  //stricture default
+                  {
+                    buildDefaultDefinition();
+                  } else {
+                  tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                  tmpCreateSet += ' :' + tmpColumnParameter;
+                  pParameters.query.parameters[tmpColumnParameter] = pParameters.query.UUID;
+                }
+                break;
+              case 'UpdateDate':
+              case 'CreateDate':
+              case 'DeleteDate':
+                if (pParameters.query.disableAutoDateStamp) {
+                  buildDefaultDefinition();
+                } else {
+                  tmpCreateSet += ' ' + SQL_NOW;
+                }
+                break;
+              case 'DeleteIDUser':
+              case 'UpdateIDUser':
+              case 'CreateIDUser':
+                if (pParameters.query.disableAutoUserStamp) {
+                  buildDefaultDefinition();
+                } else {
+                  tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                  tmpCreateSet += ' :' + tmpColumnParameter;
+                  pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                }
+                break;
+              default:
+                buildDefaultDefinition();
+                break;
+            }
+            tmpCurrentColumn++;
+          }
+          if (tmpCreateSet === '') {
+            return false;
+          }
+          return tmpCreateSet;
+        };
+
+        /**
+        * Generate the create SET clause column list
+        *
+        * @method: generateCreateSetList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateCreateSetList = function generateCreateSetList(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCreateSet = '';
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                continue;
+              }
+            }
+            switch (tmpSchemaEntry.Type) {
+              default:
+                if (tmpCreateSet != '') {
+                  tmpCreateSet += ',';
+                }
+                tmpCreateSet += ' ' + generateSafeFieldName(tmpColumn);
+                break;
+            }
+          }
+          return tmpCreateSet;
+        };
+        var Create = function Create(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpCreateSetList = generateCreateSetList(pParameters);
+          var tmpCreateSetValues = generateCreateSetValues(pParameters);
+          if (!tmpCreateSetValues) {
+            return false;
+          }
+          return 'INSERT INTO' + tmpTableName + ' (' + tmpCreateSetList + ') VALUES (' + tmpCreateSetValues + ') RETURNING *;';
+        };
+
+        /**
+        * Read one or many records
+        *
+        * @method Read
+        * @param {Object} pParameters SQL Query parameters
+        * @return {String} Returns the current Query for chaining.
+        */
+        var Read = function Read(pParameters) {
           var tmpFieldList = generateFieldList(pParameters);
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
@@ -2917,14 +6054,13 @@
                 _Params: pParameters
               });
             } catch (pError) {
-              // This pokemon is here to give us a convenient way of not throwing up totally if the query fails.
               console.log('Error with custom Read Query [' + pParameters.queryOverride + ']: ' + pError);
               return false;
             }
           }
-          return `SELECT${tmpOptDistinct}${tmpFieldList} FROM${tmpTableName}${tmpJoin}${tmpWhere}${tmpOrderBy}${tmpLimit};`;
+          return "SELECT".concat(tmpOptDistinct).concat(tmpFieldList, " FROM").concat(tmpTableName).concat(tmpJoin).concat(tmpWhere).concat(tmpOrderBy).concat(tmpLimit, ";");
         };
-        var Update = function (pParameters) {
+        var Update = function Update(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
           var tmpUpdateSetters = generateUpdateSetters(pParameters);
@@ -2933,7 +6069,769 @@
           }
           return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateSetters + tmpWhere + ';';
         };
-        var Delete = function (pParameters) {
+        var Delete = function Delete(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateDeleteSetters = generateUpdateDeleteSetters(pParameters);
+          if (tmpUpdateDeleteSetters) {
+            return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateDeleteSetters + tmpWhere + ';';
+          } else {
+            return 'DELETE FROM' + tmpTableName + tmpWhere + ';';
+          }
+        };
+        var Undelete = function Undelete(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          let tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
+          pParameters.query.disableDeleteTracking = true;
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateUndeleteSetters = generateUpdateUndeleteSetters(pParameters);
+          pParameters.query.disableDeleteTracking = tmpDeleteTrackingState;
+          if (tmpUpdateUndeleteSetters) {
+            return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateUndeleteSetters + tmpWhere + ';';
+          } else {
+            return 'SELECT NULL;';
+          }
+        };
+        var Count = function Count(pParameters) {
+          var tmpFieldList = pParameters.distinct ? generateFieldList(pParameters, true) : '*';
+          var tmpTableName = generateTableName(pParameters);
+          var tmpJoin = generateJoins(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          if (pParameters.distinct && tmpFieldList.length < 1) {
+            console.warn('Distinct requested but no field list or schema are available, so not honoring distinct for count query.');
+          }
+          const tmpOptDistinct = pParameters.distinct && tmpFieldList.length > 0 ? 'DISTINCT' : '';
+          if (pParameters.queryOverride) {
+            try {
+              var tmpQueryTemplate = _Fable.Utility.template(pParameters.queryOverride);
+              return tmpQueryTemplate({
+                FieldList: [],
+                TableName: tmpTableName,
+                Where: tmpWhere,
+                OrderBy: '',
+                Limit: '',
+                Distinct: tmpOptDistinct,
+                _Params: pParameters
+              });
+            } catch (pError) {
+              console.log('Error with custom Count Query [' + pParameters.queryOverride + ']: ' + pError);
+              return false;
+            }
+          }
+          return "SELECT COUNT(".concat(tmpOptDistinct).concat(tmpFieldList || '*', ") AS RowCount FROM").concat(tmpTableName).concat(tmpJoin).concat(tmpWhere, ";");
+        };
+        var tmpDialect = {
+          Create: Create,
+          Read: Read,
+          Update: Update,
+          Delete: Delete,
+          Undelete: Undelete,
+          Count: Count
+        };
+
+        /**
+        * Dialect Name
+        *
+        * @property name
+        * @type string
+        */
+        Object.defineProperty(tmpDialect, 'name', {
+          get: function get() {
+            return 'PostgreSQL';
+          },
+          enumerable: true
+        });
+        return tmpDialect;
+      };
+      module.exports = FoxHoundDialectPostgreSQL;
+    }, {}],
+    12: [function (require, module, exports) {
+      /**
+      * FoxHound SQLite Dialect
+      *
+      * @license MIT
+      *
+      * For an SQLite query override:
+      // An underscore template with the following values:
+      //      <%= DataElements %> = Field1, Field2, Field3, Field4
+      //      <%= Begin %>        = 0
+      //      <%= Cap %>          = 10
+      //      <%= Filter %>       = WHERE StartDate > :MyStartDate
+      //      <%= Sort %>         = ORDER BY Field1
+      // The values are empty strings if they aren't set.
+      
+      // SQLite 3 also supports named parameters in 3 syntaxes: $name, @name, and :name.
+      // To keep things simple and consistent with other providers, we'll use the :name syntax.
+      *
+      * @author Steven Velozo <steven@velozo.com>
+      * @class FoxHoundDialectSQLite
+      */
+
+      var FoxHoundDialectSQLite = function FoxHoundDialectSQLite(pFable) {
+        //Request time from SQL server with microseconds resolution
+        const SQL_NOW = "NOW(3)";
+        _Fable = pFable;
+
+        /**
+        * Generate a table name from the scope.
+        *
+        * Because SQLite is all in-memory, and can be run in two modes (anonymous
+        * working on arrays or table-based) we are going to make this a programmable
+        * value.  Then we can share the code across both providers.
+        *
+        * @method: generateTableName
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateTableName = function generateTableName(pParameters) {
+          return ' ' + pParameters.scope;
+        };
+
+        /**
+        * Escape columns, because SQLite has more reserved KWs than most SQL dialects
+        */
+        var escapeColumn = (pColumn, pParameters) => {
+          if (pColumn.indexOf('.') < 0) {
+            return '`' + pColumn + '`';
+          } else {
+            // This could suck if the scope is not the same
+            var tmpTableName = pParameters.scope;
+            if (pColumn.indexOf(tmpTableName + '.') > -1) {
+              return '`' + pColumn.replace(tmpTableName + '.', '') + '`';
+            } else {
+              // This doesn't work well but we'll try it.
+              return '`' + pColumn + '`';
+            }
+          }
+        };
+
+        /**
+        * Generate a field list from the array of dataElements
+        *
+        * Each entry in the dataElements is a simple string
+        *
+        * @method: generateFieldList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @param {Boolean} pIsForCountClause (optional) If true, generate fields for use within a count clause.
+        * @return: {String} Returns the field list clause, or empty string if explicit fields are requested but cannot be fulfilled
+        *          due to missing schema.
+        */
+        var generateFieldList = function generateFieldList(pParameters, pIsForCountClause) {
+          var tmpDataElements = pParameters.dataElements;
+          if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
+            if (!pIsForCountClause) {
+              return ' *';
+            }
+            // we need to list all of the table fields explicitly; get them from the schema
+            const tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            if (tmpSchema.length < 1) {
+              // this means we have no schema; returning an empty string here signals the calling code to handle this case
+              return '';
+            }
+            const idColumn = tmpSchema.find(entry => entry.Type === 'AutoIdentity');
+            if (!idColumn) {
+              // this means there is no autoincrementing unique ID column; treat as above
+              return '';
+            }
+            return " ".concat(idColumn.Column);
+          }
+          var tmpFieldList = ' ';
+          for (var i = 0; i < tmpDataElements.length; i++) {
+            if (i > 0) {
+              tmpFieldList += ', ';
+            }
+            tmpFieldList += escapeColumn(tmpDataElements[i], pParameters);
+          }
+          return tmpFieldList;
+        };
+
+        /**
+        * Generate a query from the array of where clauses
+        *
+        * Each clause is an object like:
+        	{
+        		Column:'Name',
+        		Operator:'EQ',
+        		Value:'John',
+        		Connector:'And',
+        		Parameter:'Name'
+        	}
+        *
+        * @method: generateWhere
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
+        */
+        var generateWhere = function generateWhere(pParameters) {
+          var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
+          var tmpTableName = generateTableName(pParameters).trim();
+          if (!pParameters.query.disableDeleteTracking) {
+            // Check if there is a Deleted column on the Schema. If so, we add this to the filters automatically (if not already present)
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (var i = 0; i < tmpSchema.length; i++) {
+              // There is a schema entry for it.  Process it accordingly.
+              var tmpSchemaEntry = tmpSchema[i];
+              if (tmpSchemaEntry.Type === 'Deleted') {
+                var tmpHasDeletedParameter = false;
+
+                //first, check to see if filters are already looking for Deleted column
+                if (tmpFilter.length > 0) {
+                  for (var x = 0; x < tmpFilter.length; x++) {
+                    if (tmpFilter[x].Column === tmpSchemaEntry.Column) {
+                      tmpHasDeletedParameter = true;
+                      break;
+                    }
+                  }
+                }
+                if (!tmpHasDeletedParameter) {
+                  //if not, we need to add it
+                  tmpFilter.push({
+                    Column: tmpTableName + '.' + tmpSchemaEntry.Column,
+                    Operator: '=',
+                    Value: 0,
+                    Connector: 'AND',
+                    Parameter: 'Deleted'
+                  });
+                }
+                break;
+              }
+            }
+          }
+          if (tmpFilter.length < 1) {
+            return '';
+          }
+          var tmpWhere = ' WHERE';
+
+          // This is used to disable the connectors for subsequent queries.
+          // Only the open parenthesis operator uses this, currently.
+          var tmpLastOperatorNoConnector = false;
+          for (var i = 0; i < tmpFilter.length; i++) {
+            if (tmpFilter[i].Connector != 'NONE' && tmpFilter[i].Operator != ')' && tmpWhere != ' WHERE' && tmpLastOperatorNoConnector == false) {
+              tmpWhere += ' ' + tmpFilter[i].Connector;
+            }
+            tmpLastOperatorNoConnector = false;
+            var tmpColumnParameter;
+            if (tmpFilter[i].Operator === '(') {
+              // Open a logical grouping
+              tmpWhere += ' (';
+              tmpLastOperatorNoConnector = true;
+            } else if (tmpFilter[i].Operator === ')') {
+              // Close a logical grouping
+              tmpWhere += ' )';
+            } else if (tmpFilter[i].Operator === 'IN' || tmpFilter[i].Operator === 'NOT IN') {
+              tmpColumnParameter = tmpFilter[i].Parameter + '_w' + i;
+              // SQLite (better-sqlite3) cannot bind arrays as a single parameter.
+              // Expand the array into individual named parameters for each element.
+              var tmpFilterValue = tmpFilter[i].Value;
+              if (Array.isArray(tmpFilterValue)) {
+                var tmpParameterNames = [];
+                for (var j = 0; j < tmpFilterValue.length; j++) {
+                  var tmpElementParameter = tmpColumnParameter + '_' + j;
+                  tmpParameterNames.push(':' + tmpElementParameter);
+                  pParameters.query.parameters[tmpElementParameter] = tmpFilterValue[j];
+                }
+                tmpWhere += ' ' + escapeColumn(tmpFilter[i].Column, pParameters) + ' ' + tmpFilter[i].Operator + ' ( ' + tmpParameterNames.join(', ') + ' )';
+              } else {
+                // If for some reason the value is not an array, fall back to the old behavior
+                tmpWhere += ' ' + escapeColumn(tmpFilter[i].Column, pParameters) + ' ' + tmpFilter[i].Operator + ' ( :' + tmpColumnParameter + ' )';
+                pParameters.query.parameters[tmpColumnParameter] = tmpFilterValue;
+              }
+            } else if (tmpFilter[i].Operator === 'IS NOT NULL') {
+              // IS NOT NULL is a special operator which doesn't require a value, or parameter
+              tmpWhere += ' ' + escapeColumn(tmpFilter[i].Column, pParameters) + ' ' + tmpFilter[i].Operator;
+            } else {
+              tmpColumnParameter = tmpFilter[i].Parameter + '_w' + i;
+              // Add the column name, operator and parameter name to the list of where value parenthetical
+              tmpWhere += ' ' + escapeColumn(tmpFilter[i].Column, pParameters) + ' ' + tmpFilter[i].Operator + ' :' + tmpColumnParameter;
+              pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
+            }
+          }
+          return tmpWhere;
+        };
+
+        /**
+        * Generate an ORDER BY clause from the sort array
+        *
+        * Each entry in the sort is an object like:
+        * {Column:'Color',Direction:'Descending'}
+        *
+        * @method: generateOrderBy
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the field list clause
+        */
+        var generateOrderBy = function generateOrderBy(pParameters) {
+          var tmpOrderBy = pParameters.sort;
+          if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1) {
+            return '';
+          }
+          var tmpOrderClause = ' ORDER BY';
+          for (var i = 0; i < tmpOrderBy.length; i++) {
+            if (i > 0) {
+              tmpOrderClause += ',';
+            }
+            tmpOrderClause += ' ' + escapeColumn(tmpOrderBy[i].Column, pParameters);
+            if (tmpOrderBy[i].Direction == 'Descending') {
+              tmpOrderClause += ' DESC';
+            }
+          }
+          return tmpOrderClause;
+        };
+
+        /**
+        * Generate the limit clause
+        *
+        * @method: generateLimit
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateLimit = function generateLimit(pParameters) {
+          if (!pParameters.cap) {
+            return '';
+          }
+          var tmpLimit = ' LIMIT';
+          // Cap is required for a limit clause.
+          tmpLimit += ' ' + pParameters.cap;
+
+          // If there is a begin record, we'll pass that in as well.
+          if (pParameters.begin !== false) {
+            tmpLimit += ' OFFSET ' + pParameters.begin;
+          }
+          return tmpLimit;
+        };
+
+        /**
+        * Generate the update SET clause
+        *
+        * @method: generateUpdateSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateSetters = function generateUpdateSetters(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          // We need to tell the query not to generate improperly if there are no values to set.
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpUpdate = '';
+          // If there is more than one record in records, we are going to ignore them for now.
+          var tmpCurrentColumn = 0;
+          for (var tmpColumn in tmpRecords[0]) {
+            // No hash table yet, so, we will just linear search it for now.
+            // This uses the schema to decide if we want to treat a column differently on insert
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                // There is a schema entry for it.  Process it accordingly.
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (pParameters.query.disableAutoDateStamp && tmpSchemaEntry.Type === 'UpdateDate') {
+              // This is ignored if flag is set
+              continue;
+            }
+            if (pParameters.query.disableAutoUserStamp && tmpSchemaEntry.Type === 'UpdateIDUser') {
+              // This is ignored if flag is set
+              continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+              case 'CreateDate':
+              case 'CreateIDUser':
+              case 'DeleteDate':
+              case 'DeleteIDUser':
+                // These are all ignored on update
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'UpdateDate':
+                // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                tmpUpdate += ' ' + escapeColumn(tmpColumn, pParameters) + ' = NOW()';
+                break;
+              case 'UpdateIDUser':
+                // This is the user ID, which we hope is in the query.
+                // This is how to deal with a normal column
+                var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                tmpUpdate += ' ' + escapeColumn(tmpColumn, pParameters) + ' = :' + tmpColumnParameter;
+                // Set the query parameter
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                break;
+              default:
+                var tmpColumnDefaultParameter = tmpColumn + '_' + tmpCurrentColumn;
+                tmpUpdate += ' ' + escapeColumn(tmpColumn, pParameters) + ' = :' + tmpColumnDefaultParameter;
+
+                // Set the query parameter
+                pParameters.query.parameters[tmpColumnDefaultParameter] = tmpRecords[0][tmpColumn];
+                break;
+            }
+
+            // We use a number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the update-delete SET clause
+        *
+        * @method: generateUpdateDeleteSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateDeleteSetters = function generateUpdateDeleteSetters(pParameters) {
+          if (pParameters.query.disableDeleteTracking) {
+            //Don't generate an UPDATE query if Delete tracking is disabled
+            return false;
+          }
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCurrentColumn = 0;
+          var tmpHasDeletedField = false;
+          var tmpUpdate = '';
+          // No hash table yet, so, we will just linear search it for now.
+          // This uses the schema to decide if we want to treat a column differently on insert
+          var tmpSchemaEntry = {
+            Type: 'Default'
+          };
+          for (var i = 0; i < tmpSchema.length; i++) {
+            // There is a schema entry for it.  Process it accordingly.
+            tmpSchemaEntry = tmpSchema[i];
+            var tmpUpdateSql = null;
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpUpdateSql = ' ' + escapeColumn(tmpSchemaEntry.Column, pParameters) + ' = 1';
+                tmpHasDeletedField = true; //this field is required in order for query to be built
+                break;
+              case 'DeleteDate':
+                tmpUpdateSql = ' ' + escapeColumn(tmpSchemaEntry.Column, pParameters) + ' = NOW()';
+                break;
+              case 'UpdateDate':
+                // Delete operation is an Update, so we should stamp the update time
+                tmpUpdateSql = ' ' + escapeColumn(tmpSchemaEntry.Column, pParameters) + ' = NOW()';
+                break;
+              case 'DeleteIDUser':
+                // This is the user ID, which we hope is in the query.
+                // This is how to deal with a normal column
+                var tmpColumnParameter = tmpSchemaEntry.Column + '_' + tmpCurrentColumn;
+                tmpUpdateSql = ' ' + escapeColumn(tmpSchemaEntry.Column, pParameters) + ' = :' + tmpColumnParameter;
+                // Set the query parameter
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                break;
+              default:
+                //DON'T allow update of other fields in this query
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            tmpUpdate += tmpUpdateSql;
+
+            // We use a number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (!tmpHasDeletedField || tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the update-delete SET clause
+        *
+        * @method: generateUpdateDeleteSetters
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateUpdateUndeleteSetters = function generateUpdateUndeleteSetters(pParameters) {
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCurrentColumn = 0;
+          var tmpHasDeletedField = false;
+          var tmpUpdate = '';
+          // No hash table yet, so, we will just linear search it for now.
+          // This uses the schema to decide if we want to treat a column differently on insert
+          var tmpSchemaEntry = {
+            Type: 'Default'
+          };
+          for (var i = 0; i < tmpSchema.length; i++) {
+            // There is a schema entry for it.  Process it accordingly.
+            tmpSchemaEntry = tmpSchema[i];
+            var tmpUpdateSql = null;
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpUpdateSql = ' ' + escapeColumn(tmpSchemaEntry.Column, pParameters) + ' = 0';
+                tmpHasDeletedField = true; //this field is required in order for query to be built
+                break;
+              case 'UpdateDate':
+                // Delete operation is an Update, so we should stamp the update time
+                tmpUpdateSql = ' ' + escapeColumn(tmpSchemaEntry.Column, pParameters) + ' = NOW()';
+                break;
+              case 'UpdateIDUser':
+                // This is the user ID, which we hope is in the query.
+                // This is how to deal with a normal column
+                var tmpColumnParameter = tmpSchemaEntry.Column + '_' + tmpCurrentColumn;
+                tmpUpdateSql = ' ' + escapeColumn(tmpSchemaEntry.Column, pParameters) + ' = :' + tmpColumnParameter;
+                // Set the query parameter
+                pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                break;
+              default:
+                //DON'T allow update of other fields in this query
+                continue;
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpUpdate += ',';
+            }
+            tmpUpdate += tmpUpdateSql;
+
+            // We use a number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (!tmpHasDeletedField || tmpUpdate === '') {
+            return false;
+          }
+          return tmpUpdate;
+        };
+
+        /**
+        * Generate the create SET clause
+        *
+        * @method: generateCreateSetList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateCreateSetValues = function generateCreateSetValues(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          // We need to tell the query not to generate improperly if there are no values to set.
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCreateSet = '';
+          // If there is more than one record in records, we are going to ignore them for now.
+          var tmpCurrentColumn = 0;
+          for (var tmpColumn in tmpRecords[0]) {
+            // No hash table yet, so, we will just linear search it for now.
+            // This uses the schema to decide if we want to treat a column differently on insert
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                // There is a schema entry for it.  Process it accordingly.
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                // These are all ignored on insert (if delete tracking is enabled as normal)
+                continue;
+              }
+            }
+            if (tmpCurrentColumn > 0) {
+              tmpCreateSet += ',';
+            }
+
+            //define a re-usable method for setting up field definitions in a default pattern
+            var buildDefaultDefinition = function buildDefaultDefinition() {
+              var tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+              tmpCreateSet += ' :' + tmpColumnParameter;
+              // Set the query parameter
+              pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+            };
+            var tmpColumnParameter;
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+                if (pParameters.query.disableAutoIdentity) {
+                  buildDefaultDefinition();
+                } else {
+                  // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                  tmpCreateSet += ' NULL';
+                }
+                break;
+              case 'AutoGUID':
+                if (pParameters.query.disableAutoIdentity) {
+                  buildDefaultDefinition();
+                } else if (tmpRecords[0][tmpColumn] && tmpRecords[0][tmpColumn].length >= 5 && tmpRecords[0][tmpColumn] !== '0x0000000000000000')
+                  //stricture default
+                  {
+                    // Allow consumer to override AutoGUID
+                    buildDefaultDefinition();
+                  } else {
+                  // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                  tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                  tmpCreateSet += ' :' + tmpColumnParameter;
+                  // Set the query parameter
+                  pParameters.query.parameters[tmpColumnParameter] = pParameters.query.UUID;
+                }
+                break;
+              case 'UpdateDate':
+              case 'CreateDate':
+              case 'DeleteDate':
+                if (pParameters.query.disableAutoDateStamp) {
+                  buildDefaultDefinition();
+                } else {
+                  // This is an autoidentity, so we don't parameterize it and just pass in NULL
+                  tmpCreateSet += ' NOW()';
+                }
+                break;
+              case 'UpdateIDUser':
+              case 'CreateIDUser':
+              case 'DeleteIDUser':
+                if (pParameters.query.disableAutoUserStamp) {
+                  buildDefaultDefinition();
+                } else {
+                  // This is the user ID, which we hope is in the query.
+                  // This is how to deal with a normal column
+                  tmpColumnParameter = tmpColumn + '_' + tmpCurrentColumn;
+                  tmpCreateSet += ' :' + tmpColumnParameter;
+                  // Set the query parameter
+                  pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+                }
+                break;
+              default:
+                buildDefaultDefinition();
+                break;
+            }
+
+            // We use an appended number to make sure parameters are unique.
+            tmpCurrentColumn++;
+          }
+
+          // We need to tell the query not to generate improperly if there are no values set.
+          if (tmpCreateSet === '') {
+            return false;
+          }
+          return tmpCreateSet;
+        };
+
+        /**
+        * Generate the create SET clause
+        *
+        * @method: generateCreateSetList
+        * @param: {Object} pParameters SQL Query Parameters
+        * @return: {String} Returns the table name clause
+        */
+        var generateCreateSetList = function generateCreateSetList(pParameters) {
+          // The records were already validated by generateCreateSetValues
+          var tmpRecords = pParameters.query.records;
+
+          // Check if there is a schema.  If so, we will use it to decide if these are parameterized or not.
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpCreateSet = '';
+          // If there is more than one record in records, we are going to ignore them for now.
+          for (var tmpColumn in tmpRecords[0]) {
+            // No hash table yet, so, we will just linear search it for now.
+            // This uses the schema to decide if we want to treat a column differently on insert
+            var tmpSchemaEntry = {
+              Column: tmpColumn,
+              Type: 'Default'
+            };
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpColumn == tmpSchema[i].Column) {
+                // There is a schema entry for it.  Process it accordingly.
+                tmpSchemaEntry = tmpSchema[i];
+                break;
+              }
+            }
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                // These are all ignored on insert (if delete tracking is enabled as normal)
+                continue;
+              }
+            }
+            switch (tmpSchemaEntry.Type) {
+              default:
+                if (tmpCreateSet != '') {
+                  tmpCreateSet += ',';
+                }
+                tmpCreateSet += ' ' + escapeColumn(tmpColumn, pParameters);
+                break;
+            }
+          }
+          return tmpCreateSet;
+        };
+        var Create = function Create(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpCreateSetList = generateCreateSetList(pParameters);
+          var tmpCreateSetValues = generateCreateSetValues(pParameters);
+          if (!tmpCreateSetValues) {
+            return false;
+          }
+          return 'INSERT INTO' + tmpTableName + ' (' + tmpCreateSetList + ') VALUES (' + tmpCreateSetValues + ');';
+        };
+
+        /**
+        * Read one or many records
+        *
+        * Some examples:
+        * SELECT * FROM WIDGETS;
+        * SELECT * FROM WIDGETS LIMIT 0, 20;
+        * SELECT * FROM WIDGETS LIMIT 5, 20;
+        * SELECT ID, Name, Cost FROM WIDGETS LIMIT 5, 20;
+        * SELECT ID, Name, Cost FROM WIDGETS LIMIT 5, 20 WHERE LastName = 'Smith';
+        *
+        * @method Read
+        * @param {Object} pParameters SQL Query parameters
+        * @return {String} Returns the current Query for chaining.
+        */
+        var Read = function Read(pParameters) {
+          var tmpFieldList = generateFieldList(pParameters);
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpOrderBy = generateOrderBy(pParameters);
+          var tmpLimit = generateLimit(pParameters);
+          const tmpOptDistinct = pParameters.distinct ? ' DISTINCT' : '';
+          if (pParameters.queryOverride) {
+            try {
+              var tmpQueryTemplate = _Fable.Utility.template(pParameters.queryOverride);
+              return tmpQueryTemplate({
+                FieldList: tmpFieldList,
+                TableName: tmpTableName,
+                Where: tmpWhere,
+                OrderBy: tmpOrderBy,
+                Limit: tmpLimit,
+                Distinct: tmpOptDistinct,
+                _Params: pParameters
+              });
+            } catch (pError) {
+              // This pokemon is here to give us a convenient way of not throwing up totally if the query fails.
+              console.log('Error with custom Read Query [' + pParameters.queryOverride + ']: ' + pError);
+              return false;
+            }
+          }
+          return "SELECT".concat(tmpOptDistinct).concat(tmpFieldList, " FROM").concat(tmpTableName).concat(tmpWhere).concat(tmpOrderBy).concat(tmpLimit, ";");
+        };
+        var Update = function Update(pParameters) {
+          var tmpTableName = generateTableName(pParameters);
+          var tmpWhere = generateWhere(pParameters);
+          var tmpUpdateSetters = generateUpdateSetters(pParameters);
+          if (!tmpUpdateSetters) {
+            return false;
+          }
+          return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateSetters + tmpWhere + ';';
+        };
+        var Delete = function Delete(pParameters) {
           var tmpTableName = generateTableName(pParameters);
           var tmpWhere = generateWhere(pParameters);
           var tmpUpdateDeleteSetters = generateUpdateDeleteSetters(pParameters);
@@ -2944,28 +6842,25 @@
             return 'DELETE FROM' + tmpTableName + tmpWhere + ';';
           }
         };
-        var Undelete = function (pParameters) {
+        var Undelete = function Undelete(pParameters) {
           var tmpTableName = generateTableName(pParameters);
-          // TODO: Fix these
           let tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
           pParameters.query.disableDeleteTracking = true;
           var tmpWhere = generateWhere(pParameters);
           var tmpUpdateUndeleteSetters = generateUpdateUndeleteSetters(pParameters);
           pParameters.query.disableDeleteTracking = tmpDeleteTrackingState;
           if (tmpUpdateUndeleteSetters) {
-            //If the table has a deleted bit, go forward with the update to change things.
+            //If it has a deleted bit, update it instead of actually deleting the record
             return 'UPDATE' + tmpTableName + ' SET' + tmpUpdateUndeleteSetters + tmpWhere + ';';
           } else {
-            // This is a no-op because the record can't be undeleted.
-            // TODO: Should it throw instead?
             return 'SELECT NULL;';
           }
         };
-        var Count = function (pParameters) {
-          var tmpFieldList = pParameters.distinct ? generateFieldList(pParameters, true) : '*';
+        var Count = function Count(pParameters) {
           var tmpTableName = generateTableName(pParameters);
-          var tmpJoin = generateJoins(pParameters);
           var tmpWhere = generateWhere(pParameters);
+          const tmpFieldList = pParameters.distinct ? generateFieldList(pParameters, true) : '*';
+
           // here, we ignore the distinct keyword if no fields have been specified and
           if (pParameters.distinct && tmpFieldList.length < 1) {
             console.warn('Distinct requested but no field list or schema are available, so not honoring distinct for count query.');
@@ -2989,7 +6884,7 @@
               return false;
             }
           }
-          return `SELECT COUNT(${tmpOptDistinct}${tmpFieldList || '*'}) AS RowCount FROM${tmpTableName}${tmpJoin}${tmpWhere};`;
+          return "SELECT COUNT(".concat(tmpOptDistinct).concat(tmpFieldList || '*', ") AS RowCount FROM").concat(tmpTableName).concat(tmpWhere, ";");
         };
         var tmpDialect = {
           Create: Create,
@@ -3007,14 +6902,745 @@
         * @type string
         */
         Object.defineProperty(tmpDialect, 'name', {
-          get: function () {
-            return 'MySQL';
+          get: function get() {
+            return 'SQLite';
           },
           enumerable: true
         });
         return tmpDialect;
       };
-      module.exports = FoxHoundDialectMySQL;
+      module.exports = FoxHoundDialectSQLite;
+    }, {}],
+    13: [function (require, module, exports) {
+      /**
+      * FoxHound Solr Dialect
+      *
+      * Generates Solr query descriptors and Lucene query strings.
+      * The query body is a JSON string; the parsed operation object is also
+      * stored in query.parameters.solrOperation for direct provider consumption.
+      *
+      * @license MIT
+      *
+      * @author Steven Velozo <steven@velozo.com>
+      * @class FoxHoundDialectSolr
+      */
+
+      var FoxHoundDialectSolr = function FoxHoundDialectSolr(pFable) {
+        _Fable = pFable;
+
+        /**
+        * Strip any table-name prefix from a column name.
+        *
+        * @method stripTablePrefix
+        * @param {String} pColumn Column name, possibly table-qualified
+        * @return {String} Plain column name
+        */
+        var stripTablePrefix = function stripTablePrefix(pColumn) {
+          if (typeof pColumn !== 'string') {
+            return pColumn;
+          }
+          var tmpColumn = pColumn.replace(/[`"]/g, '');
+          if (tmpColumn.indexOf('.') >= 0) {
+            var tmpParts = tmpColumn.split('.');
+            if (tmpParts[tmpParts.length - 1] === '*') {
+              return '*';
+            }
+            return tmpParts[tmpParts.length - 1];
+          }
+          return tmpColumn;
+        };
+
+        /**
+        * Find the schema entry for a given column name.
+        *
+        * @method findSchemaEntry
+        * @param {String} pColumn Column name
+        * @param {Array} pSchema Schema array
+        * @return {Object} Schema entry or default
+        */
+        var findSchemaEntry = function findSchemaEntry(pColumn, pSchema) {
+          for (var i = 0; i < pSchema.length; i++) {
+            if (pColumn == pSchema[i].Column) {
+              return pSchema[i];
+            }
+          }
+          return {
+            Column: pColumn,
+            Type: 'Default'
+          };
+        };
+
+        /**
+        * Escape special Lucene characters in a value.
+        *
+        * @method escapeValue
+        * @param {String} pValue The value to escape
+        * @return {String} Escaped value
+        */
+        var escapeValue = function escapeValue(pValue) {
+          if (typeof pValue !== 'string') {
+            return pValue;
+          }
+          // Escape Lucene special chars: + - & | ! ( ) { } [ ] ^ " ~ * ? : \ /
+          return pValue.replace(/([+\-&|!(){}\[\]^"~*?:\\/])/g, '\\$1');
+        };
+
+        /**
+        * Format a value for inclusion in a Solr Lucene query.
+        * Strings are double-quoted, numbers stay bare.
+        *
+        * @method formatSolrValue
+        * @param {*} pValue The value to format
+        * @return {String} Formatted value string
+        */
+        var formatSolrValue = function formatSolrValue(pValue) {
+          if (typeof pValue === 'number') {
+            return String(pValue);
+          }
+          if (typeof pValue === 'boolean') {
+            return pValue ? '1' : '0';
+          }
+          return '"' + escapeValue(String(pValue)) + '"';
+        };
+
+        /**
+        * Translate a single FoxHound filter entry into a Solr Lucene clause.
+        *
+        * @method translateOperator
+        * @param {Object} pFilterEntry A FoxHound filter object
+        * @return {String} Solr Lucene clause
+        */
+        var translateOperator = function translateOperator(pFilterEntry) {
+          var tmpColumn = stripTablePrefix(pFilterEntry.Column);
+          var tmpValue = pFilterEntry.Value;
+          switch (pFilterEntry.Operator) {
+            case '=':
+              return tmpColumn + ':' + formatSolrValue(tmpValue);
+            case '!=':
+              return '(*:* NOT ' + tmpColumn + ':' + formatSolrValue(tmpValue) + ')';
+            case '>':
+              return tmpColumn + ':{' + formatSolrValue(tmpValue) + ' TO *}';
+            case '>=':
+              return tmpColumn + ':[' + formatSolrValue(tmpValue) + ' TO *]';
+            case '<':
+              return tmpColumn + ':{* TO ' + formatSolrValue(tmpValue) + '}';
+            case '<=':
+              return tmpColumn + ':[* TO ' + formatSolrValue(tmpValue) + ']';
+            case 'LIKE':
+              // Convert SQL LIKE pattern to Solr wildcard: % -> *, _ -> ?
+              var tmpPattern = String(tmpValue).replace(/%/g, '*').replace(/_/g, '?');
+              return tmpColumn + ':' + tmpPattern;
+            case 'IN':
+              var tmpInValues = Array.isArray(tmpValue) ? tmpValue : [tmpValue];
+              var tmpInParts = [];
+              for (var i = 0; i < tmpInValues.length; i++) {
+                tmpInParts.push(formatSolrValue(tmpInValues[i]));
+              }
+              return tmpColumn + ':(' + tmpInParts.join(' OR ') + ')';
+            case 'NOT IN':
+              var tmpNinValues = Array.isArray(tmpValue) ? tmpValue : [tmpValue];
+              var tmpNinParts = [];
+              for (var j = 0; j < tmpNinValues.length; j++) {
+                tmpNinParts.push(formatSolrValue(tmpNinValues[j]));
+              }
+              return '(*:* NOT ' + tmpColumn + ':(' + tmpNinParts.join(' OR ') + '))';
+            case 'IS NULL':
+              return '(*:* NOT ' + tmpColumn + ':[* TO *])';
+            case 'IS NOT NULL':
+              return tmpColumn + ':[* TO *]';
+            default:
+              return tmpColumn + ':' + formatSolrValue(tmpValue);
+          }
+        };
+
+        /**
+        * Generate the Solr filter query string from the FoxHound filter array.
+        * Uses a stack-based approach for parenthetical groups.
+        *
+        * @method generateFilter
+        * @param {Object} pParameters Query Parameters
+        * @return {String} Solr filter query string or empty string
+        */
+        var generateFilter = function generateFilter(pParameters) {
+          var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter.slice() : [];
+
+          // Auto-add Deleted filter if applicable
+          if (!pParameters.query.disableDeleteTracking) {
+            var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+            for (var i = 0; i < tmpSchema.length; i++) {
+              if (tmpSchema[i].Type === 'Deleted') {
+                var tmpHasDeletedParam = false;
+                for (var x = 0; x < tmpFilter.length; x++) {
+                  if (stripTablePrefix(tmpFilter[x].Column) === tmpSchema[i].Column) {
+                    tmpHasDeletedParam = true;
+                    break;
+                  }
+                }
+                if (!tmpHasDeletedParam) {
+                  tmpFilter.push({
+                    Column: tmpSchema[i].Column,
+                    Operator: '=',
+                    Value: 0,
+                    Connector: 'AND',
+                    Parameter: 'Deleted'
+                  });
+                }
+                break;
+              }
+            }
+          }
+          if (tmpFilter.length < 1) {
+            return '';
+          }
+
+          // Stack-based processing for parenthetical groups
+          var tmpStack = [[]];
+          for (var i = 0; i < tmpFilter.length; i++) {
+            var tmpEntry = tmpFilter[i];
+            if (tmpEntry.Operator === '(') {
+              tmpStack.push([]);
+            } else if (tmpEntry.Operator === ')') {
+              var tmpGroupConditions = tmpStack.pop();
+              var tmpHasOR = false;
+              for (var g = 0; g < tmpGroupConditions.length; g++) {
+                if (tmpGroupConditions[g].connector === 'OR') {
+                  tmpHasOR = true;
+                  break;
+                }
+              }
+              var tmpGroupText = '';
+              for (var g2 = 0; g2 < tmpGroupConditions.length; g2++) {
+                if (g2 > 0) {
+                  tmpGroupText += tmpHasOR ? ' OR ' : ' AND ';
+                }
+                tmpGroupText += tmpGroupConditions[g2].text;
+              }
+              tmpStack[tmpStack.length - 1].push({
+                text: '(' + tmpGroupText + ')',
+                connector: tmpEntry.Connector || 'AND'
+              });
+            } else {
+              tmpStack[tmpStack.length - 1].push({
+                text: translateOperator(tmpEntry),
+                connector: tmpEntry.Connector || 'AND'
+              });
+            }
+          }
+
+          // Collapse root level
+          var tmpRootConditions = tmpStack[0];
+          if (tmpRootConditions.length === 0) {
+            return '';
+          }
+          var tmpFilterText = '';
+          for (var r = 0; r < tmpRootConditions.length; r++) {
+            if (r > 0) {
+              tmpFilterText += ' ' + tmpRootConditions[r].connector + ' ';
+            }
+            tmpFilterText += tmpRootConditions[r].text;
+          }
+          return tmpFilterText;
+        };
+
+        /**
+        * Generate the field list for a Solr query from dataElements.
+        *
+        * @method generateFieldList
+        * @param {Object} pParameters Query Parameters
+        * @return {String} Comma-separated field list or '*' for all fields
+        */
+        var generateFieldList = function generateFieldList(pParameters) {
+          var tmpDataElements = pParameters.dataElements;
+          if (!Array.isArray(tmpDataElements) || tmpDataElements.length < 1) {
+            return '*';
+          }
+          var tmpFields = [];
+          for (var i = 0; i < tmpDataElements.length; i++) {
+            var tmpField = tmpDataElements[i];
+            if (Array.isArray(tmpField)) {
+              tmpField = tmpField[0];
+            }
+            tmpField = stripTablePrefix(tmpField);
+            if (tmpField !== '*' && tmpFields.indexOf(tmpField) < 0) {
+              tmpFields.push(tmpField);
+            }
+          }
+          if (tmpFields.length === 0) {
+            return '*';
+          }
+          return tmpFields.join(',');
+        };
+
+        /**
+        * Generate Solr sort string from sort array.
+        *
+        * @method generateSort
+        * @param {Object} pParameters Query Parameters
+        * @return {String} Sort string (e.g. "Name asc, Age desc") or empty string
+        */
+        var generateSort = function generateSort(pParameters) {
+          var tmpSort = pParameters.sort;
+          if (!Array.isArray(tmpSort) || tmpSort.length < 1) {
+            return '';
+          }
+          var tmpParts = [];
+          for (var i = 0; i < tmpSort.length; i++) {
+            var tmpColumn = stripTablePrefix(tmpSort[i].Column);
+            var tmpDir = tmpSort[i].Direction === 'Descending' ? 'desc' : 'asc';
+            tmpParts.push(tmpColumn + ' ' + tmpDir);
+          }
+          return tmpParts.join(', ');
+        };
+
+        /**
+        * Generate the document for an add operation.
+        * Walks the record through the schema to handle special column types.
+        *
+        * @method generateCreateDocument
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Document object or false if no record
+        */
+        var generateCreateDocument = function generateCreateDocument(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpDocument = {};
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
+            if (!pParameters.query.disableDeleteTracking) {
+              if (tmpSchemaEntry.Type === 'DeleteDate' || tmpSchemaEntry.Type === 'DeleteIDUser') {
+                continue;
+              }
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+                if (pParameters.query.disableAutoIdentity) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = '$$AUTOINCREMENT';
+                }
+                break;
+              case 'AutoGUID':
+                if (pParameters.query.disableAutoIdentity) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else if (tmpRecords[0][tmpColumn] && tmpRecords[0][tmpColumn].length >= 5 && tmpRecords[0][tmpColumn] !== '0x0000000000000000') {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = pParameters.query.UUID;
+                }
+                break;
+              case 'UpdateDate':
+              case 'CreateDate':
+                if (pParameters.query.disableAutoDateStamp) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = '$$NOW';
+                }
+                break;
+              case 'DeleteIDUser':
+              case 'UpdateIDUser':
+              case 'CreateIDUser':
+                if (pParameters.query.disableAutoUserStamp) {
+                  tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                } else {
+                  tmpDocument[tmpColumn] = pParameters.query.IDUser;
+                }
+                break;
+              case 'Deleted':
+                tmpDocument[tmpColumn] = 0;
+                break;
+              default:
+                tmpDocument[tmpColumn] = tmpRecords[0][tmpColumn];
+                break;
+            }
+          }
+          if (Object.keys(tmpDocument).length === 0) {
+            return false;
+          }
+          return tmpDocument;
+        };
+
+        /**
+        * Generate the atomic update document for an update operation.
+        * Uses Solr's atomic update syntax: { "field": { "set": value } }
+        *
+        * @method generateUpdateDocument
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Atomic update document or false
+        */
+        var generateUpdateDocument = function generateUpdateDocument(pParameters) {
+          var tmpRecords = pParameters.query.records;
+          if (!Array.isArray(tmpRecords) || tmpRecords.length < 1) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpUpdateDoc = {};
+          for (var tmpColumn in tmpRecords[0]) {
+            var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
+            if (pParameters.query.disableAutoDateStamp && tmpSchemaEntry.Type === 'UpdateDate') {
+              continue;
+            }
+            if (pParameters.query.disableAutoUserStamp && tmpSchemaEntry.Type === 'UpdateIDUser') {
+              continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'AutoIdentity':
+              case 'CreateDate':
+              case 'CreateIDUser':
+              case 'DeleteDate':
+              case 'DeleteIDUser':
+                continue;
+            }
+            switch (tmpSchemaEntry.Type) {
+              case 'UpdateDate':
+                tmpUpdateDoc[tmpColumn] = {
+                  'set': '$$NOW'
+                };
+                break;
+              case 'UpdateIDUser':
+                tmpUpdateDoc[tmpColumn] = {
+                  'set': pParameters.query.IDUser
+                };
+                break;
+              default:
+                tmpUpdateDoc[tmpColumn] = {
+                  'set': tmpRecords[0][tmpColumn]
+                };
+                break;
+            }
+          }
+          if (Object.keys(tmpUpdateDoc).length === 0) {
+            return false;
+          }
+          return tmpUpdateDoc;
+        };
+
+        /**
+        * Generate the soft-delete atomic update fields.
+        *
+        * @method generateDeleteSetters
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Delete setters or false
+        */
+        var generateDeleteSetters = function generateDeleteSetters(pParameters) {
+          if (pParameters.query.disableDeleteTracking) {
+            return false;
+          }
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpHasDeletedField = false;
+          var tmpSetters = {};
+          for (var i = 0; i < tmpSchema.length; i++) {
+            var tmpSchemaEntry = tmpSchema[i];
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpSetters[tmpSchemaEntry.Column] = {
+                  'set': 1
+                };
+                tmpHasDeletedField = true;
+                break;
+              case 'DeleteDate':
+                tmpSetters[tmpSchemaEntry.Column] = {
+                  'set': '$$NOW'
+                };
+                break;
+              case 'UpdateDate':
+                tmpSetters[tmpSchemaEntry.Column] = {
+                  'set': '$$NOW'
+                };
+                break;
+              case 'DeleteIDUser':
+                tmpSetters[tmpSchemaEntry.Column] = {
+                  'set': pParameters.query.IDUser
+                };
+                break;
+              default:
+                continue;
+            }
+          }
+          if (!tmpHasDeletedField || Object.keys(tmpSetters).length === 0) {
+            return false;
+          }
+          return tmpSetters;
+        };
+
+        /**
+        * Generate the undelete atomic update fields.
+        *
+        * @method generateUndeleteSetters
+        * @param {Object} pParameters Query Parameters
+        * @return {Object|false} Undelete setters or false
+        */
+        var generateUndeleteSetters = function generateUndeleteSetters(pParameters) {
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          var tmpHasDeletedField = false;
+          var tmpSetters = {};
+          for (var i = 0; i < tmpSchema.length; i++) {
+            var tmpSchemaEntry = tmpSchema[i];
+            switch (tmpSchemaEntry.Type) {
+              case 'Deleted':
+                tmpSetters[tmpSchemaEntry.Column] = {
+                  'set': 0
+                };
+                tmpHasDeletedField = true;
+                break;
+              case 'UpdateDate':
+                tmpSetters[tmpSchemaEntry.Column] = {
+                  'set': '$$NOW'
+                };
+                break;
+              case 'UpdateIDUser':
+                tmpSetters[tmpSchemaEntry.Column] = {
+                  'set': pParameters.query.IDUser
+                };
+                break;
+              default:
+                continue;
+            }
+          }
+          if (!tmpHasDeletedField || Object.keys(tmpSetters).length === 0) {
+            return false;
+          }
+          return tmpSetters;
+        };
+
+        /**
+        * Create a new record
+        *
+        * @method Create
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor or false
+        */
+        var Create = function Create(pParameters) {
+          var tmpDocument = generateCreateDocument(pParameters);
+          if (!tmpDocument) {
+            return false;
+          }
+
+          // Determine if we need a counter scope for auto-increment
+          var tmpCounterScope = false;
+          var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+          for (var i = 0; i < tmpSchema.length; i++) {
+            if (tmpSchema[i].Type === 'AutoIdentity' && !pParameters.query.disableAutoIdentity) {
+              tmpCounterScope = pParameters.scope + '.' + tmpSchema[i].Column;
+              break;
+            }
+          }
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'add',
+            document: tmpDocument
+          };
+          if (tmpCounterScope) {
+            tmpResult.counterScope = tmpCounterScope;
+          }
+          pParameters.query.parameters.solrOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Read one or many records
+        *
+        * @method Read
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Read = function Read(pParameters) {
+          if (pParameters.join && Array.isArray(pParameters.join) && pParameters.join.length > 0) {
+            _Fable.log.warn('Solr dialect does not support JOINs; join parameter will be ignored.');
+          }
+          var tmpFilterQuery = generateFilter(pParameters);
+          var tmpFieldList = generateFieldList(pParameters);
+          var tmpSort = generateSort(pParameters);
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'search',
+            query: '*:*'
+          };
+          if (tmpFilterQuery) {
+            tmpResult.filterQuery = tmpFilterQuery;
+          }
+          if (tmpFieldList !== '*') {
+            tmpResult.fields = tmpFieldList;
+          }
+          if (tmpSort) {
+            tmpResult.sort = tmpSort;
+          }
+          if (pParameters.cap) {
+            tmpResult.rows = pParameters.cap;
+          }
+          if (pParameters.begin !== false && pParameters.begin > 0) {
+            tmpResult.start = pParameters.begin;
+          }
+          if (pParameters.distinct) {
+            tmpResult.distinct = true;
+          }
+          pParameters.query.parameters.solrOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Update one or many records
+        *
+        * @method Update
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor or false
+        */
+        var Update = function Update(pParameters) {
+          var tmpFilterQuery = generateFilter(pParameters);
+          var tmpUpdateDoc = generateUpdateDocument(pParameters);
+          if (!tmpUpdateDoc) {
+            return false;
+          }
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'atomicUpdate',
+            filterQuery: tmpFilterQuery || '*:*',
+            update: tmpUpdateDoc
+          };
+          pParameters.query.parameters.solrOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+
+        /**
+        * Delete one or many records (soft or hard depending on schema)
+        *
+        * @method Delete
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Delete = function Delete(pParameters) {
+          var tmpDeleteSetters = generateDeleteSetters(pParameters);
+          var tmpFilterQuery = generateFilter(pParameters);
+          if (tmpDeleteSetters) {
+            // Soft delete via atomic update
+            var tmpResult = {
+              collection: pParameters.scope,
+              operation: 'atomicUpdate',
+              filterQuery: tmpFilterQuery || '*:*',
+              update: tmpDeleteSetters
+            };
+            pParameters.query.parameters.solrOperation = tmpResult;
+            return JSON.stringify(tmpResult);
+          } else {
+            // Hard delete
+            var tmpHardResult = {
+              collection: pParameters.scope,
+              operation: 'deleteByQuery',
+              filterQuery: tmpFilterQuery || '*:*'
+            };
+            pParameters.query.parameters.solrOperation = tmpHardResult;
+            return JSON.stringify(tmpHardResult);
+          }
+        };
+
+        /**
+        * Undelete (restore) a soft-deleted record
+        *
+        * @method Undelete
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Undelete = function Undelete(pParameters) {
+          var tmpUndeleteSetters = generateUndeleteSetters(pParameters);
+
+          // Temporarily disable delete tracking for filter generation
+          var tmpDeleteTrackingState = pParameters.query.disableDeleteTracking;
+          pParameters.query.disableDeleteTracking = true;
+          var tmpFilterQuery = generateFilter(pParameters);
+          pParameters.query.disableDeleteTracking = tmpDeleteTrackingState;
+          if (tmpUndeleteSetters) {
+            var tmpResult = {
+              collection: pParameters.scope,
+              operation: 'atomicUpdate',
+              filterQuery: tmpFilterQuery || '*:*',
+              update: tmpUndeleteSetters
+            };
+            pParameters.query.parameters.solrOperation = tmpResult;
+            return JSON.stringify(tmpResult);
+          } else {
+            var tmpNoopResult = {
+              collection: pParameters.scope,
+              operation: 'noop'
+            };
+            pParameters.query.parameters.solrOperation = tmpNoopResult;
+            return JSON.stringify(tmpNoopResult);
+          }
+        };
+
+        /**
+        * Count records
+        *
+        * @method Count
+        * @param {Object} pParameters Query parameters
+        * @return {String} JSON operation descriptor
+        */
+        var Count = function Count(pParameters) {
+          var tmpFilterQuery = generateFilter(pParameters);
+          var tmpResult = {
+            collection: pParameters.scope,
+            operation: 'search',
+            query: '*:*',
+            rows: 0,
+            isCount: true
+          };
+          if (tmpFilterQuery) {
+            tmpResult.filterQuery = tmpFilterQuery;
+          }
+          if (pParameters.distinct) {
+            tmpResult.distinct = true;
+            var tmpDataElements = pParameters.dataElements;
+            if (Array.isArray(tmpDataElements) && tmpDataElements.length > 0) {
+              var tmpFields = [];
+              for (var i = 0; i < tmpDataElements.length; i++) {
+                var tmpField = Array.isArray(tmpDataElements[i]) ? tmpDataElements[i][0] : tmpDataElements[i];
+                tmpField = stripTablePrefix(tmpField);
+                if (tmpField !== '*') {
+                  tmpFields.push(tmpField);
+                }
+              }
+              if (tmpFields.length > 0) {
+                tmpResult.distinctFields = tmpFields;
+              }
+            } else {
+              var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+              for (var j = 0; j < tmpSchema.length; j++) {
+                if (tmpSchema[j].Type === 'AutoIdentity') {
+                  tmpResult.distinctFields = [tmpSchema[j].Column];
+                  break;
+                }
+              }
+            }
+          }
+          pParameters.query.parameters.solrOperation = tmpResult;
+          return JSON.stringify(tmpResult);
+        };
+        var tmpDialect = {
+          Create: Create,
+          Read: Read,
+          Update: Update,
+          Delete: Delete,
+          Undelete: Undelete,
+          Count: Count
+        };
+
+        /**
+        * Dialect Name
+        *
+        * @property name
+        * @type string
+        */
+        Object.defineProperty(tmpDialect, 'name', {
+          get: function get() {
+            return 'Solr';
+          },
+          enumerable: true
+        });
+        return tmpDialect;
+      };
+      module.exports = FoxHoundDialectSolr;
     }, {}]
   }, {}, [1])(1);
 });
+//# sourceMappingURL=foxhound.js.map
