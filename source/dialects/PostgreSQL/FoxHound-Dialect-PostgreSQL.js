@@ -128,6 +128,27 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 		return '"' + cleanseQuoting(pFieldNames[0]) + '"';
 	}
 
+	var resolveJsonColumnPath = function(pColumnName, pSchema)
+	{
+		if (!Array.isArray(pSchema) || pSchema.length < 1) return null;
+		var tmpParts = pColumnName.replace(/`/g, '').replace(/"/g, '').split('.');
+		for (var tmpStartIdx = 0; tmpStartIdx < Math.min(tmpParts.length - 1, 2); tmpStartIdx++)
+		{
+			var tmpBaseColumn = tmpParts[tmpStartIdx];
+			for (var s = 0; s < pSchema.length; s++)
+			{
+				if (pSchema[s].Column === tmpBaseColumn &&
+					(pSchema[s].Type === 'JSON' || pSchema[s].Type === 'JSONProxy'))
+				{
+					var tmpActualColumn = (pSchema[s].Type === 'JSONProxy') ? pSchema[s].StorageColumn : tmpBaseColumn;
+					var tmpJsonPath = '$.' + tmpParts.slice(tmpStartIdx + 1).join('.');
+					return { column: tmpActualColumn, path: tmpJsonPath };
+				}
+			}
+		}
+		return null;
+	};
+
 	/**
 	* Generate a query from the array of where clauses
 	*
@@ -234,7 +255,24 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			else
 			{
 				tmpColumnParameter = tmpFilter[i].Parameter+'_w'+i;
-				tmpWhere += ' '+generateSafeFieldName(tmpFilter[i].Column)+' '+tmpFilter[i].Operator+' :'+tmpColumnParameter;
+				var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+				var tmpJsonRef = resolveJsonColumnPath(tmpFilter[i].Column, tmpSchema);
+				if (tmpJsonRef)
+				{
+					var tmpPathParts = tmpJsonRef.path.replace('$.', '').split('.');
+					if (tmpPathParts.length === 1)
+					{
+						tmpWhere += ' "'+tmpJsonRef.column+'"'+"->>'"+tmpPathParts[0]+"' "+tmpFilter[i].Operator+' :'+tmpColumnParameter;
+					}
+					else
+					{
+						tmpWhere += ' "'+tmpJsonRef.column+'"'+"#>>'{"+tmpPathParts.join(',')+"}' "+tmpFilter[i].Operator+' :'+tmpColumnParameter;
+					}
+				}
+				else
+				{
+					tmpWhere += ' '+generateSafeFieldName(tmpFilter[i].Column)+' '+tmpFilter[i].Operator+' :'+tmpColumnParameter;
+				}
 				pParameters.query.parameters[tmpColumnParameter] = tmpFilter[i].Value;
 			}
 		}
@@ -393,6 +431,20 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 					var tmpColumnParameter = tmpColumn+'_'+tmpCurrentColumn;
 					tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = :'+tmpColumnParameter;
 					pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
+					break;
+				case 'JSON':
+					var tmpJSONUpdateParam = tmpColumn+'_'+tmpCurrentColumn;
+					tmpUpdate += ' '+tmpColumn+' = :'+tmpJSONUpdateParam;
+					pParameters.query.parameters[tmpJSONUpdateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
+						? tmpRecords[0][tmpColumn]
+						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
+					break;
+				case 'JSONProxy':
+					var tmpProxyUpdateParam = tmpSchemaEntry.StorageColumn+'_'+tmpCurrentColumn;
+					tmpUpdate += ' '+tmpSchemaEntry.StorageColumn+' = :'+tmpProxyUpdateParam;
+					pParameters.query.parameters[tmpProxyUpdateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
+						? tmpRecords[0][tmpColumn]
+						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
 					break;
 				default:
 					var tmpColumnDefaultParameter = tmpColumn+'_'+tmpCurrentColumn;
@@ -646,6 +698,20 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 						pParameters.query.parameters[tmpColumnParameter] = pParameters.query.IDUser;
 					}
 					break;
+				case 'JSON':
+					var tmpJSONCreateParam = tmpColumn+'_'+tmpCurrentColumn;
+					tmpCreateSet += ' :'+tmpJSONCreateParam;
+					pParameters.query.parameters[tmpJSONCreateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
+						? tmpRecords[0][tmpColumn]
+						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
+					break;
+				case 'JSONProxy':
+					var tmpProxyCreateParam = tmpColumn+'_'+tmpCurrentColumn;
+					tmpCreateSet += ' :'+tmpProxyCreateParam;
+					pParameters.query.parameters[tmpProxyCreateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
+						? tmpRecords[0][tmpColumn]
+						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
+					break;
 				default:
 					buildDefaultDefinition();
 					break;
@@ -697,6 +763,20 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			}
 			switch (tmpSchemaEntry.Type)
 			{
+				case 'JSON':
+					if (tmpCreateSet != '')
+					{
+						tmpCreateSet += ',';
+					}
+					tmpCreateSet += ' '+tmpColumn;
+					break;
+				case 'JSONProxy':
+					if (tmpCreateSet != '')
+					{
+						tmpCreateSet += ',';
+					}
+					tmpCreateSet += ' '+tmpSchemaEntry.StorageColumn;
+					break;
 				default:
 					if (tmpCreateSet != '')
 					{

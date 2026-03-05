@@ -13,6 +13,8 @@ tmpQuery.query.schema = [
     {Column: 'Title', Type: 'String'},
     {Column: 'Author', Type: 'String'},
     {Column: 'PublishedYear', Type: 'Integer'},
+    {Column: 'Metadata', Type: 'JSON'},
+    {Column: 'Extras', Type: 'JSONProxy', StorageColumn: 'ExtrasJSON'},
     {Column: 'CreateDate', Type: 'CreateDate'},
     {Column: 'CreatingIDUser', Type: 'CreateIDUser'},
     {Column: 'UpdateDate', Type: 'UpdateDate'},
@@ -41,6 +43,57 @@ tmpQuery.query.schema = [
 | `Decimal` | Decimal data | parameterized | included | parameterized | — | — |
 | `Boolean` | Boolean data | parameterized | included | parameterized | — | — |
 | `DateTime` | Date/time data | parameterized | included | parameterized | — | — |
+| `JSON` | Structured JSON data | `JSON.stringify` | included | `JSON.stringify` | — | — |
+| `JSONProxy` | JSON with different SQL column name | `JSON.stringify` to `StorageColumn` | included | `JSON.stringify` to `StorageColumn` | — | — |
+
+## JSON and JSON Proxy Types
+
+FoxHound supports two schema types for structured JSON data stored as `TEXT` in SQL databases.
+
+### JSON
+
+The `JSON` type marks a column whose value should be serialized with `JSON.stringify` on write and deserialized with `JSON.parse` on read. The SQL column name matches the object property name.
+
+```javascript
+{ Column: 'Metadata', Type: 'JSON' }
+```
+
+On CREATE and UPDATE, FoxHound automatically calls `JSON.stringify` on the value. If the value is already a string, it is passed through as-is.
+
+### JSON Proxy
+
+The `JSONProxy` type stores JSON in a SQL column with a different name than the JavaScript property. The `StorageColumn` property specifies the actual SQL column name.
+
+```javascript
+{ Column: 'Preferences', Type: 'JSONProxy', StorageColumn: 'PreferencesJSON' }
+```
+
+On CREATE and UPDATE, FoxHound:
+- Uses `StorageColumn` (`PreferencesJSON`) as the column name in the SQL statement
+- Calls `JSON.stringify` on the value from the `Column` property (`Preferences`)
+
+On READ, the Meadow provider layer handles deserialization: the raw `PreferencesJSON` text column is parsed and mapped to the `Preferences` property, and the storage column is hidden from the result object.
+
+### JSON Path Filtering
+
+You can filter on nested JSON properties using dot notation in `addFilter`:
+
+```javascript
+tmpQuery
+    .addFilter('Metadata.habitat', 'forest')
+    .addFilter('Metadata.weight', 100, '>');
+```
+
+FoxHound generates dialect-specific JSON path expressions:
+
+| Dialect | Generated SQL |
+|---------|---------------|
+| MySQL | `JSON_EXTRACT(Metadata, '$.habitat') = :Metadata_habitat_w0` |
+| PostgreSQL | `Metadata->>'habitat' = :Metadata_habitat_w0` |
+| SQLite | `json_extract(Metadata, '$.habitat') = :Metadata_habitat_w0` |
+| MSSQL | `JSON_VALUE(Metadata, '$.habitat') = :Metadata_habitat_w0` |
+
+Nested paths are supported (e.g., `Metadata.dimensions.width`). JSON Proxy columns are automatically resolved to their storage column in the SQL expression.
 
 ## How Schema Affects Each Operation
 

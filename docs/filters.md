@@ -166,6 +166,34 @@ The operator codes are:
 | `LE` | `<=` |
 | `LK` | `LIKE` |
 
+## JSON Path Filtering
+
+When a schema is attached and contains `JSON` or `JSONProxy` columns, you can filter on nested JSON properties using dot notation:
+
+```javascript
+// Filter where Metadata.habitat equals 'forest'
+tmpQuery.addFilter('Metadata.habitat', 'forest');
+
+// Filter where Metadata.weight is greater than 100
+tmpQuery.addFilter('Metadata.weight', 100, '>');
+
+// Nested paths work too
+tmpQuery.addFilter('Metadata.dimensions.height', 50, '>=');
+```
+
+FoxHound detects the dot notation, resolves the base column against the schema, and generates the appropriate JSON path expression for the active dialect:
+
+| Dialect | Single-Level | Nested |
+|---------|-------------|--------|
+| MySQL | `JSON_EXTRACT(col, '$.key')` | `JSON_EXTRACT(col, '$.key1.key2')` |
+| PostgreSQL | `col->>'key'` | `col#>>'{key1,key2}'` |
+| SQLite | `json_extract(col, '$.key')` | `json_extract(col, '$.key1.key2')` |
+| MSSQL | `JSON_VALUE(col, '$.key')` | `JSON_VALUE(col, '$.key1.key2')` |
+
+For `JSONProxy` columns, the storage column name is used in the SQL expression automatically. For example, if `Preferences` is a `JSONProxy` with `StorageColumn: 'PreferencesJSON'`, filtering on `Preferences.theme` produces `json_extract(PreferencesJSON, '$.theme')` in SQLite.
+
+All standard comparison operators (`=`, `!=`, `>`, `>=`, `<`, `<=`, `LIKE`) work with JSON path filters.
+
 ## Soft-Delete Auto-Filter
 
 When a schema with a `Deleted` column type is present and delete tracking is not disabled, FoxHound automatically appends a `WHERE Deleted = 0` filter to all Read and Count queries.  If you explicitly add a filter on the `Deleted` column, the automatic filter is suppressed.

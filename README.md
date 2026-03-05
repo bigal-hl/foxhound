@@ -89,6 +89,8 @@ When a schema is attached, FoxHound automatically manages special columns:
 | `UpdateDate` / `UpdateIDUser` | Auto-populated on insert and update |
 | `DeleteDate` / `DeleteIDUser` | Auto-populated on soft delete |
 | `Deleted` | Soft-delete flag — auto-filtered in reads |
+| `JSON` | Structured JSON data — serialized to `TEXT` on write, parsed on read |
+| `JSONProxy` | JSON stored in a different SQL column — uses `StorageColumn` for SQL, virtual name for objects |
 
 ## Filter Operators
 

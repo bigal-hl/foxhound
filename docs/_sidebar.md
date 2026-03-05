@@ -50,5 +50,6 @@
 - Advanced
 
   - [Schema Integration](schema.md)
+  - [JSON Columns](json-columns.md)
   - [Query Overrides](query-overrides.md)
   - [Configuration Reference](configuration.md)
