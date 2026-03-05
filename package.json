@@ -1,6 +1,6 @@
 {
     "name": "foxhound",
-    "version": "2.0.23",
+    "version": "2.0.24",
     "description": "A Database Query generation library.",
     "main": "source/FoxHound.js",
     "scripts": {
@@ -48,7 +48,7 @@
     },
     "homepage": "https://github.com/stevenvelozo/foxhound",
     "devDependencies": {
-        "quackage": "^1.0.60"
+        "quackage": "^1.0.62"
     },
     "dependencies": {
         "fable": "^3.1.63",
