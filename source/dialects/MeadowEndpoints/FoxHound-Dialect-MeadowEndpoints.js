@@ -13,8 +13,8 @@ var FoxHoundDialectMeadowEndpoints = function()
 	 * Generate a table name from the scope
 	 *
 	 * @method: generateTableName
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} Returns the table name clause
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} Returns the table name clause
 	 */
 	var generateTableName = function(pParameters)
 	{
@@ -25,8 +25,8 @@ var FoxHoundDialectMeadowEndpoints = function()
 	 * Generate the Identity column from the schema or scope
 	 * 
 	 * @method: generateIdentityColumnName
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} Returns the table name clause
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} Returns the table name clause
 	 */
 	var generateIdentityColumnName = function(pParameters)
 	{
@@ -40,8 +40,8 @@ var FoxHoundDialectMeadowEndpoints = function()
 	 * Each entry in the dataElements is a simple string
 	 *
 	 * @method: generateFieldList
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} Returns the field list clause
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} Returns the field list clause
 	 */
 	var generateFieldList = function(pParameters)
 	{
@@ -77,8 +77,8 @@ var FoxHoundDialectMeadowEndpoints = function()
 		}
 	 *
 	 * @method: generateWhere
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
 	 */
 	var generateWhere = function(pParameters)
 	{
@@ -99,7 +99,7 @@ var FoxHoundDialectMeadowEndpoints = function()
 
         let tmpfTranslateOperator = (pOperator) =>
         {
-            tmpNewOperator = 'EQ';
+            let tmpNewOperator = 'EQ';
             switch(pOperator.toUpperCase())
             {
                 case '!=':
@@ -199,8 +199,8 @@ var FoxHoundDialectMeadowEndpoints = function()
      * These are usually passed in for Update and Create when extra tracking is disabled.
 	 *
 	 * @method: generateFlags
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} Flags to be sent, if any.
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} Flags to be sent, if any.
 	 */
     function generateFlags(pParameters)
     {
@@ -235,8 +235,8 @@ var FoxHoundDialectMeadowEndpoints = function()
 	 * Get the ID for the record, to be used in URIs
 	 *
 	 * @method: getIDRecord
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} ID of the record in string form for the URI
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} ID of the record in string form for the URI
 	 */
 	var getIDRecord = function(pParameters)
 	{
@@ -276,13 +276,14 @@ var FoxHoundDialectMeadowEndpoints = function()
 	 * {Column:'Color',Direction:'Descending'}
 	 *
 	 * @method: generateOrderBy
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} Returns the field list clause
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} Returns the field list clause
 	 */
 	var generateOrderBy = function(pParameters)
 	{
 		var tmpOrderBy = pParameters.sort;
-		var tmpOrderClause = false;
+		/** @type {string} */
+		var tmpOrderClause = null;
 
         if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1)
 		{
@@ -315,8 +316,8 @@ var FoxHoundDialectMeadowEndpoints = function()
 	 * Generate the limit clause
 	 *
 	 * @method: generateLimit
-	 * @param: {Object} pParameters SQL Query Parameters
-	 * @return: {String} Returns the table name clause
+	 * @param {Object} pParameters SQL Query Parameters
+	 * @return {String} Returns the table name clause
 	 */
 	var generateLimit = function(pParameters)
 	{

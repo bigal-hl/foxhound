@@ -71,6 +71,7 @@
 
           // The parameters config object for the current query.  This is the only
           // piece of internal state that is important to operation.
+          /** @type {Record<string, any>} */
           var _Parameters = false;
           var _Dialects = require('./Foxhound-Dialects.js');
 
@@ -81,6 +82,7 @@
           var _LogLevel = 0;
 
           // The dialect to use when generating queries
+          /** @type {Record<string, any>} */
           var _Dialect = false;
 
           /**
@@ -193,6 +195,7 @@
           * @return {Object} Returns the current Query for chaining.
           */
           var setScope = function setScope(pScope) {
+            /** @type {string} */
             var tmpScope = false;
             if (typeof pScope === 'string') {
               tmpScope = pScope;
@@ -240,10 +243,11 @@
           * The passed values can be either a string, or an array.
           *
           * @method setDataElements
-          * @param {String} pDataElements The Data Element(s) for the Query.
+          * @param {string | Array<string>} pDataElements The Data Element(s) for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
           var setDataElements = function setDataElements(pDataElements) {
+            /** @type {Array<string>} */
             var tmpDataElements = false;
             if (Array.isArray(pDataElements)) {
               // TODO: Check each entry of the array are all strings
@@ -271,10 +275,11 @@
           * {Column:'Birthday', Direction:'Ascending'}
           *
           * @method setSort
-          * @param {String} pSort The sort criteria(s) for the Query.
+          * @param {string | Array<Record<string, any>>} pSort The sort criteria(s) for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
           var setSort = function setSort(pSort) {
+            /** @type {Array<Record<string, any>>} */
             var tmpSort = false;
             if (Array.isArray(pSort)) {
               // TODO: Check each entry of the array are all conformant sort objects
@@ -332,10 +337,11 @@
           * {Column:'Birthday', Direction:'Ascending'}
           *
           * @method setSort
-          * @param {String} pSort The sort criteria to add to the Query.
+          * @param {string | Record<string, any>} pSort The sort criteria to add to the Query.
           * @return {Object} Returns the current Query for chaining.
           */
           var addSort = function addSort(pSort) {
+            /** @type {Record<string, any>} */
             var tmpSort = false;
             if (typeof pSort === 'string') {
               // Default to ascending
@@ -370,10 +376,11 @@
           * The passed value must be an Integer >= 0.
           *
           * @method setBegin
-          * @param {Number} pBeginAmount The index to begin returning Query data.
+          * @param {number | boolean} pBeginAmount The index to begin returning Query data.
           * @return {Object} Returns the current Query for chaining.
           */
           var setBegin = function setBegin(pBeginAmount) {
+            /** @type {number} */
             var tmpBegin = false;
 
             // Test if it is an integer > -1
@@ -406,10 +413,11 @@
           * The passed value must be an Integer >= 0.
           *
           * @method setCap
-          * @param {Number} pCapAmount The maximum records for the Query set.
+          * @param {number | boolean} pCapAmount The maximum records for the Query set.
           * @return {Object} Returns the current Query for chaining.
           */
           var setCap = function setCap(pCapAmount) {
+            /** @type {number} */
             var tmpCapAmount = false;
             if (typeof pCapAmount === 'number' && pCapAmount % 1 === 0 && pCapAmount >= 0) {
               tmpCapAmount = pCapAmount;
@@ -440,10 +448,11 @@
           * {Column:'Name', Operator:'EQ', Value:'John', Connector:'And', Parameter:'Name'}
           *
           * @method setFilter
-          * @param {String} pFilter The filter(s) for the Query.
+          * @param {Array<Record<string, any>>} pFilter The filter(s) for the Query.
           * @return {Object} Returns the current Query for chaining.
           */
           var setFilter = function setFilter(pFilter) {
+            /** @type {Record<string, any>} */
             var tmpFilter = false;
             if (Array.isArray(pFilter)) {
               // TODO: Check each entry of the array are all conformant Filter objects
@@ -468,6 +477,11 @@
           * {Column:'Name', Operator:'EQ', Value:'John', Connector:'And', Parameter:'Name'}
           *
           * @method addFilter
+          * @param {string} pColumn
+          * @param {any} pValue
+          * @param {string} [pOperator]
+          * @param {string} [pConnector]
+          * @param {string} [pParameter]
           * @return {Object} Returns the current Query for chaining.
           */
           var addFilter = function addFilter(pColumn, pValue, pOperator, pConnector, pParameter) {
@@ -859,6 +873,7 @@
            *
            * @property dialect
            * @type Object
+           * @return {Record<string, any>}
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'dialect', {
             get: function get() {
@@ -884,7 +899,7 @@
            * Log Level
            *
            * @property logLevel
-           * @type Integer
+           * @type {number}
            */
           Object.defineProperty(tmpNewFoxHoundObject, 'logLevel', {
             get: function get() {
@@ -2646,8 +2661,8 @@
          * Generate a table name from the scope
          *
          * @method: generateTableName
-         * @param: {Object} pParameters SQL Query Parameters
-         * @return: {String} Returns the table name clause
+         * @param {Object} pParameters SQL Query Parameters
+         * @return {String} Returns the table name clause
          */
         var generateTableName = function generateTableName(pParameters) {
           return pParameters.scope;
@@ -2657,8 +2672,8 @@
          * Generate the Identity column from the schema or scope
          * 
          * @method: generateIdentityColumnName
-         * @param: {Object} pParameters SQL Query Parameters
-         * @return: {String} Returns the table name clause
+         * @param {Object} pParameters SQL Query Parameters
+         * @return {String} Returns the table name clause
          */
         var generateIdentityColumnName = function generateIdentityColumnName(pParameters) {
           // TODO: See about using the Schema or the Schemata for this
@@ -2671,8 +2686,8 @@
          * Each entry in the dataElements is a simple string
          *
          * @method: generateFieldList
-         * @param: {Object} pParameters SQL Query Parameters
-         * @return: {String} Returns the field list clause
+         * @param {Object} pParameters SQL Query Parameters
+         * @return {String} Returns the field list clause
          */
         var generateFieldList = function generateFieldList(pParameters) {
           var tmpDataElements = pParameters.dataElements;
@@ -2702,8 +2717,8 @@
         	}
          *
          * @method: generateWhere
-         * @param: {Object} pParameters SQL Query Parameters
-         * @return: {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
+         * @param {Object} pParameters SQL Query Parameters
+         * @return {String} Returns the WHERE clause prefixed with WHERE, or an empty string if unnecessary
          */
         var generateWhere = function generateWhere(pParameters) {
           var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
@@ -2716,7 +2731,7 @@
             tmpURL += "".concat(pFilterCommand, "~").concat(pFilterParameters[0], "~").concat(pFilterParameters[1], "~").concat(pFilterParameters[2]);
           };
           let tmpfTranslateOperator = pOperator => {
-            tmpNewOperator = 'EQ';
+            let tmpNewOperator = 'EQ';
             switch (pOperator.toUpperCase()) {
               case '!=':
                 tmpNewOperator = 'NE';
@@ -2795,8 +2810,8 @@
          * These are usually passed in for Update and Create when extra tracking is disabled.
         *
         * @method: generateFlags
-        * @param: {Object} pParameters SQL Query Parameters
-        * @return: {String} Flags to be sent, if any.
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {String} Flags to be sent, if any.
         */
         function generateFlags(pParameters) {
           let tmpDisableAutoDateStamp = pParameters.query.disableAutoDateStamp;
@@ -2824,8 +2839,8 @@
         * Get the ID for the record, to be used in URIs
         *
         * @method: getIDRecord
-        * @param: {Object} pParameters SQL Query Parameters
-        * @return: {String} ID of the record in string form for the URI
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {String} ID of the record in string form for the URI
         */
         var getIDRecord = function getIDRecord(pParameters) {
           var tmpFilter = Array.isArray(pParameters.filter) ? pParameters.filter : [];
@@ -2858,12 +2873,13 @@
         * {Column:'Color',Direction:'Descending'}
         *
         * @method: generateOrderBy
-        * @param: {Object} pParameters SQL Query Parameters
-        * @return: {String} Returns the field list clause
+        * @param {Object} pParameters SQL Query Parameters
+        * @return {String} Returns the field list clause
         */
         var generateOrderBy = function generateOrderBy(pParameters) {
           var tmpOrderBy = pParameters.sort;
-          var tmpOrderClause = false;
+          /** @type {string} */
+          var tmpOrderClause = null;
           if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1) {
             return tmpOrderClause;
           }
@@ -2886,8 +2902,8 @@
          * Generate the limit clause
          *
          * @method: generateLimit
-         * @param: {Object} pParameters SQL Query Parameters
-         * @return: {String} Returns the table name clause
+         * @param {Object} pParameters SQL Query Parameters
+         * @return {String} Returns the table name clause
          */
         var generateLimit = function generateLimit(pParameters) {
           if (!pParameters.cap) {

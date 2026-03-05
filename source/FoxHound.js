@@ -25,6 +25,7 @@ var FoxHound = function()
 
 		// The parameters config object for the current query.  This is the only
 		// piece of internal state that is important to operation.
+		/** @type {Record<string, any>} */
 		var _Parameters = false;
 
 		var _Dialects = require('./Foxhound-Dialects.js');
@@ -36,6 +37,7 @@ var FoxHound = function()
 		var _LogLevel = 0;
 
 		// The dialect to use when generating queries
+		/** @type {Record<string, any>} */
 		var _Dialect = false;
 
 		/**
@@ -164,6 +166,7 @@ var FoxHound = function()
 		*/
 		var setScope = function(pScope)
 		{
+			/** @type {string} */
 			var tmpScope = false;
 
 			if (typeof(pScope) === 'string')
@@ -214,11 +217,12 @@ var FoxHound = function()
 		* The passed values can be either a string, or an array.
 		*
 		* @method setDataElements
-		* @param {String} pDataElements The Data Element(s) for the Query.
+		* @param {string | Array<string>} pDataElements The Data Element(s) for the Query.
 		* @return {Object} Returns the current Query for chaining.
 		*/
 		var setDataElements = function(pDataElements)
 		{
+			/** @type {Array<string>} */
 			var tmpDataElements = false;
 
 			if (Array.isArray(pDataElements))
@@ -251,11 +255,12 @@ var FoxHound = function()
 		* {Column:'Birthday', Direction:'Ascending'}
 		*
 		* @method setSort
-		* @param {String} pSort The sort criteria(s) for the Query.
+		* @param {string | Array<Record<string, any>>} pSort The sort criteria(s) for the Query.
 		* @return {Object} Returns the current Query for chaining.
 		*/
 		var setSort = function(pSort)
 		{
+			/** @type {Array<Record<string, any>>} */
 			var tmpSort = false;
 
 			if (Array.isArray(pSort))
@@ -325,11 +330,12 @@ var FoxHound = function()
 		* {Column:'Birthday', Direction:'Ascending'}
 		*
 		* @method setSort
-		* @param {String} pSort The sort criteria to add to the Query.
+		* @param {string | Record<string, any>} pSort The sort criteria to add to the Query.
 		* @return {Object} Returns the current Query for chaining.
 		*/
 		var addSort = function(pSort)
 		{
+			/** @type {Record<string, any>} */
 			var tmpSort = false;
 
 			if (typeof(pSort) === 'string')
@@ -368,11 +374,12 @@ var FoxHound = function()
 		* The passed value must be an Integer >= 0.
 		*
 		* @method setBegin
-		* @param {Number} pBeginAmount The index to begin returning Query data.
+		* @param {number | boolean} pBeginAmount The index to begin returning Query data.
 		* @return {Object} Returns the current Query for chaining.
 		*/
 		var setBegin = function(pBeginAmount)
 		{
+			/** @type {number} */
 			var tmpBegin = false;
 
 			// Test if it is an integer > -1
@@ -406,11 +413,12 @@ var FoxHound = function()
 		* The passed value must be an Integer >= 0.
 		*
 		* @method setCap
-		* @param {Number} pCapAmount The maximum records for the Query set.
+		* @param {number | boolean} pCapAmount The maximum records for the Query set.
 		* @return {Object} Returns the current Query for chaining.
 		*/
 		var setCap = function(pCapAmount)
 		{
+			/** @type {number} */
 			var tmpCapAmount = false;
 
 			if (typeof(pCapAmount) === 'number' && (pCapAmount % 1) === 0 && pCapAmount >= 0)
@@ -444,11 +452,12 @@ var FoxHound = function()
 		* {Column:'Name', Operator:'EQ', Value:'John', Connector:'And', Parameter:'Name'}
 		*
 		* @method setFilter
-		* @param {String} pFilter The filter(s) for the Query.
+		* @param {Array<Record<string, any>>} pFilter The filter(s) for the Query.
 		* @return {Object} Returns the current Query for chaining.
 		*/
 		var setFilter = function(pFilter)
 		{
+			/** @type {Record<string, any>} */
 			var tmpFilter = false;
 
 			if (Array.isArray(pFilter))
@@ -480,6 +489,11 @@ var FoxHound = function()
 		* {Column:'Name', Operator:'EQ', Value:'John', Connector:'And', Parameter:'Name'}
 		*
 		* @method addFilter
+		* @param {string} pColumn
+		* @param {any} pValue
+		* @param {string} [pOperator]
+		* @param {string} [pConnector]
+		* @param {string} [pParameter]
 		* @return {Object} Returns the current Query for chaining.
 		*/
 		var addFilter = function(pColumn, pValue, pOperator, pConnector, pParameter)
@@ -896,6 +910,7 @@ var FoxHound = function()
 		 *
 		 * @property dialect
 		 * @type Object
+		 * @return {Record<string, any>}
 		 */
 		Object.defineProperty(tmpNewFoxHoundObject, 'dialect',
 			{
@@ -919,7 +934,7 @@ var FoxHound = function()
 		 * Log Level
 		 *
 		 * @property logLevel
-		 * @type Integer
+		 * @type {number}
 		 */
 		Object.defineProperty(tmpNewFoxHoundObject, 'logLevel',
 			{

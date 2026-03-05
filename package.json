@@ -1,6 +1,6 @@
 {
     "name": "foxhound",
-    "version": "2.0.22",
+    "version": "2.0.23",
     "description": "A Database Query generation library.",
     "main": "source/FoxHound.js",
     "scripts": {
@@ -11,7 +11,8 @@
         "build": "npx quack build",
         "docker-dev-build": "docker build ./ -f Dockerfile_LUXURYCode -t foxhound-image:local",
         "docker-dev-run": "docker run -it -d --name foxhound-dev -p 24238:8080 -p 42889:8086 -v \"$PWD/.config:/home/coder/.config\"  -v \"$PWD:/home/coder/foxhound\" -u \"$(id -u):$(id -g)\" -e \"DOCKER_USER=$USER\" foxhound-image:local",
-        "docker-dev-shell": "docker exec -it foxhound-dev /bin/bash"
+        "docker-dev-shell": "docker exec -it foxhound-dev /bin/bash",
+        "check": "npx -p typescript tsc --noEmit"
     },
     "mocha": {
         "diff": true,
@@ -50,6 +51,7 @@
         "quackage": "^1.0.60"
     },
     "dependencies": {
-        "fable": "^3.1.63"
+        "fable": "^3.1.63",
+        "typescript": "^5.9.3"
     }
 }
