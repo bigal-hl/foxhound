@@ -434,14 +434,14 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 					break;
 				case 'JSON':
 					var tmpJSONUpdateParam = tmpColumn+'_'+tmpCurrentColumn;
-					tmpUpdate += ' '+tmpColumn+' = :'+tmpJSONUpdateParam;
+					tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = :'+tmpJSONUpdateParam;
 					pParameters.query.parameters[tmpJSONUpdateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
 						? tmpRecords[0][tmpColumn]
 						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
 					break;
 				case 'JSONProxy':
 					var tmpProxyUpdateParam = tmpSchemaEntry.StorageColumn+'_'+tmpCurrentColumn;
-					tmpUpdate += ' '+tmpSchemaEntry.StorageColumn+' = :'+tmpProxyUpdateParam;
+					tmpUpdate += ' '+generateSafeFieldName(tmpSchemaEntry.StorageColumn)+' = :'+tmpProxyUpdateParam;
 					pParameters.query.parameters[tmpProxyUpdateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
 						? tmpRecords[0][tmpColumn]
 						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
@@ -768,14 +768,14 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 					{
 						tmpCreateSet += ',';
 					}
-					tmpCreateSet += ' '+tmpColumn;
+					tmpCreateSet += ' '+generateSafeFieldName(tmpColumn);
 					break;
 				case 'JSONProxy':
 					if (tmpCreateSet != '')
 					{
 						tmpCreateSet += ',';
 					}
-					tmpCreateSet += ' '+tmpSchemaEntry.StorageColumn;
+					tmpCreateSet += ' '+generateSafeFieldName(tmpSchemaEntry.StorageColumn);
 					break;
 				default:
 					if (tmpCreateSet != '')

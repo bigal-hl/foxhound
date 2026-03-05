@@ -554,17 +554,19 @@ var FoxHoundDialectMSSQL = function(pFable)
 					break;
 				case 'JSON':
 					var tmpJSONUpdateParam = tmpColumn+'_'+tmpCurrentColumn;
-					tmpUpdate += ' '+tmpColumn+' = :'+tmpJSONUpdateParam;
+					tmpUpdate += ' ['+tmpColumn+'] = @'+tmpJSONUpdateParam;
 					pParameters.query.parameters[tmpJSONUpdateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
 						? tmpRecords[0][tmpColumn]
 						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
+					generateMSSQLParameterTypeEntry(pParameters, tmpJSONUpdateParam, {Type:'String'});
 					break;
 				case 'JSONProxy':
 					var tmpProxyUpdateParam = tmpSchemaEntry.StorageColumn+'_'+tmpCurrentColumn;
-					tmpUpdate += ' '+tmpSchemaEntry.StorageColumn+' = :'+tmpProxyUpdateParam;
+					tmpUpdate += ' ['+tmpSchemaEntry.StorageColumn+'] = @'+tmpProxyUpdateParam;
 					pParameters.query.parameters[tmpProxyUpdateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
 						? tmpRecords[0][tmpColumn]
 						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
+					generateMSSQLParameterTypeEntry(pParameters, tmpProxyUpdateParam, {Type:'String'});
 					break;
 				default:
 					var tmpColumnDefaultParameter = tmpColumn+'_'+tmpCurrentColumn;
@@ -867,17 +869,19 @@ var FoxHoundDialectMSSQL = function(pFable)
 					break;
 				case 'JSON':
 					var tmpJSONCreateParam = tmpColumn+'_'+tmpCurrentColumn;
-					tmpCreateSet += ' :'+tmpJSONCreateParam;
+					tmpCreateSet += ' @'+tmpJSONCreateParam;
 					pParameters.query.parameters[tmpJSONCreateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
 						? tmpRecords[0][tmpColumn]
 						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
+					generateMSSQLParameterTypeEntry(pParameters, tmpJSONCreateParam, {Type:'String'});
 					break;
 				case 'JSONProxy':
 					var tmpProxyCreateParam = tmpColumn+'_'+tmpCurrentColumn;
-					tmpCreateSet += ' :'+tmpProxyCreateParam;
+					tmpCreateSet += ' @'+tmpProxyCreateParam;
 					pParameters.query.parameters[tmpProxyCreateParam] = (typeof tmpRecords[0][tmpColumn] === 'string')
 						? tmpRecords[0][tmpColumn]
 						: JSON.stringify(tmpRecords[0][tmpColumn] || {});
+					generateMSSQLParameterTypeEntry(pParameters, tmpProxyCreateParam, {Type:'String'});
 					break;
 				default:
 					buildDefaultDefinition();
@@ -955,14 +959,14 @@ var FoxHoundDialectMSSQL = function(pFable)
 					{
 						tmpCreateSet += ',';
 					}
-					tmpCreateSet += ' '+tmpColumn;
+					tmpCreateSet += ' ['+tmpColumn+']';
 					break;
 				case 'JSONProxy':
 					if (tmpCreateSet != '')
 					{
 						tmpCreateSet += ',';
 					}
-					tmpCreateSet += ' '+tmpSchemaEntry.StorageColumn;
+					tmpCreateSet += ' ['+tmpSchemaEntry.StorageColumn+']';
 					break;
 				default:
 					if (tmpCreateSet != '')
