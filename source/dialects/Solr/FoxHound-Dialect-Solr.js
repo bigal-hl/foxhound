@@ -461,11 +461,6 @@ var FoxHoundDialectSolr = function(pFable)
 		{
 			var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
 
-			if (pParameters.query.disableAutoDateStamp &&
-				tmpSchemaEntry.Type === 'UpdateDate')
-			{
-				continue;
-			}
 			if (pParameters.query.disableAutoUserStamp &&
 				tmpSchemaEntry.Type === 'UpdateIDUser')
 			{
@@ -485,7 +480,14 @@ var FoxHoundDialectSolr = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'UpdateDate':
-					tmpUpdateDoc[tmpColumn] = { 'set': '$$NOW' };
+					if (pParameters.query.disableAutoDateStamp)
+					{
+						tmpUpdateDoc[tmpColumn] = { 'set': tmpRecords[0][tmpColumn] };
+					}
+					else
+					{
+						tmpUpdateDoc[tmpColumn] = { 'set': '$$NOW' };
+					}
 					break;
 				case 'UpdateIDUser':
 					tmpUpdateDoc[tmpColumn] = { 'set': pParameters.query.IDUser };

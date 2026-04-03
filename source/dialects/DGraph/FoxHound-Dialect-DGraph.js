@@ -489,11 +489,6 @@ var FoxHoundDialectDGraph = function(pFable)
 		{
 			var tmpSchemaEntry = findSchemaEntry(tmpColumn, tmpSchema);
 
-			if (pParameters.query.disableAutoDateStamp &&
-				tmpSchemaEntry.Type === 'UpdateDate')
-			{
-				continue;
-			}
 			if (pParameters.query.disableAutoUserStamp &&
 				tmpSchemaEntry.Type === 'UpdateIDUser')
 			{
@@ -513,7 +508,14 @@ var FoxHoundDialectDGraph = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'UpdateDate':
-					tmpUpdateDoc[tmpColumn] = '$$NOW';
+					if (pParameters.query.disableAutoDateStamp)
+					{
+						tmpUpdateDoc[tmpColumn] = tmpRecords[0][tmpColumn];
+					}
+					else
+					{
+						tmpUpdateDoc[tmpColumn] = '$$NOW';
+					}
 					break;
 				case 'UpdateIDUser':
 					tmpUpdateDoc[tmpColumn] = pParameters.query.IDUser;

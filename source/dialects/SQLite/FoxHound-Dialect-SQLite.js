@@ -380,12 +380,6 @@ var FoxHoundDialectSQLite = function(pFable)
 				}
 			}
 
-			if (pParameters.query.disableAutoDateStamp &&
-				tmpSchemaEntry.Type === 'UpdateDate')
-			{
-				// This is ignored if flag is set
-				continue;
-			}
 			if (pParameters.query.disableAutoUserStamp &&
 				tmpSchemaEntry.Type === 'UpdateIDUser')
 			{
@@ -410,8 +404,17 @@ var FoxHoundDialectSQLite = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'UpdateDate':
-					// This is an autoidentity, so we don't parameterize it and just pass in NULL
-					tmpUpdate += ' '+escapeColumn(tmpColumn, pParameters)+' = NOW()';
+					if (pParameters.query.disableAutoDateStamp)
+					{
+						// Manual mode: use the record's value as-is
+						var tmpColumnParameter = tmpColumn+'_'+tmpCurrentColumn;
+						tmpUpdate += ' '+escapeColumn(tmpColumn, pParameters)+' = :'+tmpColumnParameter;
+						pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+					}
+					else
+					{
+						tmpUpdate += ' '+escapeColumn(tmpColumn, pParameters)+' = NOW()';
+					}
 					break;
 				case 'UpdateIDUser':
 					// This is the user ID, which we hope is in the query.

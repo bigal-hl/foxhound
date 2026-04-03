@@ -398,11 +398,6 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 				}
 			}
 
-			if (pParameters.query.disableAutoDateStamp &&
-				tmpSchemaEntry.Type === 'UpdateDate')
-			{
-				continue;
-			}
 			if (pParameters.query.disableAutoUserStamp &&
 				tmpSchemaEntry.Type === 'UpdateIDUser')
 			{
@@ -425,7 +420,16 @@ var FoxHoundDialectPostgreSQL = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'UpdateDate':
-					tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = ' + SQL_NOW;
+					if (pParameters.query.disableAutoDateStamp)
+					{
+						var tmpColumnParameter = tmpColumn+'_'+tmpCurrentColumn;
+						tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = :'+tmpColumnParameter;
+						pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+					}
+					else
+					{
+						tmpUpdate += ' '+generateSafeFieldName(tmpColumn)+' = ' + SQL_NOW;
+					}
 					break;
 				case 'UpdateIDUser':
 					var tmpColumnParameter = tmpColumn+'_'+tmpCurrentColumn;

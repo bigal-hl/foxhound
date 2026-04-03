@@ -434,12 +434,6 @@ var FoxHoundDialectMySQL = function(pFable)
 				}
 			}
 
-			if (pParameters.query.disableAutoDateStamp &&
-				tmpSchemaEntry.Type === 'UpdateDate')
-			{
-				// This is ignored if flag is set
-				continue;
-			}
 			if (pParameters.query.disableAutoUserStamp &&
 				tmpSchemaEntry.Type === 'UpdateIDUser')
 			{
@@ -464,8 +458,17 @@ var FoxHoundDialectMySQL = function(pFable)
 			switch (tmpSchemaEntry.Type)
 			{
 				case 'UpdateDate':
-					// This is an autoidentity, so we don't parameterize it and just pass in NULL
-					tmpUpdate += ' '+tmpColumn+' = ' + SQL_NOW;
+					if (pParameters.query.disableAutoDateStamp)
+					{
+						// Manual mode: use the record's value as-is
+						var tmpColumnParameter = tmpColumn+'_'+tmpCurrentColumn;
+						tmpUpdate += ' '+tmpColumn+' = :'+tmpColumnParameter;
+						pParameters.query.parameters[tmpColumnParameter] = tmpRecords[0][tmpColumn];
+					}
+					else
+					{
+						tmpUpdate += ' '+tmpColumn+' = ' + SQL_NOW;
+					}
 					break;
 				case 'UpdateIDUser':
 					// This is the user ID, which we hope is in the query.
