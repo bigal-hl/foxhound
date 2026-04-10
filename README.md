@@ -6,15 +6,15 @@ FoxHound is a database query builder that generates dialect-specific SQL from a 
 
 ## Features
 
-- **Chainable API** — every configuration method returns the query object for fluent composition
-- **Multiple Dialects** — generate SQL for MySQL, PostgreSQL, MSSQL, SQLite, ALASQL, or plain English from the same code
-- **Parameterized Queries** — user-supplied values are always bound as named parameters, preventing SQL injection
-- **Schema-Aware** — automatic management of identity columns, timestamps, user stamps, and soft-delete tracking
-- **Full CRUD + Count** — build CREATE, READ, UPDATE, DELETE, UNDELETE, and COUNT queries
-- **Query Overrides** — underscore-style templates for custom SQL while retaining automatic parameter binding
-- **Filtering & Sorting** — rich filter expressions with multiple operators, logical grouping, and multi-column sorting
-- **Joins & Pagination** — INNER, LEFT, and custom joins plus dialect-aware LIMIT/OFFSET pagination
-- **Fable Integration** — operates as a Fable service, inheriting configuration, logging, and UUID generation
+- **Chainable API** -- every configuration method returns the query object for fluent composition
+- **Multiple Dialects** -- generate SQL for MySQL, PostgreSQL, MSSQL, SQLite, ALASQL, or plain English from the same code
+- **Parameterized Queries** -- user-supplied values are always bound as named parameters, preventing SQL injection
+- **Schema-Aware** -- automatic management of identity columns, timestamps, user stamps, and soft-delete tracking
+- **Full CRUD + Count** -- build CREATE, READ, UPDATE, DELETE, UNDELETE, and COUNT queries
+- **Query Overrides** -- underscore-style templates for custom SQL while retaining automatic parameter binding
+- **Filtering & Sorting** -- rich filter expressions with multiple operators, logical grouping, and multi-column sorting
+- **Joins & Pagination** -- INNER, LEFT, and custom joins plus dialect-aware LIMIT/OFFSET pagination
+- **Fable Integration** -- operates as a Fable service, inheriting configuration, logging, and UUID generation
 
 ## Quick Start
 
@@ -55,14 +55,14 @@ FoxHound follows a configure-then-build pattern.  You create a query instance, c
 ```
 Application Code
   └── FoxHound Query
-        ├── setScope('Books')         → target table
-        ├── addFilter('Genre', '...')  → WHERE clause
-        ├── addSort('Title')          → ORDER BY clause
-        ├── setCap(25)                → LIMIT clause
-        ├── setDialect('MySQL')       → output format
-        └── buildReadQuery()          → SQL generation
-              ├── query.body          → SQL string
-              └── query.parameters    → bound values
+        ├── setScope('Books')         -> target table
+        ├── addFilter('Genre', '...')  -> WHERE clause
+        ├── addSort('Title')          -> ORDER BY clause
+        ├── setCap(25)                -> LIMIT clause
+        ├── setDialect('MySQL')       -> output format
+        └── buildReadQuery()          -> SQL generation
+              ├── query.body          -> SQL string
+              └── query.parameters    -> bound values
 ```
 
 ## Dialects
@@ -83,14 +83,14 @@ When a schema is attached, FoxHound automatically manages special columns:
 
 | Type | Description |
 |------|-------------|
-| `AutoIdentity` | Auto-increment primary key — `NULL` on insert, skipped on update |
+| `AutoIdentity` | Auto-increment primary key -- `NULL` on insert, skipped on update |
 | `AutoGUID` | Automatically generated UUID on insert |
 | `CreateDate` / `CreateIDUser` | Auto-populated on insert only |
 | `UpdateDate` / `UpdateIDUser` | Auto-populated on insert and update |
 | `DeleteDate` / `DeleteIDUser` | Auto-populated on soft delete |
-| `Deleted` | Soft-delete flag — auto-filtered in reads |
-| `JSON` | Structured JSON data — serialized to `TEXT` on write, parsed on read |
-| `JSONProxy` | JSON stored in a different SQL column — uses `StorageColumn` for SQL, virtual name for objects |
+| `Deleted` | Soft-delete flag -- auto-filtered in reads |
+| `JSON` | Structured JSON data -- serialized to `TEXT` on write, parsed on read |
+| `JSONProxy` | JSON stored in a different SQL column -- uses `StorageColumn` for SQL, virtual name for objects |
 
 ## Filter Operators
 
@@ -125,7 +125,7 @@ npm run docker-dev-build
 npm run docker-dev-run
 ```
 
-3. Open http://localhost:24238/ — the password is "retold"
+3. Open http://localhost:24238/ -- the password is "retold"
 
 ## Documentation
 

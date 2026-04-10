@@ -1,6 +1,6 @@
 # Schema Integration
 
-FoxHound is schema-aware — when a schema array is attached to a query, it uses the column type annotations to automatically manage identity columns, timestamps, user stamps, and soft-delete tracking.
+FoxHound is schema-aware -- when a schema array is attached to a query, it uses the column type annotations to automatically manage identity columns, timestamps, user stamps, and soft-delete tracking.
 
 ## Attaching a Schema
 
@@ -29,22 +29,22 @@ tmpQuery.query.schema = [
 
 | Type | Purpose | Create | Read | Update | Delete | Undelete |
 |------|---------|--------|------|--------|--------|----------|
-| `AutoIdentity` | Auto-increment primary key | `NULL` (DB assigns) | included | **skipped** | — | — |
-| `AutoGUID` | Auto-generated UUID | UUID or user value | included | included | — | — |
-| `CreateDate` | Row creation timestamp | `NOW()` | included | **skipped** | — | — |
-| `CreateIDUser` | Row creator user ID | `IDUser` | included | **skipped** | — | — |
+| `AutoIdentity` | Auto-increment primary key | `NULL` (DB assigns) | included | **skipped** | -- | -- |
+| `AutoGUID` | Auto-generated UUID | UUID or user value | included | included | -- | -- |
+| `CreateDate` | Row creation timestamp | `NOW()` | included | **skipped** | -- | -- |
+| `CreateIDUser` | Row creator user ID | `IDUser` | included | **skipped** | -- | -- |
 | `UpdateDate` | Last modification timestamp | `NOW()` | included | `NOW()` | `NOW()` | `NOW()` |
-| `UpdateIDUser` | Last modifier user ID | `IDUser` | included | `IDUser` | — | `IDUser` |
-| `Deleted` | Soft-delete flag | `0` | auto-filtered | — | set to `1` | set to `0` |
-| `DeleteDate` | Deletion timestamp | **skipped** | included | **skipped** | `NOW()` | — |
-| `DeleteIDUser` | Deleter user ID | **skipped** | included | **skipped** | `IDUser` | — |
-| `String` | Text data | parameterized | included | parameterized | — | — |
-| `Integer` | Numeric data | parameterized | included | parameterized | — | — |
-| `Decimal` | Decimal data | parameterized | included | parameterized | — | — |
-| `Boolean` | Boolean data | parameterized | included | parameterized | — | — |
-| `DateTime` | Date/time data | parameterized | included | parameterized | — | — |
-| `JSON` | Structured JSON data | `JSON.stringify` | included | `JSON.stringify` | — | — |
-| `JSONProxy` | JSON with different SQL column name | `JSON.stringify` to `StorageColumn` | included | `JSON.stringify` to `StorageColumn` | — | — |
+| `UpdateIDUser` | Last modifier user ID | `IDUser` | included | `IDUser` | -- | `IDUser` |
+| `Deleted` | Soft-delete flag | `0` | auto-filtered | -- | set to `1` | set to `0` |
+| `DeleteDate` | Deletion timestamp | **skipped** | included | **skipped** | `NOW()` | -- |
+| `DeleteIDUser` | Deleter user ID | **skipped** | included | **skipped** | `IDUser` | -- |
+| `String` | Text data | parameterized | included | parameterized | -- | -- |
+| `Integer` | Numeric data | parameterized | included | parameterized | -- | -- |
+| `Decimal` | Decimal data | parameterized | included | parameterized | -- | -- |
+| `Boolean` | Boolean data | parameterized | included | parameterized | -- | -- |
+| `DateTime` | Date/time data | parameterized | included | parameterized | -- | -- |
+| `JSON` | Structured JSON data | `JSON.stringify` | included | `JSON.stringify` | -- | -- |
+| `JSONProxy` | JSON with different SQL column name | `JSON.stringify` to `StorageColumn` | included | `JSON.stringify` to `StorageColumn` | -- | -- |
 
 ## JSON and JSON Proxy Types
 
@@ -99,33 +99,33 @@ Nested paths are supported (e.g., `Metadata.dimensions.width`). JSON Proxy colum
 
 ### Create (INSERT)
 
-- `AutoIdentity` → inserts `NULL` (MySQL/SQLite) or is omitted (MSSQL)
-- `AutoGUID` → generates a UUID via Fable, unless the record has a valid GUID already
-- `CreateDate`, `UpdateDate` → inserts the current timestamp
-- `CreateIDUser`, `UpdateIDUser` → inserts the user ID from `setIDUser()`
-- `DeleteDate`, `DeleteIDUser` → **skipped** (when delete tracking is enabled)
+- `AutoIdentity` -> inserts `NULL` (MySQL/SQLite) or is omitted (MSSQL)
+- `AutoGUID` -> generates a UUID via Fable, unless the record has a valid GUID already
+- `CreateDate`, `UpdateDate` -> inserts the current timestamp
+- `CreateIDUser`, `UpdateIDUser` -> inserts the user ID from `setIDUser()`
+- `DeleteDate`, `DeleteIDUser` -> **skipped** (when delete tracking is enabled)
 
 ### Update
 
-- `AutoIdentity`, `CreateDate`, `CreateIDUser`, `DeleteDate`, `DeleteIDUser` → **skipped**
-- `UpdateDate` → set to current timestamp automatically
-- `UpdateIDUser` → set to the value from `setIDUser()`
-- All other columns → parameterized from the record
+- `AutoIdentity`, `CreateDate`, `CreateIDUser`, `DeleteDate`, `DeleteIDUser` -> **skipped**
+- `UpdateDate` -> set to current timestamp automatically
+- `UpdateIDUser` -> set to the value from `setIDUser()`
+- All other columns -> parameterized from the record
 
 ### Delete (Soft)
 
 Only these columns are modified:
-- `Deleted` → set to `1`
-- `DeleteDate` → set to current timestamp
-- `UpdateDate` → set to current timestamp
-- `DeleteIDUser` → set to the value from `setIDUser()`
+- `Deleted` -> set to `1`
+- `DeleteDate` -> set to current timestamp
+- `UpdateDate` -> set to current timestamp
+- `DeleteIDUser` -> set to the value from `setIDUser()`
 
 ### Undelete
 
 Only these columns are modified:
-- `Deleted` → set to `0`
-- `UpdateDate` → set to current timestamp
-- `UpdateIDUser` → set to the value from `setIDUser()`
+- `Deleted` -> set to `0`
+- `UpdateDate` -> set to current timestamp
+- `UpdateIDUser` -> set to the value from `setIDUser()`
 
 ### Read / Count
 

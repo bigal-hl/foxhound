@@ -60,7 +60,7 @@ tmpQuery.setDisableDeleteTracking(true);  // Include delete columns on insert
 
 The INSERT syntax is largely the same across dialects, with a few differences:
 
-- **MySQL** — uses backtick-quoted identifiers and `:name` parameters
-- **MSSQL** — uses bracket-quoted identifiers, `@name` parameters, and skips the AutoIdentity column entirely (rather than inserting NULL)
-- **SQLite** — uses backtick-quoted identifiers and `:name` parameters
-- **ALASQL** — same as SQLite
+- **MySQL** -- uses backtick-quoted identifiers and `:name` parameters
+- **MSSQL** -- uses bracket-quoted identifiers, `@name` parameters, and skips the AutoIdentity column entirely (rather than inserting NULL)
+- **SQLite** -- uses backtick-quoted identifiers and `:name` parameters
+- **ALASQL** -- same as SQLite

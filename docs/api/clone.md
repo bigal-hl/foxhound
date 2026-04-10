@@ -18,7 +18,7 @@ Returns a new FoxHound query instance with copies of the current scope, begin, c
 
 ### Description
 
-Cloning is useful when you need to build multiple similar queries from the same base configuration.  The cloned query has its own independent state — changes to the clone do not affect the original.
+Cloning is useful when you need to build multiple similar queries from the same base configuration.  The cloned query has its own independent state -- changes to the clone do not affect the original.
 
 ### Example
 

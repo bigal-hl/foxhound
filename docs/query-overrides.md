@@ -85,4 +85,4 @@ Query overrides are useful when you need:
 - `UNION` queries
 - Any SQL feature not directly supported by FoxHound's fluent API
 
-For straightforward CRUD operations, the standard query builders are preferred — they are safer and more portable across dialects.
+For straightforward CRUD operations, the standard query builders are preferred -- they are safer and more portable across dialects.

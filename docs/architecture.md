@@ -168,10 +168,10 @@ tmpQuery
 
 FoxHound depends on Fable for:
 
-- **UUID Generation** — each query and record gets a unique identifier via `_Fable.getUUID()`
-- **Logging** — filter, scope, and query errors are logged through `_Fable.log`
-- **Utility Functions** — `_Fable.Utility.extend()` for parameter merging and `_Fable.Utility.template()` for query overrides
-- **Configuration** — inherits any relevant settings from the Fable config
+- **UUID Generation** -- each query and record gets a unique identifier via `_Fable.getUUID()`
+- **Logging** -- filter, scope, and query errors are logged through `_Fable.log`
+- **Utility Functions** -- `_Fable.Utility.extend()` for parameter merging and `_Fable.Utility.template()` for query overrides
+- **Configuration** -- inherits any relevant settings from the Fable config
 
 ## Schema-Aware Generation
 

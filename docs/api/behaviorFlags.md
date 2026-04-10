@@ -120,4 +120,4 @@ tmpQuery
 	.setDisableDeleteTracking(true);
 ```
 
-This gives you full manual control over all column values — useful for data migration or import scenarios.
+This gives you full manual control over all column values -- useful for data migration or import scenarios.

@@ -56,7 +56,7 @@ INSERT INTO "Books" ( "IDBook", "Title") VALUES ( DEFAULT, :Title_1) RETURNING *
 
 ## RETURNING Clause
 
-All INSERT statements include `RETURNING *`, which returns the full inserted row — including any auto-generated values like serial IDs and default timestamps.
+All INSERT statements include `RETURNING *`, which returns the full inserted row -- including any auto-generated values like serial IDs and default timestamps.
 
 ## Joins
 

@@ -189,8 +189,8 @@ console.log(tmpQuery.query.body);
 
 ## Next Steps
 
-- [Architecture](architecture.md) — understand FoxHound's internal design
-- [Filters](filters.md) — learn about filter operators and grouping
-- [Schema Integration](schema.md) — use schemas for automatic column management
-- [Dialects](dialects/README.md) — explore dialect-specific features
-- [API Reference](api/README.md) — complete function reference
+- [Architecture](architecture.md) -- understand FoxHound's internal design
+- [Filters](filters.md) -- learn about filter operators and grouping
+- [Schema Integration](schema.md) -- use schemas for automatic column management
+- [Dialects](dialects/README.md) -- explore dialect-specific features
+- [API Reference](api/README.md) -- complete function reference

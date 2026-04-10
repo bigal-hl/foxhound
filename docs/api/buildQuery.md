@@ -89,7 +89,7 @@ Generate a soft-delete UPDATE or a hard DELETE.
 When a schema has a `Deleted` column type and delete tracking is enabled:
 
 ```javascript
-// Soft delete — generates an UPDATE
+// Soft delete -- generates an UPDATE
 tmpQuery.buildDeleteQuery();
 // => UPDATE `Books` SET Deleted = 1, DeleteDate = NOW(3), ...
 ```
@@ -97,7 +97,7 @@ tmpQuery.buildDeleteQuery();
 When no schema or delete tracking is disabled:
 
 ```javascript
-// Hard delete — generates a DELETE
+// Hard delete -- generates a DELETE
 tmpQuery.setDisableDeleteTracking(true).buildDeleteQuery();
 // => DELETE FROM `Books` WHERE IDBook = :IDBook_w0;
 ```

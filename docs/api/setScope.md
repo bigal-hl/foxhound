@@ -20,7 +20,7 @@ Returns `this` for chaining.
 
 ## Description
 
-The scope defines which table (or collection, in NoSQL dialects) the query targets.  This is required for all query types — it appears as the `FROM` clause in SELECT, `INSERT INTO` in CREATE, `UPDATE` in UPDATE, and `DELETE FROM` in DELETE.
+The scope defines which table (or collection, in NoSQL dialects) the query targets.  This is required for all query types -- it appears as the `FROM` clause in SELECT, `INSERT INTO` in CREATE, `UPDATE` in UPDATE, and `DELETE FROM` in DELETE.
 
 FoxHound validates that the input is a string.  Non-string values are ignored and an error is logged.
 

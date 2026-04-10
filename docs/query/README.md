@@ -8,9 +8,9 @@ FoxHound builds queries through a two-phase process: **configure** then **build*
 Configure  ──►  Build  ──►  Access Results
 ```
 
-1. **Configure** — set the scope, fields, filters, sorts, joins, pagination, records, and dialect
-2. **Build** — call one of the `build*Query()` methods to generate the SQL
-3. **Access** — read `query.body` for the SQL string and `query.parameters` for bound values
+1. **Configure** -- set the scope, fields, filters, sorts, joins, pagination, records, and dialect
+2. **Build** -- call one of the `build*Query()` methods to generate the SQL
+3. **Access** -- read `query.body` for the SQL string and `query.parameters` for bound values
 
 ## Creating a Query Instance
 
@@ -84,7 +84,7 @@ After a query is built, you can reset the parameters for reuse or clone the quer
 // Reset to default parameters
 tmpQuery.resetParameters();
 
-// Clone — copies scope, begin, cap, schema, filters, sorts, and dataElements
+// Clone -- copies scope, begin, cap, schema, filters, sorts, and dataElements
 var tmpClone = tmpQuery.clone();
 ```
 

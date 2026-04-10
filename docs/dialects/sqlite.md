@@ -10,7 +10,7 @@ SQLite uses backtick quoting for identifiers to avoid conflicts with SQLite's ma
 SELECT * FROM Books WHERE `Genre` = :Genre_w0;
 ```
 
-Table names are not quoted in the SQLite dialect — they are used as plain identifiers.
+Table names are not quoted in the SQLite dialect -- they are used as plain identifiers.
 
 ## Named Parameters
 
@@ -49,7 +49,7 @@ SELECT COUNT(DISTINCT IDBook) AS RowCount FROM Books;
 
 ## Soft Delete
 
-Works the same as other dialects — when a `Deleted` column is present in the schema, Delete generates an UPDATE:
+Works the same as other dialects -- when a `Deleted` column is present in the schema, Delete generates an UPDATE:
 
 ```sql
 UPDATE Books SET `Deleted` = 1, `DeleteDate` = NOW(),
@@ -63,9 +63,9 @@ The `NOW()` calls are replaced with `datetime('now')` by the Meadow SQLite provi
 
 When using the Meadow SQLite provider with `better-sqlite3`:
 
-- **Boolean coercion** — `better-sqlite3` only accepts numbers, strings, bigints, buffers, and null. The provider automatically converts boolean values (`true`/`false`) to integers (`1`/`0`)
-- **Undefined coercion** — undefined values are converted to `null`
-- **Synchronous execution** — `better-sqlite3` is synchronous, but the Meadow provider wraps calls in an async-compatible callback pattern
+- **Boolean coercion** -- `better-sqlite3` only accepts numbers, strings, bigints, buffers, and null. The provider automatically converts boolean values (`true`/`false`) to integers (`1`/`0`)
+- **Undefined coercion** -- undefined values are converted to `null`
+- **Synchronous execution** -- `better-sqlite3` is synchronous, but the Meadow provider wraps calls in an async-compatible callback pattern
 
 ## Query Overrides
 

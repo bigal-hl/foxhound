@@ -45,10 +45,10 @@ Each method receives the full Parameters object and returns a SQL string (or `fa
 
 All SQL dialects share these behaviors:
 
-- **Parameterized values** — user data is always bound as named parameters, never interpolated
-- **Schema-aware column management** — AutoIdentity, timestamps, user stamps, and soft-delete columns are handled automatically based on schema type annotations
-- **Soft-delete filtering** — Read and Count queries automatically exclude rows where the `Deleted` column is `1` (when schema is present)
-- **Query overrides** — Read and Count queries support underscore templates for custom SQL generation
+- **Parameterized values** -- user data is always bound as named parameters, never interpolated
+- **Schema-aware column management** -- AutoIdentity, timestamps, user stamps, and soft-delete columns are handled automatically based on schema type annotations
+- **Soft-delete filtering** -- Read and Count queries automatically exclude rows where the `Deleted` column is `1` (when schema is present)
+- **Query overrides** -- Read and Count queries support underscore templates for custom SQL generation
 
 ## Choosing a Dialect
 

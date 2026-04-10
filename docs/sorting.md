@@ -33,7 +33,7 @@ tmpQuery
 // ORDER BY Genre, PublishedYear DESC
 ```
 
-Columns without an explicit `Direction` (or with `Direction: 'Ascending'`) sort in ascending order — the SQL default.
+Columns without an explicit `Direction` (or with `Direction: 'Ascending'`) sort in ascending order -- the SQL default.
 
 ## Setting Sorts Directly
 
@@ -71,9 +71,9 @@ tmpQuery.setSort({Column: 'Title', Direction: 'Descending'});
 
 The `ORDER BY` clause syntax is consistent across all SQL dialects.  The main difference is in identifier quoting:
 
-- **MySQL** — `ORDER BY PublishedYear DESC`
-- **MSSQL** — `ORDER BY [PublishedYear] DESC`
-- **SQLite/ALASQL** — `ORDER BY \`PublishedYear\` DESC`
+- **MySQL** -- `ORDER BY PublishedYear DESC`
+- **MSSQL** -- `ORDER BY [PublishedYear] DESC`
+- **SQLite/ALASQL** -- `ORDER BY \`PublishedYear\` DESC`
 
 ## Interaction with Pagination
 

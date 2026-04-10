@@ -94,8 +94,8 @@ Invalid joins are logged as warnings and silently skipped.
 
 ## Dialect Differences
 
-- **MySQL** — `INNER JOIN Authors ON Authors.IDAuthor = Books.IDAuthor`
-- **MSSQL** — `INNER JOIN [Authors] ON Authors.IDAuthor = Books.IDAuthor`
-- **SQLite/ALASQL** — joins are supported in Read queries but not generated (the SQLite and ALASQL dialects do not include a `generateJoins` function; joins work through query overrides)
+- **MySQL** -- `INNER JOIN Authors ON Authors.IDAuthor = Books.IDAuthor`
+- **MSSQL** -- `INNER JOIN [Authors] ON Authors.IDAuthor = Books.IDAuthor`
+- **SQLite/ALASQL** -- joins are supported in Read queries but not generated (the SQLite and ALASQL dialects do not include a `generateJoins` function; joins work through query overrides)
 
 > **Note:** The SQLite and ALASQL dialects are primarily designed for simpler single-table queries.  For complex join scenarios, consider using a query override or the MySQL/MSSQL dialect.
