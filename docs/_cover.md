@@ -1,4 +1,4 @@
-# FoxHound <small>2</small>
+# FoxHound
 
 > A fluent query generation DSL for Node.js and the browser
 
