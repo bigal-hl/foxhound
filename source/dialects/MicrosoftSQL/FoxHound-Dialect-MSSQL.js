@@ -180,6 +180,51 @@ var FoxHoundDialectMSSQL = function(pFable)
 	};
 
 	/**
+	* Generate a field list for the outer SELECT of the legacy pagination
+	* wrapper.  The outer FROM is a subquery aliased as [_Paged], so the
+	* default "[Table].*" qualifier can't resolve there — we need either
+	* an explicit column list from the schema or a bare "*".
+	*
+	* If the caller set explicit dataElements, reuse them (they reference
+	* bare column names, which work fine against the subquery alias).
+	* Otherwise emit an explicit list from the schema to keep [_RowNum]
+	* from leaking.  As a last resort, fall back to "*" — callers without
+	* a schema will see [_RowNum] as an extra property on marshalled
+	* records but the query itself remains valid.
+	*
+	* @param: {Object} pParameters SQL Query Parameters
+	* @return: {String} Field list (prefixed with a single leading space)
+	*/
+	var generateOuterFieldListForLegacyPagination = function(pParameters)
+	{
+		var tmpDataElements = pParameters.dataElements;
+		if (Array.isArray(tmpDataElements) && tmpDataElements.length > 0)
+		{
+			// Reuse the caller-supplied list.  It emits unqualified column
+			// names ([Col], [Col] AS [Alias]) which resolve fine against
+			// the subquery alias.
+			return generateFieldList(pParameters);
+		}
+
+		var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+		if (tmpSchema.length > 0)
+		{
+			var tmpList = ' ';
+			for (var i = 0; i < tmpSchema.length; i++)
+			{
+				if (i > 0) tmpList += ', ';
+				tmpList += generateSafeFieldName(tmpSchema[i].Column);
+			}
+			return tmpList;
+		}
+
+		// No schema, no explicit dataElements — "*" is the best we can do.
+		// [_RowNum] will surface on marshalled records; downstream code can
+		// ignore it.  Schemas are the norm via Meadow so this is rare.
+		return ' *';
+	};
+
+	/**
 	* Ensure a field name is properly escaped.
 	*/
 	var generateSafeFieldName = function(pFieldName)
@@ -353,10 +398,39 @@ var FoxHoundDialectMSSQL = function(pFable)
 	};
 
 	/**
+	* Find the table's AutoIdentity primary-key column from the schema, if any.
+	* Used as a deterministic default ORDER BY when the caller didn't set a
+	* sort — MSSQL pagination (both OFFSET/FETCH and ROW_NUMBER) requires an
+	* ORDER BY clause or it produces a syntax error.
+	*
+	* @param: {Object} pParameters SQL Query Parameters
+	* @return: {String|null} The column name, or null if none found
+	*/
+	var findPrimaryKeyColumn = function(pParameters)
+	{
+		var tmpSchema = Array.isArray(pParameters.query.schema) ? pParameters.query.schema : [];
+		for (var i = 0; i < tmpSchema.length; i++)
+		{
+			if (tmpSchema[i].Type === 'AutoIdentity')
+			{
+				return tmpSchema[i].Column;
+			}
+		}
+		return null;
+	};
+
+	/**
 	* Generate an ORDER BY clause from the sort array
 	*
 	* Each entry in the sort is an object like:
 	* {Column:'Color',Direction:'Descending'}
+	*
+	* When no sort is specified but the query has a cap (pagination is
+	* active), inject a default ORDER BY on the primary key so MSSQL
+	* doesn't reject the OFFSET/FETCH or ROW_NUMBER clause.  Without a
+	* schema the PK can't be inferred — fall back to `ORDER BY (SELECT 1)`
+	* which is legal for OFFSET/FETCH but not for ROW_NUMBER (the legacy
+	* pagination path handles that case by refusing to paginate).
 	*
 	* @method: generateOrderBy
 	* @param: {Object} pParameters SQL Query Parameters
@@ -367,6 +441,15 @@ var FoxHoundDialectMSSQL = function(pFable)
 		var tmpOrderBy = pParameters.sort;
 		if (!Array.isArray(tmpOrderBy) || tmpOrderBy.length < 1)
 		{
+			if (pParameters.cap)
+			{
+				var tmpPK = findPrimaryKeyColumn(pParameters);
+				if (tmpPK)
+				{
+					return ' ORDER BY ['+tmpPK+']';
+				}
+				return ' ORDER BY (SELECT 1)';
+			}
 			return '';
 		}
 
@@ -390,6 +473,12 @@ var FoxHoundDialectMSSQL = function(pFable)
 	/**
 	* Generate the limit clause
 	*
+	* When `legacyPagination` is set on pParameters the limit is emitted
+	* by the Read function using a ROW_NUMBER() subquery wrapper instead
+	* (OFFSET/FETCH NEXT requires SQL Server 2012+ / compatibility level
+	* 110+, which some customers don't have).  In that case this function
+	* returns an empty string.
+	*
 	* @method: generateLimit
 	* @param: {Object} pParameters SQL Query Parameters
 	* @return: {String} Returns the table limit clause
@@ -398,6 +487,13 @@ var FoxHoundDialectMSSQL = function(pFable)
 	{
 		if (!pParameters.cap)
 		{
+			return '';
+		}
+
+		if (pParameters.legacyPagination)
+		{
+			// The Read function wraps the query in a ROW_NUMBER() subquery
+			// instead of appending an OFFSET/FETCH tail clause.
 			return '';
 		}
 
@@ -1035,6 +1131,30 @@ var FoxHoundDialectMSSQL = function(pFable)
 				console.log('Error with custom Read Query ['+pParameters.queryOverride+']: '+pError);
 				return false;
 			}
+		}
+
+		// Legacy pagination path — emit a ROW_NUMBER() wrapper instead of
+		// OFFSET/FETCH.  Required for SQL Server 2008 R2 and earlier, or
+		// for databases running at a compatibility level below 110 (2012).
+		// Enabled via pParameters.legacyPagination (forwarded from the
+		// meadow-connection-mssql provider's LegacyPagination config).
+		if (pParameters.legacyPagination && pParameters.cap)
+		{
+			var tmpBegin = (pParameters.begin !== false) ? pParameters.begin : 0;
+			var tmpEnd = tmpBegin + pParameters.cap;
+			// generateOrderBy always returns a usable ORDER BY when cap is
+			// set.  ROW_NUMBER()'s OVER() clause takes the same body but
+			// without the leading space.
+			var tmpOverClause = tmpOrderBy.replace(/^ /, '');
+			// The outer SELECT's FROM is the subquery alias, not the base
+			// table — so the default field list's "[Table].*" qualifier
+			// won't resolve at the outer level.  Compute an outer field
+			// list that works regardless of whether the caller supplied
+			// explicit dataElements or relied on the default.
+			var tmpOuterFieldList = generateOuterFieldListForLegacyPagination(pParameters);
+			// INDEX hints and JOINs live on the inner select (they apply
+			// to the base table).  [_RowNum] is confined to the subquery.
+			return `SELECT${tmpOptDistinct}${tmpOuterFieldList} FROM (SELECT${tmpFieldList}, ROW_NUMBER() OVER (${tmpOverClause}) AS [_RowNum] FROM${tmpTableName}${tmpIndexHints}${tmpJoin}${tmpWhere}) AS [_Paged] WHERE [_RowNum] > ${tmpBegin} AND [_RowNum] <= ${tmpEnd};`;
 		}
 
 		return `SELECT${tmpOptDistinct}${tmpFieldList} FROM${tmpTableName}${tmpIndexHints}${tmpJoin}${tmpWhere}${tmpOrderBy}${tmpLimit};`;
