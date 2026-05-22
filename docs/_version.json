@@ -1,7 +1,7 @@
 {
 	"Name": "foxhound",
-	"Version": "2.0.26",
+	"Version": "2.0.27",
 	"Description": "A Database Query generation library.",
-	"GeneratedAt": "2026-04-10T17:20:13.929Z",
-	"GitCommit": "9fe56f5"
+	"GeneratedAt": "2026-05-22T05:38:56.402Z",
+	"GitCommit": "8fe3736"
 }

@@ -1,164 +1,248 @@
 {
-	"Generated": "2026-04-10T17:20:13.644Z",
+	"Generated": "2026-05-22T05:38:56.233Z",
+	"Mode": "module",
 	"GitHubOrg": "stevenvelozo",
 	"DefaultBranch": "master",
-	"Groups": [
-		{
-			"Name": ".config",
-			"Key": ".config",
-			"Description": "",
-			"Modules": [
-				{
-					"Name": "code-server",
-					"Repo": "code-server",
-					"Group": ".config",
-					"Branch": "master",
-					"HasDocs": false,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": []
-				},
-				{
-					"Name": "configstore",
-					"Repo": "configstore",
-					"Group": ".config",
-					"Branch": "master",
-					"HasDocs": false,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": []
-				}
-			]
-		},
-		{
-			"Name": ".github",
-			"Key": ".github",
-			"Description": "",
-			"Modules": [
-				{
-					"Name": "workflows",
-					"Repo": "workflows",
-					"Group": ".github",
-					"Branch": "master",
-					"HasDocs": false,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": []
-				}
-			]
-		},
-		{
-			"Name": "Dist",
-			"Key": "dist",
-			"Description": "",
-			"Modules": [
-				{
-					"Name": "indoctrinate_content_staging",
-					"Repo": "indoctrinate_content_staging",
-					"Group": "dist",
-					"Branch": "master",
-					"HasDocs": false,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": []
-				}
-			]
-		},
-		{
-			"Name": "Docs",
-			"Key": "docs",
-			"Description": "",
-			"Modules": [
-				{
-					"Name": "api",
-					"Repo": "api",
-					"Group": "docs",
-					"Branch": "master",
-					"HasDocs": true,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": [
-						"api/README.md",
-						"api/addFilter.md",
-						"api/addJoin.md",
-						"api/addRecord.md",
-						"api/addSort.md",
-						"api/behaviorFlags.md",
-						"api/buildQuery.md",
-						"api/clone.md",
-						"api/queryOverrides.md",
-						"api/setCap.md",
-						"api/setDataElements.md",
-						"api/setDialect.md",
-						"api/setDistinct.md",
-						"api/setIDUser.md",
-						"api/setScope.md"
-					]
-				},
-				{
-					"Name": "css",
-					"Repo": "css",
-					"Group": "docs",
-					"Branch": "master",
-					"HasDocs": true,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": [
-						"css/docuserve.css"
-					]
-				},
-				{
-					"Name": "dialects",
-					"Repo": "dialects",
-					"Group": "docs",
-					"Branch": "master",
-					"HasDocs": true,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": [
-						"dialects/README.md",
-						"dialects/alasql.md",
-						"dialects/mssql.md",
-						"dialects/mysql.md",
-						"dialects/postgresql.md",
-						"dialects/sqlite.md"
-					]
-				},
-				{
-					"Name": "query",
-					"Repo": "query",
-					"Group": "docs",
-					"Branch": "master",
-					"HasDocs": true,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": [
-						"query/README.md",
-						"query/count.md",
-						"query/create.md",
-						"query/delete.md",
-						"query/read.md",
-						"query/update.md"
-					]
-				}
-			]
-		},
-		{
-			"Name": "Source",
-			"Key": "source",
-			"Description": "",
-			"Modules": [
-				{
-					"Name": "dialects",
-					"Repo": "dialects",
-					"Group": "source",
-					"Branch": "master",
-					"HasDocs": false,
-					"HasCover": false,
-					"Sidebar": [],
-					"DocFiles": []
-				}
-			]
-		}
-	]
+	"Module": {
+		"Name": "foxhound",
+		"Repo": "foxhound",
+		"Group": "",
+		"Branch": "master",
+		"HasDocs": true,
+		"HasCover": true,
+		"Sidebar": [
+			{
+				"Title": "Getting Started",
+				"Children": [
+					{
+						"Title": "Introduction",
+						"Path": "README.md"
+					},
+					{
+						"Title": "Quickstart",
+						"Path": "quickstart.md"
+					},
+					{
+						"Title": "Architecture",
+						"Path": "architecture.md"
+					}
+				]
+			},
+			{
+				"Title": "Query Building",
+				"Children": [
+					{
+						"Title": "Query Overview",
+						"Path": "query/README.md"
+					},
+					{
+						"Title": "Create",
+						"Path": "query/create.md"
+					},
+					{
+						"Title": "Read",
+						"Path": "query/read.md"
+					},
+					{
+						"Title": "Update",
+						"Path": "query/update.md"
+					},
+					{
+						"Title": "Delete",
+						"Path": "query/delete.md"
+					},
+					{
+						"Title": "Count",
+						"Path": "query/count.md"
+					}
+				]
+			},
+			{
+				"Title": "Filtering & Sorting",
+				"Children": [
+					{
+						"Title": "Filters",
+						"Path": "filters.md"
+					},
+					{
+						"Title": "Sorting",
+						"Path": "sorting.md"
+					},
+					{
+						"Title": "Joins",
+						"Path": "joins.md"
+					},
+					{
+						"Title": "Pagination",
+						"Path": "pagination.md"
+					}
+				]
+			},
+			{
+				"Title": "Dialects",
+				"Children": [
+					{
+						"Title": "Dialects Overview",
+						"Path": "dialects/README.md"
+					},
+					{
+						"Title": "MySQL",
+						"Path": "dialects/mysql.md"
+					},
+					{
+						"Title": "PostgreSQL",
+						"Path": "dialects/postgresql.md"
+					},
+					{
+						"Title": "MSSQL",
+						"Path": "dialects/mssql.md"
+					},
+					{
+						"Title": "SQLite",
+						"Path": "dialects/sqlite.md"
+					},
+					{
+						"Title": "ALASQL",
+						"Path": "dialects/alasql.md"
+					}
+				]
+			},
+			{
+				"Title": "API Reference",
+				"Children": [
+					{
+						"Title": "API Overview",
+						"Path": "api/README.md"
+					},
+					{
+						"Title": "setScope",
+						"Path": "api/setScope.md"
+					},
+					{
+						"Title": "setDialect",
+						"Path": "api/setDialect.md"
+					},
+					{
+						"Title": "setDataElements",
+						"Path": "api/setDataElements.md"
+					},
+					{
+						"Title": "addFilter / setFilter",
+						"Path": "api/addFilter.md"
+					},
+					{
+						"Title": "addSort / setSort",
+						"Path": "api/addSort.md"
+					},
+					{
+						"Title": "addJoin / setJoin",
+						"Path": "api/addJoin.md"
+					},
+					{
+						"Title": "setCap / setBegin",
+						"Path": "api/setCap.md"
+					},
+					{
+						"Title": "addRecord",
+						"Path": "api/addRecord.md"
+					},
+					{
+						"Title": "setIDUser",
+						"Path": "api/setIDUser.md"
+					},
+					{
+						"Title": "setDistinct",
+						"Path": "api/setDistinct.md"
+					},
+					{
+						"Title": "Build Methods",
+						"Path": "api/buildQuery.md"
+					},
+					{
+						"Title": "clone / reset",
+						"Path": "api/clone.md"
+					},
+					{
+						"Title": "Behavior Flags",
+						"Path": "api/behaviorFlags.md"
+					},
+					{
+						"Title": "Query Overrides",
+						"Path": "api/queryOverrides.md"
+					}
+				]
+			},
+			{
+				"Title": "Advanced",
+				"Children": [
+					{
+						"Title": "Schema Integration",
+						"Path": "schema.md"
+					},
+					{
+						"Title": "JSON Columns",
+						"Path": "json-columns.md"
+					},
+					{
+						"Title": "Query Overrides",
+						"Path": "query-overrides.md"
+					},
+					{
+						"Title": "Configuration Reference",
+						"Path": "configuration.md"
+					}
+				]
+			}
+		],
+		"DocFiles": [
+			".nojekyll",
+			"README.md",
+			"_brand.json",
+			"_cover.md",
+			"_sidebar.md",
+			"_topbar.md",
+			"_version.json",
+			"api/README.md",
+			"api/addFilter.md",
+			"api/addJoin.md",
+			"api/addRecord.md",
+			"api/addSort.md",
+			"api/behaviorFlags.md",
+			"api/buildQuery.md",
+			"api/clone.md",
+			"api/queryOverrides.md",
+			"api/setCap.md",
+			"api/setDataElements.md",
+			"api/setDialect.md",
+			"api/setDistinct.md",
+			"api/setIDUser.md",
+			"api/setScope.md",
+			"architecture.md",
+			"configuration.md",
+			"dialects/README.md",
+			"dialects/alasql.md",
+			"dialects/mssql.md",
+			"dialects/mysql.md",
+			"dialects/postgresql.md",
+			"dialects/sqlite.md",
+			"filters.md",
+			"index.html",
+			"joins.md",
+			"json-columns.md",
+			"pagination.md",
+			"query/README.md",
+			"query/count.md",
+			"query/create.md",
+			"query/delete.md",
+			"query/read.md",
+			"query/update.md",
+			"query-overrides.md",
+			"quickstart.md",
+			"retold-catalog.json",
+			"retold-keyword-index.json",
+			"schema.md",
+			"sorting.md"
+		]
+	},
+	"Groups": []
 }
