@@ -1,5 +1,7 @@
 # FoxHound
 
+> **[&#9654; Read the Foxhound Documentation](https://stevenvelozo.github.io/foxhound/)** &mdash; interactive docs with the full API reference.
+
 > A fluent query generation DSL for Node.js and the browser
 
 FoxHound is a database query builder that generates dialect-specific SQL from a single chainable API.  It keeps your application code database-agnostic while producing safe, parameterized queries for MySQL, PostgreSQL, Microsoft SQL Server, SQLite, and ALASQL.

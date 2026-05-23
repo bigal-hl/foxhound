@@ -6,11 +6,11 @@ FoxHound uses a dialect strategy pattern to generate database-specific SQL from 
 
 | Dialect | Target | Identifier Quoting | Parameter Prefix | Pagination |
 |---------|--------|-------------------|-----------------|------------|
-| [MySQL](dialects/mysql.md) | MySQL / MariaDB | `` `backticks` `` | `:name` | `LIMIT offset, count` |
-| [PostgreSQL](dialects/postgresql.md) | PostgreSQL 9.5+ | `"double quotes"` | `:name` | `LIMIT count OFFSET offset` |
-| [MSSQL](dialects/mssql.md) | Microsoft SQL Server | `[brackets]` | `@name` | `OFFSET n ROWS FETCH NEXT m ROWS ONLY` |
-| [SQLite](dialects/sqlite.md) | SQLite 3 | `` `backticks` `` | `:name` | `LIMIT count OFFSET offset` |
-| [ALASQL](dialects/alasql.md) | ALASQL (in-memory) | `` `backticks` `` | `:name` | `LIMIT count FETCH offset` |
+| [MySQL](mysql.md) | MySQL / MariaDB | `` `backticks` `` | `:name` | `LIMIT offset, count` |
+| [PostgreSQL](postgresql.md) | PostgreSQL 9.5+ | `"double quotes"` | `:name` | `LIMIT count OFFSET offset` |
+| [MSSQL](mssql.md) | Microsoft SQL Server | `[brackets]` | `@name` | `OFFSET n ROWS FETCH NEXT m ROWS ONLY` |
+| [SQLite](sqlite.md) | SQLite 3 | `` `backticks` `` | `:name` | `LIMIT count OFFSET offset` |
+| [ALASQL](alasql.md) | ALASQL (in-memory) | `` `backticks` `` | `:name` | `LIMIT count FETCH offset` |
 | English | Human-readable | none | none | prose |
 | MeadowEndpoints | REST URL generation | none | none | query string |
 
