@@ -9,4 +9,4 @@
 
 [Get Started](quickstart.md)
 [API Reference](api/README.md)
-[GitHub](https://github.com/stevenvelozo/foxhound)
+[GitHub](https://github.com/fable-retold/foxhound)

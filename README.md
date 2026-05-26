@@ -1,6 +1,6 @@
 # FoxHound
 
-> **[&#9654; Read the Foxhound Documentation](https://stevenvelozo.github.io/foxhound/)** &mdash; interactive docs with the full API reference.
+> **[&#9654; Read the Foxhound Documentation](https://fable-retold.github.io/foxhound/)** &mdash; interactive docs with the full API reference.
 
 > A fluent query generation DSL for Node.js and the browser
 
@@ -139,9 +139,9 @@ npx docsify-cli serve docs
 
 ## Related Packages
 
-- [meadow](https://github.com/stevenvelozo/meadow) - Data access and ORM
-- [stricture](https://github.com/stevenvelozo/stricture) - Schema definition language
-- [fable](https://github.com/stevenvelozo/fable) - Application services framework
+- [meadow](https://github.com/fable-retold/meadow) - Data access and ORM
+- [stricture](https://github.com/fable-retold/stricture) - Schema definition language
+- [fable](https://github.com/fable-retold/fable) - Application services framework
 
 ## License
 

@@ -71,10 +71,10 @@ console.log(tmpQuery.query.parameters);
 
 | Package | Purpose |
 |---------|---------|
-| [fable](https://github.com/stevenvelozo/fable) | Core service framework (required dependency) |
-| [meadow](https://github.com/stevenvelozo/meadow) | Data access layer that uses FoxHound for query generation |
-| [stricture](https://github.com/stevenvelozo/stricture) | Schema definition tool that produces FoxHound-compatible schema arrays |
-| [meadow-endpoints](https://github.com/stevenvelozo/meadow-endpoints) | REST endpoint generator built on Meadow + FoxHound |
+| [fable](https://github.com/fable-retold/fable) | Core service framework (required dependency) |
+| [meadow](https://github.com/fable-retold/meadow) | Data access layer that uses FoxHound for query generation |
+| [stricture](https://github.com/fable-retold/stricture) | Schema definition tool that produces FoxHound-compatible schema arrays |
+| [meadow-endpoints](https://github.com/fable-retold/meadow-endpoints) | REST endpoint generator built on Meadow + FoxHound |
 
 ## Testing
 
